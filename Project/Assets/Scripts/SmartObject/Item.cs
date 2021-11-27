@@ -9,9 +9,11 @@ public class Item
     public string itemName;
     public Sprite icon;
     public ItemType itemType;
-    public int stackLimit;
-    public int amount;
+    public int stackLimit = 1;
+    public int amount = 1;
     public float value;
+
+    public int inventoryIndex;
 
     public enum ItemType { Equipment, Tool, Material, Consumable, Food, Furniture }
     public enum ToolType { Axe, Pickaxe, Shovel }
@@ -37,23 +39,28 @@ public class Item
 	}
 
 
-    public void UseFurniture(HandManager hand, GameObject furniture, Vector3 position)
-	{
-        furniture.transform.position = position;
-
-        if (Input.mouseScrollDelta.y > 0)
-		{
-            furniture.transform.Rotate(0, 90, 0);
-		}
-        if (Input.mouseScrollDelta.y < 0)
-        {
-            furniture.transform.Rotate(0, -90, 0);
-        }
-
-        if (Input.GetButtonDown("Fire1"))
-		{
-            hand.handItemData = new Item();
-		}
+    public void SetInventoryIndex(int index)
+    {
+        inventoryIndex = index;
     }
 
+    public int GetInventoryIndex()
+    {
+        return inventoryIndex;
+    }
+
+    #region Tools
+    public GameObject GetPrefab()
+    {
+        string path = "";
+        if (itemType == ItemType.Furniture) path = "Furnitures";
+        foreach(GameObject prefab in Resources.LoadAll<GameObject>(path))
+        {
+            if (prefab.name == itemName) return prefab;
+        }
+
+        return null;
+    }
+
+    #endregion
 }

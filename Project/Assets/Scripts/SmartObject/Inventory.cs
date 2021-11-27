@@ -46,6 +46,7 @@ public class Inventory
 
 			if (it.amount <= 0)
 			{
+				item.SetInventoryIndex(i);
 				itemList[i] = item;
 				if (ItemCollected != null)
 				{
@@ -56,6 +57,7 @@ public class Inventory
 		}
 
 		// Apenas adiciona o item ao inventário
+		item.SetInventoryIndex(itemList.Count);
 		itemList.Add(item);
 		
 		

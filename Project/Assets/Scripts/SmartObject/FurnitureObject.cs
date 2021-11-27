@@ -12,13 +12,15 @@ public class FurnitureObject : SmartObject
 
 	public override void Interact()
 	{
-		damage += 1;
+		/*damage += 1;
 		timer = 0;
 
 		if (damage >= 3)
 		{
 			CatchObject();
-		}
+		}*/
+
+		CatchObject();
 	}
 
 	private void Update()
@@ -43,6 +45,8 @@ public class FurnitureObject : SmartObject
 		drop.transform.Rotate(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
 		drop.GetComponent<Rigidbody>().AddForce(transform.forward * 3, ForceMode.Impulse);
 		drop.GetComponent<Rigidbody>().AddForce(Vector3.up * 3 / 1.5f, ForceMode.Impulse);
+		drop.GetComponent<DropItem>().dropTimer = 0.5f;
+
 
 		Destroy(gameObject);
 	}
@@ -55,5 +59,15 @@ public class FurnitureObject : SmartObject
 	public void RotateRight()
 	{
 		transform.Rotate(0, 90, 0);
+	}
+
+	public override ObjectType GetObjectType()
+    {
+		return ObjectType.Furniture;
+    }
+
+	public void ToggleKinematic()
+    {
+		GetComponent<Rigidbody>().isKinematic = !GetComponent<Rigidbody>().isKinematic;
 	}
 }

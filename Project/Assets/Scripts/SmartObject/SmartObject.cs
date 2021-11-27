@@ -5,6 +5,8 @@ using UnityEngine;
 public class SmartObject : MonoBehaviour
 {
     public GameObject particle;
+    
+    public enum ObjectType { None, Chop, Furniture }
 
     public virtual void Interact()
     {
@@ -19,4 +21,8 @@ public class SmartObject : MonoBehaviour
         return false;
     }
 
+    public virtual ObjectType GetObjectType()
+    {
+        return ObjectType.None;
+    }
 }

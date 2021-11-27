@@ -25,17 +25,22 @@ public class FirstPersonController : MonoBehaviour
     [Header("World Settings")]
     [SerializeField]
     [Range(1, 25f)] private float gravity = 10f;
+    [SerializeField]
+    private float pushPower = 1.5f;
 
     private float verticalSpeed = 0f;
     private CharacterController controller;
 
     private float verticalAngle;
     private float horizontalAngle;
+    private float height;
+    private bool isCrouching;
 
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         controller = GetComponent<CharacterController>();
+        height = controller.height;
         verticalAngle = 0f;
         horizontalAngle = transform.localEulerAngles.y;
     }
@@ -45,9 +50,7 @@ public class FirstPersonController : MonoBehaviour
     {
         if (Time.timeScale > 0)
         {
-            var isJumping = Input.GetButton("Jump");
-            
-            Jump(isJumping);
+            Jump();
             Camera();
             Gravity();
         }
@@ -55,16 +58,15 @@ public class FirstPersonController : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-        var movementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        var isRunning = Input.GetButton("Run"); 
-        Movement(movementInput, isRunning);
-        Crouch();
+
+        Movement();
+        Crouch(false);
     }
 
 
-    private void Jump(bool isJumping)
+    private void Jump()
     {
-        if (IsGrounded() && isJumping)
+        if (IsGrounded() && Input.GetButton("Jump"))
         {
             verticalSpeed = jumpForce;
         }
@@ -72,7 +74,7 @@ public class FirstPersonController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, (controller.height / 2) + 0.1f))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f))
 		{
             if (hit.collider) return true;
             else return false;
@@ -113,9 +115,13 @@ public class FirstPersonController : MonoBehaviour
         transform.localEulerAngles = currentAngles;
     }
 
-    private void Movement(Vector3 movementInput, bool isRunning)
+    private void Movement()
     {
+        var movementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
+        var isRunning = Input.GetButton("Run"); 
+        
         float realSpeed;
+
         if (isRunning)
             realSpeed = runSpeed;
         else
@@ -130,15 +136,18 @@ public class FirstPersonController : MonoBehaviour
         hand.GetComponent<Animator>().SetFloat("MoveSpeed", controller.velocity.magnitude / moveSpeed);
     }
 
-    private void Crouch()
+    private void Crouch(bool canCrouch)
 	{
-        if (Input.GetButton("Crouch"))
-		{
-            controller.height = 1;
-        }
-        else
-		{
-            controller.height = 2;
+        if (canCrouch)
+        {
+            if (Input.GetButton("Crouch"))
+            {
+                controller.height = height / 2;
+            }
+            else
+            {
+                controller.height = height;
+            }
         }
     }
 
@@ -155,5 +164,34 @@ public class FirstPersonController : MonoBehaviour
         {
             this.verticalSpeed = 0;
         }
+    }
+
+
+
+    void OnControllerColliderHit(ControllerColliderHit hit)
+    {
+        Rigidbody body = hit.collider.attachedRigidbody;
+
+        // no rigidbody
+        if (body == null || body.isKinematic)
+        {
+            return;
+        }
+
+        // We dont want to push objects below us
+        if (hit.moveDirection.y < -0.3)
+        {
+            return;
+        }
+
+        // Calculate push direction from move direction,
+        // we only push objects to the sides never up and down
+        Vector3 pushDir = new Vector3(hit.moveDirection.x, 0, hit.moveDirection.z);
+
+        // If you know how fast your character is trying to move,
+        // then you can also multiply the push velocity by that.
+
+        // Apply the push
+        body.velocity = pushDir * pushPower;
     }
 }

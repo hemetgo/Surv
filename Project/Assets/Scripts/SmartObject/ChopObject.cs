@@ -40,4 +40,9 @@ public class ChopObject : SmartObject
         } 
         else return false;
 	}
+
+    public override ObjectType GetObjectType()
+    {
+        return ObjectType.Chop;
+    }
 }

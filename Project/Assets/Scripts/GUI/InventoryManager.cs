@@ -21,6 +21,7 @@ public class InventoryManager : MonoBehaviour
 	public FeedbackManager feedbackManager;
 
 	// Aux
+	public GameObject dropZone;
 	public InventorySlot dragSlot;
 	public InventorySlot dropSlot;
 
@@ -43,6 +44,7 @@ public class InventoryManager : MonoBehaviour
 		inventory = new Inventory();
 		inventory.ItemCollected += OnItemCollected;
 		itemBar.handManager.ItemDropped += OnItemDropped;
+		FindObjectOfType<HandManager>().ItemPlaced += OnItemPlaced;
 	}
 
 	public void RefreshInventory()
@@ -96,6 +98,11 @@ public class InventoryManager : MonoBehaviour
 		Time.timeScale = 1;
 	}
 
+	public void DropItem(Item item)
+    {
+		FindObjectOfType<HandManager>().DropItem(item);
+    }
+
 	private void GenerateSlots()
 	{
 		for (int i = 0; i < slotsCount; i++)
@@ -119,17 +126,28 @@ public class InventoryManager : MonoBehaviour
 
 	private void OnItemDropped(Item item)
 	{
-		for (int i = 0; i < inventory.GetItemList().Count; i++)
+		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
 		{
-			Item itemList = inventory.GetItemList()[i];
-			if (itemList.itemName.Equals(item.itemName))
-			{
-				if (item.amount <= 0)
-				{
-					inventory.GetItemList()[i] = new Item();
-					break;
-				}
-			}
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item();
+		}
+		else
+		{
+			inventory.GetItemList()[item.GetInventoryIndex()] = item;
+		}
+
+		RefreshInventory();
+		itemBar.RefreshItemBar();
+	}
+
+	private void OnItemPlaced(Item item)
+    {
+		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
+		{
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item();
+		} 
+		else
+        {
+			inventory.GetItemList()[item.GetInventoryIndex()] = item;
 		}
 
 		RefreshInventory();
@@ -152,4 +170,14 @@ public class InventoryManager : MonoBehaviour
 	}
 	#endregion
 
+
+	public void SetDropZone(GameObject obj)
+    {
+		dropZone = obj;
+    }
+
+	public void ClearDropZone()
+    {
+		dropZone = null;
+    }
 }
