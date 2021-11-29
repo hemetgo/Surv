@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-[RequireComponent(typeof(CharacterController))]
+//[RequireComponent(typeof(CharacterController))]
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Camera Settings")]
@@ -13,6 +13,8 @@ public class FirstPersonController : MonoBehaviour
     private GameObject hand;
 
     [Header("Input Settings")]
+    [SerializeField]
+    private bool useRigibody;
     [SerializeField]
     [Range(0.1f, 10f)]private float mouseSensibility = 5f;
     [SerializeField]
@@ -30,6 +32,7 @@ public class FirstPersonController : MonoBehaviour
 
     private float verticalSpeed = 0f;
     private CharacterController controller;
+    private Rigidbody rb;
 
     private float verticalAngle;
     private float horizontalAngle;
@@ -39,8 +42,18 @@ public class FirstPersonController : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
-        controller = GetComponent<CharacterController>();
-        height = controller.height;
+
+        if (useRigibody)
+        {
+            rb = GetComponent<Rigidbody>();
+            height = GetComponent<CapsuleCollider>().height;
+        }
+        else
+        {
+            controller = GetComponent<CharacterController>();
+            height = controller.height;
+        }
+
         verticalAngle = 0f;
         horizontalAngle = transform.localEulerAngles.y;
     }
@@ -56,25 +69,35 @@ public class FirstPersonController : MonoBehaviour
         }
     }
 
-	private void FixedUpdate()
-	{
-
-        Movement();
-        Crouch(false);
+    private void FixedUpdate()
+    {
+        if (Time.timeScale > 0)
+        {
+            Movement();
+            Crouch(false);
+        }
     }
 
 
     private void Jump()
     {
-        if (IsGrounded() && Input.GetButton("Jump"))
+        if (IsGrounded() && Input.GetButtonDown("Jump"))
         {
-            verticalSpeed = jumpForce;
+            if (useRigibody)
+            {
+                rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+            }
+            else
+            {
+
+                verticalSpeed = jumpForce;
+            }
         }
     }
 
     private bool IsGrounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.1f))
+        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.15f))
 		{
             if (hit.collider) return true;
             else return false;
@@ -117,57 +140,90 @@ public class FirstPersonController : MonoBehaviour
 
     private void Movement()
     {
-        var movementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));
-        var isRunning = Input.GetButton("Run"); 
-        
         float realSpeed;
 
-        if (isRunning)
+        if (Input.GetButton("Run"))
             realSpeed = runSpeed;
         else
             realSpeed = moveSpeed;
 
-        if (movementInput.sqrMagnitude > 1f)
-            movementInput.Normalize();
 
-        var movement = movementInput * realSpeed * Time.deltaTime;
-        movement = transform.TransformDirection(movement);
-        controller.Move(movement);
-        hand.GetComponent<Animator>().SetFloat("MoveSpeed", controller.velocity.magnitude / moveSpeed);
+        if (useRigibody)
+        {
+            float horizontal = Input.GetAxis("Horizontal") * realSpeed; 
+            float vertical = Input.GetAxis("Vertical") * realSpeed;
+
+            Vector3 movement = new Vector3(horizontal, rb.velocity.y, vertical);
+            rb.velocity = transform.TransformVector(movement);
+
+            //float x = Input.GetAxis("Horizontal");
+            //float z = Input.GetAxis("Vertical");
+
+            //// Some sticks/arrow keys will let both axes be 1 at once.
+            // ClampMagnitude ensures diagonals obey our max speed.
+            //Vector3 localVelocity = Vector3.ClampMagnitude(new Vector3(x, rb.velocity.y, z), 1) * realSpeed;
+
+            //rb.velocity = transform.TransformDirection(localVelocity);
+        }
+        else
+        {
+            var movementInput = new Vector3(Input.GetAxis("Horizontal"), 0, Input.GetAxis("Vertical"));            
+
+            if (movementInput.sqrMagnitude > 1f)
+                movementInput.Normalize();
+
+            var movement = movementInput * realSpeed * Time.deltaTime;
+            movement = transform.TransformDirection(movement);
+
+
+            controller.Move(movement);
+            hand.GetComponent<Animator>().SetFloat("MoveSpeed", controller.velocity.magnitude / moveSpeed);
+        }
     }
 
     private void Crouch(bool canCrouch)
 	{
         if (canCrouch)
         {
-            if (Input.GetButton("Crouch"))
+            if (useRigibody)
             {
-                controller.height = height / 2;
-            }
+
+            } 
             else
             {
-                controller.height = height;
+
+                if (Input.GetButton("Crouch"))
+                {
+                    controller.height = height / 2;
+                }
+                else
+                {
+                    controller.height = height;
+                }
             }
         }
     }
 
     private void Gravity()
     {
-        this.verticalSpeed = this.verticalSpeed - gravity * Time.deltaTime;
-        if (this.verticalSpeed < -gravity)
+        if (!useRigibody)
         {
-            this.verticalSpeed = -gravity; // velocidade maxima de queda
-        }
-        var verticalSpeed = new Vector3(0, this.verticalSpeed * Time.deltaTime, 0);
-        var flagCollision = controller.Move(verticalSpeed);
-        if ((flagCollision & CollisionFlags.Below) != 0)
-        {
-            this.verticalSpeed = 0;
+            this.verticalSpeed = this.verticalSpeed - gravity * Time.deltaTime;
+            if (this.verticalSpeed < -gravity)
+            {
+                this.verticalSpeed = -gravity; // velocidade maxima de queda
+            }
+            var verticalSpeed = new Vector3(0, this.verticalSpeed * Time.deltaTime, 0);
+            var flagCollision = controller.Move(verticalSpeed);
+            if ((flagCollision & CollisionFlags.Below) != 0)
+            {
+                this.verticalSpeed = 0;
+            }
         }
     }
 
 
-
+    /*
     void OnControllerColliderHit(ControllerColliderHit hit)
     {
         Rigidbody body = hit.collider.attachedRigidbody;
@@ -194,4 +250,5 @@ public class FirstPersonController : MonoBehaviour
         // Apply the push
         body.velocity = pushDir * pushPower;
     }
+*/
 }
