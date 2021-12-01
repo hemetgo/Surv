@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4180419311344368897}
   - component: {fileID: 7733385608256516594}
   - component: {fileID: 1289101859275115616}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Steak
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,7 @@ MonoBehaviour:
     stackLimit: 24
     amount: 1
     value: 2
+    inventoryIndex: 0
   dropTimer: 0
 --- !u!33 &4180419311343271873
 MeshFilter:

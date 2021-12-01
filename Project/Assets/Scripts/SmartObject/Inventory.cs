@@ -13,9 +13,14 @@ public class Inventory
 
 
 	// Construtor
-	public Inventory()
+	public Inventory(int length)
 	{
 		itemList = new List<Item>();
+
+		for (int i = 0; i < length; i++)
+		{
+			itemList.Add(new Item());
+		}
 	}
 
 	// Adiciona item ao inventário

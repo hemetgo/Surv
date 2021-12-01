@@ -14,10 +14,11 @@ public class InventorySlot : MonoBehaviour
 	public Image itemImage;
     public TextMeshProUGUI txtAmount;
     public TextMeshProUGUI txtName;
-	public RectTransform inventoryBackground;
+	public Sprite emptyImage;
 
 	// aux
 	private InventoryManager inventoryManager;
+	private GameObject slotHolder;
 
 	// Aux
     private bool isDraging;
@@ -32,7 +33,8 @@ public class InventorySlot : MonoBehaviour
 	{
 		if (isDraging)
 		{
-			transform.position = Input.mousePosition;
+			slotHolder.transform.position = Input.mousePosition;
+			//transform.position = Input.mousePosition;
 		}
 	}
 
@@ -62,27 +64,69 @@ public class InventorySlot : MonoBehaviour
 
 	public void PointerDown()
 	{
-		startPos = GetComponent<RectTransform>().position;
-		inventoryManager.dragSlot = this;
-		txtAmount.gameObject.SetActive(false);
-		isDraging = true;
+		slotHolder = Instantiate(inventoryManager.slotHolderPrefab, transform);
+		slotHolder.transform.SetParent(inventoryManager.transform.parent);
+		slotHolder.transform.SetAsLastSibling();
+
+		if (item.amount > 0)
+		{
+			itemImage.raycastTarget = false;
+			slotHolder.GetComponent<Image>().raycastTarget = false;
+			slotHolder.GetComponent<Image>().sprite = item.icon;
+
+			startPos = GetComponent<RectTransform>().position;
+			inventoryManager.dragSlot = this;
+			txtAmount.gameObject.SetActive(false);
+			itemImage.gameObject.SetActive(false);
+			isDraging = true;
+		}
 	}
 
 	public void PointerUp()
 	{
-		if (inventoryManager.dropSlot == null)
+		InventorySlot dropSlot = inventoryManager.dropSlot;
+		if (inventoryManager.isDropping)
 		{
-			GetComponent<RectTransform>().position = startPos;
+			FindObjectOfType<HandManager>().DropItemByIndex(slotId, inventoryManager.inventoryDropTime);
+			itemImage.raycastTarget = true;
+			txtAmount.gameObject.SetActive(true);
+			inventoryManager.dropSlot = null;
+			inventoryManager.dragSlot = null;
+			isDraging = false;
+			Destroy(slotHolder);
+			RefreshSlot();
 		}
 		else
 		{
-			Swap(this, inventoryManager.dropSlot);
+			if (dropSlot != null)
+			{
+				if (item.itemName.Equals(dropSlot.item.itemName))
+				{
+					for (int i = 0; i < item.amount; i++)
+					{
+						if (dropSlot.item.amount < dropSlot.item.stackLimit)
+						{
+							dropSlot.item.amount += 1;
+							item.amount -= 1;
+						}
+					}
+				}
+				else
+				{
+					Swap(this, inventoryManager.dropSlot);
+
+				}
+			}
+
+			itemImage.raycastTarget = true;
+			txtAmount.gameObject.SetActive(true);
+			inventoryManager.dropSlot = null;
+			inventoryManager.dragSlot = null;
+			isDraging = false;
+
+			inventoryManager.RefreshInventory();
+			Destroy(slotHolder);
 		}
-		
-		txtAmount.gameObject.SetActive(true);
-		inventoryManager.dropSlot = null;
-		inventoryManager.dragSlot = null;
-		isDraging = false;
 	}
 
 	public bool IsEmpty()
@@ -98,20 +142,18 @@ public class InventorySlot : MonoBehaviour
 
 	public void Swap(InventorySlot slot1, InventorySlot slot2)
 	{
+		itemImage.gameObject.SetActive(true);
+
 		inventoryManager.inventory.GetItemList()[slot1.slotId] = slot2.item;
 		inventoryManager.inventory.GetItemList()[slot2.slotId] = slot1.item;
-
-		Vector3 pos1 = slot1.GetComponent<RectTransform>().position;
-		Vector3 pos2 = slot2.GetComponent<RectTransform>().position;
-
-		slot1.GetComponent<RectTransform>().position = pos2;
-		slot2.GetComponent<RectTransform>().position = pos1;
 
 		inventoryManager.RefreshInventory();
 	}
 
 	public void RefreshSlot()
 	{
+		item.inventoryIndex = slotId;
+
 		if (item.amount > 0)
 		{
 			itemImage.gameObject.SetActive(true);
@@ -124,8 +166,9 @@ public class InventorySlot : MonoBehaviour
 		}
 		else 
 		{
-			itemImage.gameObject.SetActive(false);
+			itemImage.sprite = emptyImage;
 			txtAmount.gameObject.SetActive(false);
+			txtAmount.text = "";
 			txtName.gameObject.SetActive(false);
 		}
 	}

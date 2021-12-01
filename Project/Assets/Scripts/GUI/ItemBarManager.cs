@@ -1,21 +1,18 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ItemBarManager : MonoBehaviour
 {
     [SerializeField]
     private int selectedSlot = 0;
-    public ItemBarSlot[] itemBarSlots;
-	public HandManager handManager;
+    public List<InventorySlot> itemBarSlots;
+	public List<GameObject> barBackgroundSlot;
+	[HideInInspector] public HandManager handManager;
 
 	private void Start()
 	{
-		foreach(ItemBarSlot slot in itemBarSlots)
-		{
-			slot.StartSlot();
-		}
-
 		SetCurrentSlot(selectedSlot);
 	}
 
@@ -25,7 +22,7 @@ public class ItemBarManager : MonoBehaviour
 		{
 			if (Input.mouseScrollDelta.y > 0)
 			{
-				if (selectedSlot >= itemBarSlots.Length - 1)
+				if (selectedSlot >= itemBarSlots.Count - 1)
 				{
 					SetCurrentSlot(0);
 				} else
@@ -36,7 +33,7 @@ public class ItemBarManager : MonoBehaviour
 			{
 				if (selectedSlot <= 0)
 				{
-					SetCurrentSlot(itemBarSlots.Length - 1);
+					SetCurrentSlot(itemBarSlots.Count - 1);
 				}
 				else
 				{
@@ -57,23 +54,18 @@ public class ItemBarManager : MonoBehaviour
 
 	public void RefreshItemBar()
 	{
-		foreach (ItemBarSlot slot in itemBarSlots)
-		{
-			slot.StartSlot();
-		}
-
 		SetCurrentSlot(selectedSlot);
 	}
 
 	public void SetCurrentSlot(int selectedSlot)
 	{
         this.selectedSlot = selectedSlot;
-        foreach(ItemBarSlot slot in itemBarSlots)
+        for (int i = 0; i < 10; i++)
 		{
-            slot.SetOutline(false);
+			barBackgroundSlot[i].GetComponent<Outline>().enabled = false;
 		}
-        itemBarSlots[selectedSlot].SetOutline(true);
-		handManager.HoldItem(itemBarSlots[selectedSlot].GetItemData());
+		barBackgroundSlot[selectedSlot].GetComponent<Outline>().enabled = true;
+		handManager.HoldItem(itemBarSlots[selectedSlot].item);
     }
 
 }

@@ -413,10 +413,12 @@ MonoBehaviour:
     stackLimit: 1
     amount: 0
     value: 0
+    inventoryIndex: 0
   itemImage: {fileID: 9205968287964577265}
   txtAmount: {fileID: 9205968286727856204}
   txtName: {fileID: 3482348281006121095}
   inventoryBackground: {fileID: 0}
+  emptyImage: {fileID: 21300000, guid: 731708668477bd048a3571c7c902f39d, type: 3}
 --- !u!114 &1393741463135536499
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,7 +513,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &9205968287964577266
 RectTransform:
   m_ObjectHideFlags: 0
@@ -559,7 +561,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: ff2796357ceda744687d00b330169e86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 731708668477bd048a3571c7c902f39d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1

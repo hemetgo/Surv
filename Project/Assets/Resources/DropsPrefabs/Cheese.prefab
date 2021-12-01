@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: -1340485777031488086}
   - component: {fileID: 8327446980811709372}
   - component: {fileID: 662551771093026777}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Cheese
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -118,6 +118,7 @@ MonoBehaviour:
     stackLimit: 24
     amount: 1
     value: 10
+    inventoryIndex: 0
   dropTimer: 0
 --- !u!54 &-1340485777031488086
 Rigidbody:

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7846056143317983231}
   - component: {fileID: -1097903409922448851}
   - component: {fileID: 1594374279436051811}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tomato
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -103,6 +103,7 @@ MonoBehaviour:
     stackLimit: 24
     amount: 1
     value: 10
+    inventoryIndex: 0
   dropTimer: 0
 --- !u!65 &-1097903409922448851
 BoxCollider:

@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4251096401772897863}
   - component: {fileID: 4251096401772897862}
   - component: {fileID: 4251096401772897861}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Axe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,6 +54,7 @@ MonoBehaviour:
     stackLimit: 1
     amount: 1
     value: 10
+    inventoryIndex: 0
   dropTimer: 0
 --- !u!33 &4251096401772897856
 MeshFilter:

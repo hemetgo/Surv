@@ -70,13 +70,48 @@ public class HandManager : MonoBehaviour
 			drop.transform.position += transform.forward / 2;
 			drop.transform.SetParent(dropParent);
 
-			drop.transform.Rotate(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
+			drop.transform.Rotate(UnityEngine.Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 			drop.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Impulse);
 			drop.GetComponent<Rigidbody>().AddForce(Vector3.up * dropForce / 1.5f, ForceMode.Impulse);
 			
 
 			handItemData.amount -= 1;
 			ItemDropped(handItemData);
+
+			dropTimer = 0.2f;
+		}
+	}
+
+	public void DropItemByIndex(int index, float dropTime)
+	{
+		Item item = FindObjectOfType<InventoryManager>().inventory.itemList[index];
+
+		if (item.amount > 0)
+		{
+			GameObject dropPrefab = null;
+			GameObject[] dropsList = Resources.LoadAll<GameObject>("DropsPrefabs");
+			foreach (GameObject go in dropsList)
+			{
+				if (go.name.Equals(item.itemName))
+				{
+					dropPrefab = go;
+					break;
+				}
+			}
+
+			GameObject drop = Instantiate(dropPrefab, transform.parent);
+			drop.GetComponent<DropItem>().dropTimer = dropTime;
+			drop.GetComponent<DropItem>().item.amount = item.amount;
+			drop.transform.position += transform.forward / 2;
+			drop.transform.SetParent(dropParent);
+
+			drop.transform.Rotate(UnityEngine.Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
+			drop.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Impulse);
+			drop.GetComponent<Rigidbody>().AddForce(Vector3.up * dropForce / 1.5f, ForceMode.Impulse);
+
+
+			item.amount = 0;
+			ItemDropped(item);
 
 			dropTimer = 0.2f;
 		}
@@ -102,7 +137,7 @@ public class HandManager : MonoBehaviour
 			drop.transform.position += transform.forward / 2;
 			drop.transform.SetParent(dropParent);
 
-			drop.transform.Rotate(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
+			drop.transform.Rotate(UnityEngine.Random.Range(0, 360), Random.Range(0, 360), Random.Range(0, 360));
 			drop.GetComponent<Rigidbody>().AddForce(transform.forward * dropForce, ForceMode.Impulse);
 			drop.GetComponent<Rigidbody>().AddForce(Vector3.up * dropForce / 1.5f, ForceMode.Impulse);
 

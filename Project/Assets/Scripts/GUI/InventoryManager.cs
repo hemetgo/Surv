@@ -6,13 +6,15 @@ using UnityEngine.UI;
 
 public class InventoryManager : MonoBehaviour
 {
-	[Header("Inventory")]
-	public int slotsCount;
+	[Header("Settings")]
+	public int inventorySize;
+	public float inventoryDropTime;
+
+	[Header("Game Objects")]
 	public Transform inventorySlotContainer;
-	public GameObject inventorySlotPrefab;
-    public Inventory inventory;
-	private GameObject inventoryInterface;
-	[HideInInspector] public List<InventorySlot> inventorySlotList;
+	public Transform itemBarContainer;
+	public GameObject inventoryGUI;
+	public GameObject darkBackground;
 
 	[Header("Item Bar")]
 	public ItemBarManager itemBar; 
@@ -20,16 +22,22 @@ public class InventoryManager : MonoBehaviour
 	[Header("Feedbacks")]
 	public FeedbackManager feedbackManager;
 
+	[Header("Prefabs")]
+	public GameObject inventorySlotPrefab;
+	public GameObject slotHolderPrefab;
+
+	[Header("Data")]
+	public Inventory inventory;
+	[HideInInspector] public List<InventorySlot> inventorySlotList;
+
 	// Aux
-	public GameObject dropZone;
-	public InventorySlot dragSlot;
-	public InventorySlot dropSlot;
+	[HideInInspector] public bool isDropping;
+	[HideInInspector] public InventorySlot dragSlot = null;
+	[HideInInspector] public InventorySlot dropSlot = null;
 
 	private void Start()
 	{
-		inventoryInterface = gameObject.transform.GetChild(0).gameObject;
 		StartInventory();
-
 		GenerateSlots();
 	}
 
@@ -38,10 +46,9 @@ public class InventoryManager : MonoBehaviour
 		ShowInventory();
 	}
 
-
 	public void StartInventory()
 	{
-		inventory = new Inventory();
+		inventory = new Inventory(inventorySize);
 		inventory.ItemCollected += OnItemCollected;
 		itemBar.handManager.ItemDropped += OnItemDropped;
 		FindObjectOfType<HandManager>().ItemPlaced += OnItemPlaced;
@@ -49,45 +56,33 @@ public class InventoryManager : MonoBehaviour
 
 	public void RefreshInventory()
 	{
-		// Clear item bar
-		foreach (ItemBarSlot slot in itemBar.itemBarSlots)
-		{
-			slot.SetItem(new Item());
-		}
-
-		// Increment 
-		for (int i = 0; i < inventory.GetItemList().Count; i++)
+		// Increment item bar and inventory
+		for (int i = 0; i < inventorySize; i++)
 		{
 			Item item = inventory.GetItemList()[i];
 
-			if ( i < 10)
-			{
-				itemBar.itemBarSlots[i].SetItem(item);
-			}
-			else
-			{
-				InventorySlot slot = inventorySlotList[i-10];
-				slot.SetManager(this);
-				slot.item = item;
-				slot.RefreshSlot();
-			}
+			InventorySlot slot = inventorySlotList[i];
+			slot.SetManager(this);
+			slot.item = item;
+			slot.RefreshSlot();
 		}
+
+		itemBar.RefreshItemBar();
 	}
 
 	private void ShowInventory()
 	{
 		if (Input.GetButtonDown("Inventory"))
 		{
-			inventoryInterface.SetActive(!inventoryInterface.active);
+			inventoryGUI.SetActive(!inventoryGUI.activeInHierarchy);
+			darkBackground.SetActive(!darkBackground.activeInHierarchy);
 
-			if (inventoryInterface.active)
+			if (inventoryGUI.activeInHierarchy)
 			{
-				Time.timeScale = 0;
 				Cursor.lockState = CursorLockMode.None;
 			}
 			else
 			{
-				Time.timeScale = 1;
 				Cursor.lockState = CursorLockMode.Locked;
 			}
 		}
@@ -105,14 +100,32 @@ public class InventoryManager : MonoBehaviour
 
 	private void GenerateSlots()
 	{
-		for (int i = 0; i < slotsCount; i++)
+		for (int i = 0; i < inventorySize; i++)
 		{
-			InventorySlot slot = Instantiate(inventorySlotPrefab.gameObject, inventorySlotContainer.transform).GetComponentInChildren<InventorySlot>();
+			InventorySlot slot;
+			if(i < 10)
+			{
+				slot = Instantiate(inventorySlotPrefab.gameObject, itemBarContainer.transform).GetComponentInChildren<InventorySlot>();
+			}
+			else
+			{
+				slot = Instantiate(inventorySlotPrefab.gameObject, inventorySlotContainer.transform).GetComponentInChildren<InventorySlot>();
+			}
+
+			if (i < 10) itemBar.itemBarSlots.Add(slot);
+
 			slot.SetManager(this);
-			slot.slotId = i + 10;
+			slot.slotId = i;
 			slot.item = new Item();
 			inventorySlotList.Add(slot);
 		}
+
+		itemBar.gameObject.SetActive(true);
+	}
+
+	public void SetDropping(bool isDropping)
+	{
+		this.isDropping = isDropping;
 	}
 
 
@@ -169,15 +182,4 @@ public class InventoryManager : MonoBehaviour
 		}
 	}
 	#endregion
-
-
-	public void SetDropZone(GameObject obj)
-    {
-		dropZone = obj;
-    }
-
-	public void ClearDropZone()
-    {
-		dropZone = null;
-    }
 }

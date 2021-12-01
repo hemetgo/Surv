@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6780160505917851758}
   - component: {fileID: 4221544035728075590}
   - component: {fileID: 7821615001290956320}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Chair
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -146,4 +146,5 @@ MonoBehaviour:
     stackLimit: 4
     amount: 1
     value: 0
+    inventoryIndex: 0
   dropTimer: 0

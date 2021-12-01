@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class DropItem : MonoBehaviour
 {
-    [SerializeField]
-    private Item item;
+    public Item item;
 
     private Transform player;
     private bool followPlayer;
@@ -28,16 +27,16 @@ public class DropItem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        GetItem();
+        Collect();
     }
 
-    private void GetItem()
+    private void Collect()
     {
         dropTimer -= Time.deltaTime;
         if (dropTimer <= 0)
         {
             float distance = Vector3.Distance(transform.position, player.position);
-            if (distance < 3)
+            if (distance < 3.5f)
             {
                 followPlayer = true;
                 Destroy(GetComponent<Rigidbody>());
@@ -57,4 +56,9 @@ public class DropItem : MonoBehaviour
             }
         }
     }
+
+    public void SetItem(Item item)
+	{
+        this.item = item;
+	}
 }

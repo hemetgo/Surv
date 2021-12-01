@@ -9,8 +9,9 @@ public class Item
     public string itemName;
     public Sprite icon;
     public ItemType itemType;
-    public int stackLimit = 1;
-    public int amount = 1;
+    public int stackLimit;
+    public int amount;
+    public string description;
     public float value;
 
     public int inventoryIndex;
