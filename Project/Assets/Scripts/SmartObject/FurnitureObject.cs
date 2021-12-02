@@ -8,7 +8,18 @@ public class FurnitureObject : SmartObject
 
 	private int damage;
 	private float timer;
+	private Rigidbody rb;
+	private QuickOutline outline;
 
+	private void Start()
+	{
+		rb = GetComponent<Rigidbody>();
+		outline = gameObject.AddComponent<QuickOutline>();
+		outline.enabled = false;
+		outline.OutlineColor = new Color32(0, 255, 0, 255);
+		outline.OutlineWidth = 10;
+		outline.OutlineMode = QuickOutline.Mode.OutlineVisible;
+	}
 
 	public override void Interact()
 	{
@@ -19,8 +30,10 @@ public class FurnitureObject : SmartObject
 		{
 			CatchObject();
 		}*/
-
-		CatchObject();
+		if (!rb.isKinematic)
+		{
+			CatchObject();
+		}
 	}
 
 	private void Update()
@@ -30,6 +43,11 @@ public class FurnitureObject : SmartObject
 		{
 			damage = 0;
 		}
+	}
+
+	private void FixedUpdate()
+	{
+		outline.enabled = false;
 	}
 
 	public override bool CanInteract(GameObject obj)
@@ -66,8 +84,16 @@ public class FurnitureObject : SmartObject
 		return ObjectType.Furniture;
     }
 
-	public void ToggleKinematic()
+	public void ToggleLocked()
     {
-		GetComponent<Rigidbody>().isKinematic = !GetComponent<Rigidbody>().isKinematic;
+		rb.isKinematic = !rb.isKinematic;
+
+		if (rb.isKinematic) outline.OutlineColor = new Color32(255, 0, 0, 255);
+		else outline.OutlineColor = new Color32(0, 255, 0, 255);
+	}
+
+	public void SetOutlineEnabled(bool enabled)
+	{
+		outline.enabled = enabled;
 	}
 }

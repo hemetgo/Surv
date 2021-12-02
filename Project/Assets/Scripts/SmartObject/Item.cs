@@ -14,6 +14,8 @@ public class Item
     public string description;
     public float value;
 
+    public List<Item> recipe;
+
     public int inventoryIndex;
 
     public enum ItemType { Equipment, Tool, Material, Consumable, Food, Furniture }

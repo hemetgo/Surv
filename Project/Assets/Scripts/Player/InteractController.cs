@@ -82,8 +82,8 @@ public class InteractController : MonoBehaviour
                         case SmartObject.ObjectType.Furniture:
                             interactButton = "Fire2";
                             currentRange = interactRange * 1.5f;
-
-                            if (Input.GetButtonDown("Lock")) smart.GetComponent<FurnitureObject>().ToggleKinematic();
+                            smart.GetComponent<FurnitureObject>().SetOutlineEnabled(true);
+                            if (Input.GetButtonDown("Lock")) smart.GetComponent<FurnitureObject>().ToggleLocked();
                             break;
                         default:
                             interactButton = "Fire1";
