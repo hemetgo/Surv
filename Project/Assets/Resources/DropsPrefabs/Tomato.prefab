@@ -97,12 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
-    itemName: Tomato
-    icon: {fileID: 21300000, guid: f2aee97907be379469d7ed24121f2253, type: 3}
-    itemType: 4
-    stackLimit: 24
+    itemData: {fileID: 11400000, guid: b70fa036f4c1df843b00f1942af638c0, type: 2}
     amount: 1
-    value: 10
     inventoryIndex: 0
   dropTimer: 0
 --- !u!65 &-1097903409922448851

@@ -10,8 +10,8 @@ public class HandManager : MonoBehaviour
 	public delegate void PlacedItemHandler(Item item);
 	public event PlacedItemHandler ItemPlaced;
 
-	public GameObject handItem;
-	public Item handItemData;
+	public GameObject handItem = null;
+	public Item handItemData = null;
 	[Range(0.01f, 10)] public float dropForce;
 	[Range(0.01f, 10)] public float dropCooldown;
 	public Transform dropParent;
@@ -37,16 +37,20 @@ public class HandManager : MonoBehaviour
 		if (handItem) handItem.SetActive(false);
 
 		handItemData = item;
-		if (!item.itemName.Equals(""))
+		if (item.amount > 0)
 		{
-			if (handItemData.itemType == Item.ItemType.Furniture)
+			if (!item.itemData.itemName.english.Equals(""))
 			{
-				handItem = transform.Find("Furniture").gameObject;
-			} else
-            {
-				handItem = transform.Find(item.itemName).gameObject;
+				if (handItemData.itemData.itemType == ItemData.ItemType.Furniture)
+				{
+					handItem = transform.Find("Furniture").gameObject;
+				}
+				else
+				{
+					handItem = transform.Find(item.itemData.itemName.english).gameObject;
+				}
+				handItem.SetActive(true);
 			}
-			handItem.SetActive(true);
 		}
 	}
 
@@ -54,18 +58,7 @@ public class HandManager : MonoBehaviour
 	{
 		if (handItemData.amount > 0)
 		{
-			GameObject dropPrefab = null; 
-			GameObject[] dropsList = Resources.LoadAll<GameObject>("DropsPrefabs");
-			foreach (GameObject go in dropsList)
-			{
-				if (go.name.Equals(handItemData.itemName)) 
-				{ 
-					dropPrefab = go;
-					break;
-				}
-			}
-
-			GameObject drop = Instantiate(dropPrefab, transform.parent);
+			GameObject drop = Instantiate(handItemData.itemData.drop, transform.parent);
 			drop.GetComponent<DropItem>().dropTimer = dropCooldown;
 			drop.transform.position += transform.forward / 2;
 			drop.transform.SetParent(dropParent);
@@ -88,18 +81,7 @@ public class HandManager : MonoBehaviour
 
 		if (item.amount > 0)
 		{
-			GameObject dropPrefab = null;
-			GameObject[] dropsList = Resources.LoadAll<GameObject>("DropsPrefabs");
-			foreach (GameObject go in dropsList)
-			{
-				if (go.name.Equals(item.itemName))
-				{
-					dropPrefab = go;
-					break;
-				}
-			}
-
-			GameObject drop = Instantiate(dropPrefab, transform.parent);
+			GameObject drop = Instantiate(item.itemData.drop, transform.parent);
 			drop.GetComponent<DropItem>().dropTimer = dropTime;
 			drop.GetComponent<DropItem>().item.amount = item.amount;
 			drop.transform.position += transform.forward / 2;
@@ -121,18 +103,7 @@ public class HandManager : MonoBehaviour
 	{
 		if (item.amount > 0)
 		{
-			GameObject dropPrefab = null;
-			GameObject[] dropsList = Resources.LoadAll<GameObject>("DropsPrefabs");
-			foreach (GameObject go in dropsList)
-			{
-				if (go.name.Equals(item.itemName))
-				{
-					dropPrefab = go;
-					break;
-				}
-			}
-
-			GameObject drop = Instantiate(dropPrefab, transform.parent);
+			GameObject drop = Instantiate(handItemData.itemData.drop, transform.parent);
 			drop.GetComponent<DropItem>().dropTimer = dropCooldown;
 			drop.transform.position += transform.forward / 2;
 			drop.transform.SetParent(dropParent);

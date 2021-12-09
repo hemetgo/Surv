@@ -62,11 +62,11 @@ public class InteractController : MonoBehaviour
 
     private void InteractControl()
     {
-        if (Time.timeScale != 0)
+        if (Cursor.lockState == CursorLockMode.Locked)
         {
             actionTimer -= Time.deltaTime;
 
-            if (handManager.handItemData.itemType == Item.ItemType.Furniture) currentRange = 9999;
+            if (handManager.handItemData.itemData.itemType == ItemData.ItemType.Furniture) currentRange = 9999;
             else currentRange = interactRange;
 
             if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, currentRange))
@@ -130,19 +130,21 @@ public class InteractController : MonoBehaviour
     #region Items
     private void UseItem()
     {
-        switch (handManager.handItemData.itemType)
+        switch (handManager.handItemData.itemData.itemType)
         {
-            case Item.ItemType.Furniture:
+            case ItemData.ItemType.Furniture:
                 turnObjectTimer -= Time.deltaTime;
-                if (placingObject)
+                if (placingObject) 
                 {
-                    if (placingObject.name != handManager.handItemData.itemName)
+                    if (placingObject.name != handManager.handItemData.itemData.itemName.english)
                         Destroy(placingObject);
                 }
 
+                GameObject prefab = Resources.Load<GameObject>("Furnitures/" + handManager.handItemData.itemData.itemName.english);
+
                 if (!placingObject)
                 {
-                    placingObject = Instantiate(handManager.handItemData.GetPrefab(), GameObject.Find("Furnitures").transform);
+                    placingObject = Instantiate(prefab, GameObject.Find("Furnitures").transform);
                     placingObject.name = placingObject.name.Replace("(Clone)", "");
                     placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
                 }
@@ -217,7 +219,7 @@ public class InteractController : MonoBehaviour
                 break;
         }
 
-        if (handManager.handItemData.itemType != Item.ItemType.Furniture) 
+        if (handManager.handItemData.itemData.itemType != ItemData.ItemType.Furniture) 
         { 
             if (placingObject) 
             {

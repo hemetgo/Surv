@@ -13,8 +13,6 @@ public class InventoryManager : MonoBehaviour
 	[Header("Game Objects")]
 	public Transform inventorySlotContainer;
 	public Transform itemBarContainer;
-	public GameObject inventoryGUI;
-	public GameObject darkBackground;
 
 	[Header("Item Bar")]
 	public ItemBarManager itemBar; 
@@ -31,7 +29,7 @@ public class InventoryManager : MonoBehaviour
 	[HideInInspector] public List<InventorySlot> inventorySlotList;
 
 	// Aux
-	[HideInInspector] public bool isDropping;
+	public bool isDropping;
 	[HideInInspector] public InventorySlot dragSlot = null;
 	[HideInInspector] public InventorySlot dropSlot = null;
 
@@ -39,11 +37,6 @@ public class InventoryManager : MonoBehaviour
 	{
 		StartInventory();
 		GenerateSlots();
-	}
-
-	private void Update()
-	{
-		ShowInventory();
 	}
 
 	public void StartInventory()
@@ -64,33 +57,11 @@ public class InventoryManager : MonoBehaviour
 			InventorySlot slot = inventorySlotList[i];
 			slot.SetManager(this);
 			slot.item = item;
+			item.inventoryIndex = i;
 			slot.RefreshSlot();
 		}
 
 		itemBar.RefreshItemBar();
-	}
-
-	private void ShowInventory()
-	{
-		if (Input.GetButtonDown("Inventory"))
-		{
-			inventoryGUI.SetActive(!inventoryGUI.activeInHierarchy);
-			darkBackground.SetActive(!darkBackground.activeInHierarchy);
-
-			if (inventoryGUI.activeInHierarchy)
-			{
-				Cursor.lockState = CursorLockMode.None;
-			}
-			else
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-			}
-		}
-	}
-
-	public void ResumeGame()
-	{
-		Time.timeScale = 1;
 	}
 
 	public void DropItem(Item item)
@@ -125,14 +96,14 @@ public class InventoryManager : MonoBehaviour
 
 	public void SetDropping(bool isDropping)
 	{
+		Debug.Log("Drop? " + isDropping);
 		this.isDropping = isDropping;
 	}
-
 
 	#region Listeners
 	private void OnItemCollected(Item item)
 	{
-		feedbackManager.ShowFeedback("+" + item.amount + " " + item.itemName);
+		feedbackManager.ShowFeedback("+" + item.amount + " " + item.itemData.GetItemName());
 		RefreshInventory();
 		itemBar.RefreshItemBar();
 	}
@@ -168,18 +139,5 @@ public class InventoryManager : MonoBehaviour
 	}
 	#endregion
 
-	#region Tools
-	public void ToggleCursor()
-	{
-		if (Cursor.lockState == CursorLockMode.Locked)
-		{
-			Time.timeScale = 0;
-			Cursor.lockState = CursorLockMode.None;
-		} else
-		{
-			Time.timeScale = 1; 
-			Cursor.lockState = CursorLockMode.Locked;
-		}
-	}
-	#endregion
+	
 }

@@ -29,9 +29,9 @@ public class Inventory
 		// Verifica se já existe um slot para esse item
 		foreach(Item it in itemList)
 		{
-			if (it.itemName == item.itemName)
+			if (it.itemData.itemName.english == item.itemData.itemName.english) 
 			{
-				if (it.amount < it.stackLimit)
+				if (it.amount < it.itemData.GetStackLimit())
 				{
 					it.amount += item.amount;
 

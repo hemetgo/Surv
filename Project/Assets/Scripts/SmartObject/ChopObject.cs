@@ -68,7 +68,7 @@ public class ChopObject : SmartObject
             case ChopType.EachInteract:
                 if (stock > 0)
                 {
-                    if (obj.GetComponent<HandManager>().handItemData.itemName.Contains(requiredTool.ToString()))
+                    if (obj.GetComponent<HandManager>().handItemData.itemData.itemName.english.Contains(requiredTool.ToString()))
                     {
                         return true;
                     }
@@ -77,7 +77,7 @@ public class ChopObject : SmartObject
                 else return false;
             case ChopType.WhenFinished:
                 if (damage < stock)
-                    if (obj.GetComponent<HandManager>().handItemData.itemName.Contains(requiredTool.ToString()))
+                    if (obj.GetComponent<HandManager>().handItemData.itemData.itemName.english.Contains(requiredTool.ToString()))
                     {
                         return true;
                     }

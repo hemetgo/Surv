@@ -19,8 +19,6 @@ public class InventorySlot : MonoBehaviour
 	// aux
 	private InventoryManager inventoryManager;
 	private GameObject slotHolder;
-
-	// Aux
     private bool isDraging;
 	private Vector2 startPos;
 
@@ -72,7 +70,7 @@ public class InventorySlot : MonoBehaviour
 		{
 			itemImage.raycastTarget = false;
 			slotHolder.GetComponent<Image>().raycastTarget = false;
-			slotHolder.GetComponent<Image>().sprite = item.icon;
+			slotHolder.GetComponent<Image>().sprite = item.itemData.icon;
 
 			startPos = GetComponent<RectTransform>().position;
 			inventoryManager.dragSlot = this;
@@ -100,11 +98,11 @@ public class InventorySlot : MonoBehaviour
 		{
 			if (dropSlot != null)
 			{
-				if (item.itemName.Equals(dropSlot.item.itemName))
+				if (item.itemData.itemName.english.Equals(dropSlot.item.itemData.itemName.english))
 				{
 					for (int i = 0; i < item.amount; i++)
 					{
-						if (dropSlot.item.amount < dropSlot.item.stackLimit)
+						if (dropSlot.item.amount < dropSlot.item.itemData.GetStackLimit())
 						{
 							dropSlot.item.amount += 1;
 							item.amount -= 1;
@@ -129,13 +127,14 @@ public class InventorySlot : MonoBehaviour
 		}
 	}
 
+
 	public bool IsEmpty()
 	{
 		if (item == null) return true;
 		else
 		{
 			if (item.amount <= 0) return true;
-			if (item.itemName.Equals("")) return true;
+			if (item.itemData.itemName.english.Equals("")) return true;
 		}
 		return false;
 	}
@@ -160,9 +159,9 @@ public class InventorySlot : MonoBehaviour
 			txtAmount.gameObject.SetActive(true);
 			txtName.gameObject.SetActive(true);
 
-			itemImage.sprite = item.icon;
+			itemImage.sprite = item.itemData.icon;
 			txtAmount.text = "x" + item.amount;
-			txtName.text = item.itemName;
+			txtName.text = item.itemData.GetItemName();
 		}
 		else 
 		{

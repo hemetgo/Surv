@@ -6,16 +6,8 @@ using UnityEngine;
 [Serializable]
 public class Item 
 {
-    public string itemName;
-    public Sprite icon;
-    public ItemType itemType;
-    public int stackLimit;
+    public ItemData itemData;
     public int amount;
-    public string description;
-    public float value;
-
-    public List<Item> recipe;
-
     public int inventoryIndex;
 
     public enum ItemType { Equipment, Tool, Material, Consumable, Food, Furniture }
@@ -23,24 +15,8 @@ public class Item
 
     public Item()
 	{
-        itemName = "";
-        amount = 0;
-        value = 0;
-
-		switch (itemType)
-        {
-            case ItemType.Equipment:
-                stackLimit = 1;
-                break;
-            case ItemType.Tool:
-                stackLimit = 1;
-                break;
-            default:
-                stackLimit = 24;
-                break;
-        }
-	}
-
+        itemData =  new ItemData();
+    }
 
     public void SetInventoryIndex(int index)
     {
@@ -51,19 +27,4 @@ public class Item
     {
         return inventoryIndex;
     }
-
-    #region Tools
-    public GameObject GetPrefab()
-    {
-        string path = "";
-        if (itemType == ItemType.Furniture) path = "Furnitures";
-        foreach(GameObject prefab in Resources.LoadAll<GameObject>(path))
-        {
-            if (prefab.name == itemName) return prefab;
-        }
-
-        return null;
-    }
-
-    #endregion
 }

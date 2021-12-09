@@ -48,12 +48,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
-    itemName: Steak
-    icon: {fileID: 21300000, guid: 66e90a77732c2d64e830a046a7463f27, type: 3}
-    itemType: 4
-    stackLimit: 24
+    itemData: {fileID: 11400000, guid: bb95bb0d1efcf5c478b69f46acc677df, type: 2}
     amount: 1
-    value: 2
     inventoryIndex: 0
   dropTimer: 0
 --- !u!33 &4180419311343271873

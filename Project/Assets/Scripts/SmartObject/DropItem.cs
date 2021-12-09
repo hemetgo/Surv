@@ -48,8 +48,8 @@ public class DropItem : MonoBehaviour
                 //transform.position = Vector3.Lerp(transform.position, player.transform.position, 10 * Time.deltaTime);
                 if (distance < 0.5f)
                 {
-                    InventoryManager gui = GameObject.FindGameObjectWithTag("GUI").GetComponentInChildren<InventoryManager>();
-                    gui.inventory.AddItem(item);
+                    InventoryManager inv = FindObjectOfType<InventoryManager>();
+                    inv.inventory.AddItem(item);
 
                     Destroy(gameObject);
                 }
