@@ -17,7 +17,7 @@ public class ItemData : ScriptableObject
     public List<IngredientItem> recipe;
 
 
-    public enum ItemType { Equipment, Tool, Material, Consumable, Food, Furniture }
+    public enum ItemType { Weapon, Tool, Material, Consumable, Food, Furniture }
     public enum ToolType { Axe, Pickaxe, Shovel }
     public enum Rarity { Common, Uncommon, Rare, Epic, Legendary}
 
@@ -25,7 +25,7 @@ public class ItemData : ScriptableObject
 	{
 		switch (itemType)
 		{
-            case ItemType.Equipment: return 1;
+            case ItemType.Weapon: return 1;
             case ItemType.Tool: return 1;
             default: return 24;
 		}

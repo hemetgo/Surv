@@ -2,6 +2,6 @@
 [System.Serializable]
 public class IngredientItem 
 {
-    public ItemData item;
+    public ItemData itemData;
     public int amount;
 }

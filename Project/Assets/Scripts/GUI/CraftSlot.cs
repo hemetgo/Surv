@@ -30,7 +30,7 @@ public class CraftSlot : MonoBehaviour
     }
 
     public void SelectCraftSlot()
-	{
+    {
         craftManager.itemSprite.sprite = itemData.icon;
         craftManager.itemNameText.text = itemData.itemName.GetString();
         craftManager.itemDescriptionText.text = itemData.description.GetString();
@@ -38,14 +38,28 @@ public class CraftSlot : MonoBehaviour
         else craftManager.craftButton.gameObject.SetActive(false);
 
         foreach (Transform child in craftManager.recipeContainer.transform)
-		{
+        {
             Destroy(child.gameObject);
-		}
+        }
 
-        foreach(IngredientItem ingredient in itemData.recipe)
-		{
+        foreach (IngredientItem ingredient in itemData.recipe)
+        {
             CraftIngredientSlot ingredientSlot = Instantiate(craftManager.ingredientPrefab, craftManager.recipeContainer).GetComponent<CraftIngredientSlot>();
+            ingredientSlot.inventoryItemAmount = craftManager.GetComponent<InventoryManager>().inventory.GetInventoryAmount(ingredient.itemData);
             ingredientSlot.SetSlot(ingredient);
+        }
+
+        if (isCraftable)
+        {
+            Item craftItem = new Item();
+            craftItem.itemData = itemData;
+            craftItem.amount = 1;
+
+            craftManager.craftItem = craftItem;
+		}
+		else
+		{
+            craftManager.craftItem = null;
 		}
     }
 

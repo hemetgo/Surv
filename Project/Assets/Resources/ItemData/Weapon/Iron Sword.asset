@@ -15,12 +15,16 @@ MonoBehaviour:
   itemName:
     english: Iron Sword
     portugues: Espada de Ferro
-  description:
-    english: 
-    portugues: 
   icon: {fileID: 21300000, guid: b62fb426220df204caa4db922611bee3, type: 3}
   rarity: 1
   itemType: 0
+  description:
+    english: 
+    portugues: "Uma comum espada de ferro... Mas onde vai o top\xE1zio?\n"
   value: 0
   drop: {fileID: 3901290829084400903, guid: b205d14c00ebae34f92a13a064f635d3, type: 3}
-  recipe: []
+  recipe:
+  - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
+    amount: 5
+  - itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
+    amount: 2

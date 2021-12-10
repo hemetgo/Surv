@@ -8,11 +8,12 @@ public class CraftIngredientSlot : MonoBehaviour
 	public IngredientItem ingredient;
 	public Image itemImage;
 	public Text itemAmountText;
+	public int inventoryItemAmount;
 
 	public void SetSlot(IngredientItem data)
 	{
 		ingredient = data;
-		itemImage.sprite = ingredient.item.icon;
-		itemAmountText.text = ingredient.amount.ToString();
+		itemImage.sprite = ingredient.itemData.icon;
+		itemAmountText.text = inventoryItemAmount + "/" + ingredient.amount;
 	}
 }

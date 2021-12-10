@@ -10,9 +10,6 @@ public class Item
     public int amount;
     public int inventoryIndex;
 
-    public enum ItemType { Equipment, Tool, Material, Consumable, Food, Furniture }
-    public enum ToolType { Axe, Pickaxe, Shovel }
-
     public Item()
 	{
         itemData =  new ItemData();

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ChopObject : SmartObject
 {
     public ChopType chopType;
-    public Item.ToolType requiredTool;
+    public ItemData.ToolType requiredTool;
     public GameObject dropPrefab;
     public int stock;
     private int damage;

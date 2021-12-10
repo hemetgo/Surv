@@ -96,7 +96,6 @@ public class InventoryManager : MonoBehaviour
 
 	public void SetDropping(bool isDropping)
 	{
-		Debug.Log("Drop? " + isDropping);
 		this.isDropping = isDropping;
 	}
 

@@ -67,6 +67,8 @@ public class UIManager : MonoBehaviour
 
 		craftGUI.SetActive(true);
 		inventoryGUI.SetActive(false);
+		GetComponent<CraftManager>().currentType = "All";
+		GetComponent<CraftManager>().RefreshCrafts();
 	}
 
 }

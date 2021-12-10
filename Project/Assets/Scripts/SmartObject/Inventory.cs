@@ -29,7 +29,7 @@ public class Inventory
 		// Verifica se já existe um slot para esse item
 		foreach(Item it in itemList)
 		{
-			if (it.itemData.itemName.english == item.itemData.itemName.english) 
+			if (it.itemData == item.itemData) 
 			{
 				if (it.amount < it.itemData.GetStackLimit())
 				{
@@ -73,10 +73,45 @@ public class Inventory
 		}
 	}
 	
+	// Remove item do inventário
+	public void RemoveItem(Item removeItem)
+	{
+		int toRemove = removeItem.amount;
+		foreach(Item item in itemList)
+		{
+			if (item.itemData == removeItem.itemData)
+			{
+				// Se tiver o suficiente nesse slot, remove dele
+				if (item.amount >= toRemove)
+				{
+					item.amount -= toRemove;
+					return;
+				}
+				// Se nao remove o que der e espera o proximo
+				else
+				{
+					toRemove -= item.amount;
+					item.amount = 0;
+				}
+			}
+		}
+	}
 
 	// Retorna a lista de itens do inventário
 	public List<Item> GetItemList()
 	{
 		return itemList;
+	}
+
+	// Retorna a quantidade do respectivo item no inventario
+	public int GetInventoryAmount(ItemData itemData)
+	{
+		int amount = 0;
+		foreach (Item item in itemList)
+		{
+			if (item.itemData == itemData) amount += item.amount;
+		}
+
+		return amount;
 	}
 }
