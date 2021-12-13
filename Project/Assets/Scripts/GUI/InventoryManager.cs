@@ -87,11 +87,12 @@ public class InventoryManager : MonoBehaviour
 
 			slot.SetManager(this);
 			slot.slotId = i;
-			slot.item = new Item();
+			slot.item = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 			inventorySlotList.Add(slot);
 		}
 
 		itemBar.gameObject.SetActive(true);
+		itemBar.RefreshItemBar();
 	}
 
 	public void SetDropping(bool isDropping)
@@ -111,7 +112,7 @@ public class InventoryManager : MonoBehaviour
 	{
 		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
 		{
-			inventory.GetItemList()[item.GetInventoryIndex()] = new Item();
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 		}
 		else
 		{
@@ -126,7 +127,7 @@ public class InventoryManager : MonoBehaviour
     {
 		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
 		{
-			inventory.GetItemList()[item.GetInventoryIndex()] = new Item();
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 		} 
 		else
         {

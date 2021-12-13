@@ -9,18 +9,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
+  m_Script: {fileID: 11500000, guid: 406c19e64099aba49abf2cc8ab66b784, type: 3}
   m_Name: Axe
   m_EditorClassIdentifier: 
   itemName:
     english: Axe
     portugues: Machado
-  description:
-    english: 
-    portugues: 
   icon: {fileID: 21300000, guid: 8a4f97ca7b06edd489fcbbbd09c79d2c, type: 3}
   rarity: 0
   itemType: 1
+  description:
+    english: 
+    portugues: Um belo e eficiente machado
   value: 0
   drop: {fileID: 4251096401772897882, guid: d391d137d7b994749bb1798963fe98cb, type: 3}
+  power: 2
+  knockbackForce: 10
   recipe: []
+  toolType: 0
+  durability: 100

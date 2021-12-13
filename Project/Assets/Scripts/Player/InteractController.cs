@@ -7,15 +7,11 @@ using UnityEngine.UI;
 public class InteractController : MonoBehaviour
 {
     [Header("Settings")]
-    [SerializeField]
-    [Range(1, 10)] private float interactRange;
+    [Range(1, 10)] public float interactRange;
     
-    [SerializeField]
-    private Transform head;
-    [SerializeField]
-    private GameObject hand;
-    [SerializeField]
-    [Range(0, 1)] private float actionDelay;
+    public Transform head;
+    public GameObject hand;
+    [Range(0, 1)] public float actionDelay;
 
     [Header("Furniture Placement")]
     [SerializeField]
@@ -66,9 +62,11 @@ public class InteractController : MonoBehaviour
         {
             actionTimer -= Time.deltaTime;
 
-            if (handManager.handItemData.itemData.itemType == ItemData.ItemType.Furniture) currentRange = 9999;
-            else currentRange = interactRange;
-
+            if (handManager.handItem.itemData)
+            {
+                if (handManager.handItem.itemData.itemType == ItemData.ItemType.Furniture) currentRange = 9999;
+                else currentRange = interactRange;
+            }
             if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, currentRange))
             {
                 if (hit.collider.GetComponent<SmartObject>())
@@ -82,8 +80,8 @@ public class InteractController : MonoBehaviour
                         case SmartObject.ObjectType.Furniture:
                             interactButton = "Fire2";
                             currentRange = interactRange * 1.5f;
-                            smart.GetComponent<FurnitureObject>().SetOutlineEnabled(true);
-                            if (Input.GetButtonDown("Lock")) smart.GetComponent<FurnitureObject>().ToggleLocked();
+                            //smart.GetComponent<FurnitureObject>().SetOutlineEnabled(true);
+                            //if (Input.GetButtonDown("Lock")) smart.GetComponent<FurnitureObject>().ToggleLocked();
                             break;
                         default:
                             interactButton = "Fire1";
@@ -106,8 +104,8 @@ public class InteractController : MonoBehaviour
             }
 
             if (actionTimer <= 0)
-            {
-                if (Input.GetButton(interactButton))
+            { 
+                if (Input.GetButtonDown(interactButton))
                 {
                     actionTimer = actionDelay;
                     handAnimator.SetTrigger("Action");
@@ -130,17 +128,18 @@ public class InteractController : MonoBehaviour
     #region Items
     private void UseItem()
     {
-        switch (handManager.handItemData.itemData.itemType)
+        if (handManager.handItem.itemData)
+        switch (handManager.handItem.itemData.itemType)
         {
             case ItemData.ItemType.Furniture:
                 turnObjectTimer -= Time.deltaTime;
                 if (placingObject) 
                 {
-                    if (placingObject.name != handManager.handItemData.itemData.itemName.english)
+                    if (placingObject.name != handManager.handItem.itemData.itemName.english)
                         Destroy(placingObject);
                 }
 
-                GameObject prefab = Resources.Load<GameObject>("Furnitures/" + handManager.handItemData.itemData.itemName.english);
+                GameObject prefab = Resources.Load<GameObject>("Furnitures/" + handManager.handItem.itemData.itemName.english);
 
                 if (!placingObject)
                 {
@@ -219,13 +218,16 @@ public class InteractController : MonoBehaviour
                 break;
         }
 
-        if (handManager.handItemData.itemData.itemType != ItemData.ItemType.Furniture) 
-        { 
-            if (placingObject) 
+        if (handManager.handItem.itemData)
+        {
+            if (handManager.handItem.itemData.itemType != ItemData.ItemType.Furniture)
             {
-                objectMaterial = null; 
-                Destroy(placingObject); 
-            } 
+                if (placingObject)
+                {
+                    objectMaterial = null;
+                    Destroy(placingObject);
+                }
+            }
         }
         
     }

@@ -98,7 +98,7 @@ public class InventorySlot : MonoBehaviour
 		{
 			if (dropSlot != null)
 			{
-				if (item.itemData.itemName.english.Equals(dropSlot.item.itemData.itemName.english))
+				if (item.itemData == dropSlot.item.itemData)
 				{
 					for (int i = 0; i < item.amount; i++)
 					{

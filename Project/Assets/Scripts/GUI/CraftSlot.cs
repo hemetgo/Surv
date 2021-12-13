@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class CraftSlot : MonoBehaviour
 {
+    public int index;
     public ItemData itemData;
     public Image itemSprite;
     public bool isCraftable;
@@ -51,10 +52,10 @@ public class CraftSlot : MonoBehaviour
 
         if (isCraftable)
         {
-            Item craftItem = new Item();
-            craftItem.itemData = itemData;
+            Item craftItem = new Item(itemData);
             craftItem.amount = 1;
 
+            craftManager.lastSelectedIndex = index;
             craftManager.craftItem = craftItem;
 		}
 		else

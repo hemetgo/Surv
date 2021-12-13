@@ -15,12 +15,14 @@ MonoBehaviour:
   itemName:
     english: Tomato
     portugues: Tomate
+  icon: {fileID: 21300000, guid: f2aee97907be379469d7ed24121f2253, type: 3}
+  rarity: 0
+  itemType: 3
   description:
     english: 
     portugues: 
-  icon: {fileID: 21300000, guid: f2aee97907be379469d7ed24121f2253, type: 3}
-  rarity: 0
-  itemType: 4
   value: 0
   drop: {fileID: 1191335049967893415, guid: 9eff4acc75c37e24cb7dfc8e6a7bc3f3, type: 3}
+  power: 1
+  knockbackForce: 10
   recipe: []

@@ -15,12 +15,14 @@ MonoBehaviour:
   itemName:
     english: Cheese
     portugues: Queijo
+  icon: {fileID: 21300000, guid: f78d91424df2e6942861440ef66c0928, type: 3}
+  rarity: 0
+  itemType: 3
   description:
     english: 
     portugues: 
-  icon: {fileID: 21300000, guid: f78d91424df2e6942861440ef66c0928, type: 3}
-  rarity: 0
-  itemType: 4
   value: 0
   drop: {fileID: 6457058518493459919, guid: 64992334a95d2e74fb82b54787e182f1, type: 3}
+  power: 1
+  knockbackForce: 10
   recipe: []

@@ -10,9 +10,11 @@ public class FirstPersonController : MonoBehaviour
     [SerializeField]
     private float moveSpeed = 5f;
     [SerializeField]
-    private float runSpeed = 10f;
+    private float runSpeedModifier = 10f;
     [SerializeField]
     private float jumpForce = 5f;
+    [SerializeField]
+    private float fallingModifier = 1;
 
     [Header("Camera Settings")]
     [SerializeField]
@@ -27,6 +29,7 @@ public class FirstPersonController : MonoBehaviour
 
     // Aux
     private Rigidbody rb;
+    [HideInInspector] public bool isKnockbacking;
 
     private float verticalAngle;
     private float horizontalAngle;
@@ -74,14 +77,8 @@ public class FirstPersonController : MonoBehaviour
 
     private bool IsGrounded()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, out RaycastHit hit, 0.15f))
-		{
-            if (hit.collider) return true;
-            else return false;
-        } else
-		{
-            return false;
-		}
+        CapsuleCollider col = GetComponent<CapsuleCollider>();
+        return Physics.CheckCapsule(col.bounds.center, new Vector3(col.bounds.center.x, col.bounds.min.y, col.bounds.center.z), col.radius * .9f);
     }
 
     private void Camera()
@@ -117,22 +114,40 @@ public class FirstPersonController : MonoBehaviour
 
     private void Movement()
     {
-        float realSpeed;
+        if (!isKnockbacking)
+        {
+            float realSpeed;
 
-        if (Input.GetButton("Run"))
-            realSpeed = runSpeed;
-        else
-            realSpeed = moveSpeed;
+            if (Input.GetButton("Run"))
+                realSpeed = moveSpeed * runSpeedModifier;
+            else
+                realSpeed = moveSpeed;
 
-        float horizontal = Input.GetAxis("Horizontal") * realSpeed; 
-        float vertical = Input.GetAxis("Vertical") * realSpeed;
+            float horizontal = Input.GetAxis("Horizontal") * realSpeed;
+            float vertical = Input.GetAxis("Vertical") * realSpeed;
 
-        Vector3 movement = new Vector3(horizontal, rb.velocity.y, vertical);
-        rb.velocity = transform.TransformVector(movement);
+            Vector3 movement = new Vector3(horizontal, rb.velocity.y, vertical);
+            rb.velocity = transform.TransformVector(movement);
+        }
     }
 
     private void Crouch()
 	{
 
     }
+
+	public void Knockback(Transform damageOrigin, float knockbackForce)
+	{
+        isKnockbacking = true;
+
+        rb.velocity = Vector3.zero;
+        rb.AddForce(damageOrigin.forward * knockbackForce, ForceMode.Impulse);
+        rb.AddForce(transform.up * 4, ForceMode.Impulse);
+    }
+
+    public float GetNormalizedSpeed()
+	{
+        float normSpeed = rb.velocity.magnitude / moveSpeed;
+        return normSpeed;
+	}
 }

@@ -11,25 +11,23 @@ public class ItemBarManager : MonoBehaviour
 	public List<GameObject> barBackgroundSlot;
 	[HideInInspector] public HandManager handManager;
 
-	private void Start()
-	{
-		SetCurrentSlot(selectedSlot);
-	}
 
 	private void Update()
 	{
-		if (Time.timeScale > 0)
+		if (Cursor.lockState == CursorLockMode.Locked)
 		{
 			if (Input.mouseScrollDelta.y > 0)
 			{
 				if (selectedSlot >= itemBarSlots.Count - 1)
 				{
 					SetCurrentSlot(0);
-				} else
+				}
+				else
 				{
 					SetCurrentSlot(selectedSlot + 1);
 				}
-			} else if (Input.mouseScrollDelta.y < 0)
+			}
+			else if (Input.mouseScrollDelta.y < 0)
 			{
 				if (selectedSlot <= 0)
 				{
@@ -40,14 +38,15 @@ public class ItemBarManager : MonoBehaviour
 					SetCurrentSlot(selectedSlot - 1);
 				}
 			}
-		}
 
-		for (int i = 0; i < 10; i++)
-		{
-			if (Input.GetKeyDown("" + i))
+
+			for (int i = 0; i < 10; i++)
 			{
-				if (i == 0) SetCurrentSlot(9);
-				else SetCurrentSlot(i-1);
+				if (Input.GetKeyDown("" + i))
+				{
+					if (i == 0) SetCurrentSlot(9);
+					else SetCurrentSlot(i - 1);
+				}
 			}
 		}
 	}

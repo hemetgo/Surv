@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
@@ -30,6 +31,8 @@ public class UIManager : MonoBehaviour
 			OpenMenus();
 			OpenCrafts();
 		}
+
+		if (Input.GetKeyDown(KeyCode.Escape)) ResumeGame();
 	}
 
 	public void OpenMenus()
@@ -44,7 +47,6 @@ public class UIManager : MonoBehaviour
 		inventoryGUI.SetActive(false);
 		craftGUI.SetActive(false);
 	}
-
 	public void OpenInventory()
 	{
 		if (inventoryGUI.activeSelf)
@@ -56,7 +58,6 @@ public class UIManager : MonoBehaviour
 		inventoryGUI.SetActive(true);
 		craftGUI.SetActive(false);
 	}
-
 	public void OpenCrafts()
 	{
 		if (craftGUI.activeSelf)
@@ -68,7 +69,16 @@ public class UIManager : MonoBehaviour
 		craftGUI.SetActive(true);
 		inventoryGUI.SetActive(false);
 		GetComponent<CraftManager>().currentType = "All";
-		GetComponent<CraftManager>().RefreshCrafts();
+		GetComponent<CraftManager>().RefreshCrafts(true);
 	}
 
+	public void Restart()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+	}
+
+	public void QuitGame()
+	{
+		Application.Quit();
+	}
 }

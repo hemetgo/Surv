@@ -26,6 +26,7 @@ public class CraftManager : MonoBehaviour
     public Button craftButton;
 
     [HideInInspector] public Item craftItem;
+    public int lastSelectedIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -39,10 +40,10 @@ public class CraftManager : MonoBehaviour
     public void SelectCraftType(string type)
 	{
         currentType = type;
-        RefreshCrafts();
-	}
+        RefreshCrafts(true);
+    }
 
-    public void RefreshCrafts()
+    public void RefreshCrafts(bool reselect)
 	{
         // Limpar slots
         foreach (CraftSlot slot in craftSlots)
@@ -72,8 +73,11 @@ public class CraftManager : MonoBehaviour
 
         List<ItemData> crafts = new List<ItemData>();
 
-        foreach (ItemData item in itemDatas)
+        //foreach (ItemData item in itemDatas)
+        int indexCount = 0;
+        for (int i = 0; i < itemDatas.Count; i++)
         {
+            ItemData item = itemDatas[i];
             if (item.recipe.Count > 0)
             {
                 crafts.Add(item);
@@ -81,47 +85,48 @@ public class CraftManager : MonoBehaviour
                 slot.itemData = item;
                 slot.craftManager = this;
                 craftSlots.Add(slot);
+
+                slot.index = indexCount;
+                indexCount += 1;
             }
         }
 
         if (craftSlots.Count > 0)
         {
+            Inventory inventory = GetComponent<InventoryManager>().inventory;
             // Verifica se pode craftar
-            List<Item> inventory = GetComponent<InventoryManager>().inventory.itemList;
             for (int i = 0; i < crafts.Count; i++)
             {
-                ItemData iData = crafts[i];
-                int yes = 0; // corrects ingredients counter
-                foreach (Item item in inventory)
+                ItemData item = crafts[i];
+                int yes = 0; 
+                
+                foreach (IngredientItem ingredient in item.recipe)
                 {
-                    foreach (IngredientItem ingredient in iData.recipe)
+                    if (inventory.GetInventoryAmount(ingredient.itemData) >= ingredient.amount)
                     {
-                        if (item.itemData == ingredient.itemData && item.amount >= ingredient.amount)
-                        {
-                            yes += 1;
-                        }
+                        yes += 1;
                     }
                 }
-
-                if (yes >= iData.recipe.Count) craftSlots[i].SetCraftEnabled(true);
+                
+                if (yes >= item.recipe.Count) craftSlots[i].SetCraftEnabled(true);
                 else craftSlots[i].SetCraftEnabled(false);
             }
         }
-        craftSlots[0].SelectCraftSlot();
+        if (reselect) craftSlots[0].SelectCraftSlot();
+        else craftSlots[lastSelectedIndex].SelectCraftSlot();
     }
 
     public void Craft()
 	{
         foreach (IngredientItem ingredient in craftItem.itemData.recipe)
 		{
-            Item removeItem = new Item();
-            removeItem.itemData = ingredient.itemData;
+            Item removeItem = new Item(ingredient.itemData);
             removeItem.amount = ingredient.amount;
 
             GetComponent<InventoryManager>().inventory.RemoveItem(removeItem);
         }
         GetComponent<InventoryManager>().inventory.AddItem(craftItem);
 
-        RefreshCrafts();
+        RefreshCrafts(false);
     }
 }
