@@ -24,6 +24,7 @@ MonoBehaviour:
   value: 0
   drop: {fileID: 4251096401772897882, guid: d391d137d7b994749bb1798963fe98cb, type: 3}
   power: 2
+  critRate: 25
   knockbackForce: 10
   recipe: []
   toolType: 0

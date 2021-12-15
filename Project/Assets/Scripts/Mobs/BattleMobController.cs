@@ -62,6 +62,7 @@ public class BattleMobController : MonoBehaviour
 
         if (currentHp <= 0)
 		{
+            Physics.IgnoreCollision(GetComponent<Collider>(), aiAgent.player.GetComponent<Collider>());
             healthBar.gameObject.SetActive(false);
             healthBarBackground.gameObject.SetActive(false);
             aiAgent.animator.SetTrigger("Die");

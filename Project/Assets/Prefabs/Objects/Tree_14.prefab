@@ -12,7 +12,6 @@ GameObject:
   - component: {fileID: 2998223627273066825}
   - component: {fileID: 2998223627274034057}
   - component: {fileID: 2679035398960135846}
-  - component: {fileID: 9145281412244398626}
   - component: {fileID: 5831387476934592182}
   m_Layer: 0
   m_Name: Tree_14
@@ -101,19 +100,6 @@ MonoBehaviour:
   requiredTool: 0
   dropPrefab: {fileID: 922482970136923879, guid: 949d67639b4123a4bb0dd0e306854123, type: 3}
   stock: 10
---- !u!135 &9145281412244398626
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2998223627276027209}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1.2661589
-  m_Center: {x: 0.18471481, y: 3.0809069, z: 0.15952583}
 --- !u!136 &5831387476934592182
 CapsuleCollider:
   m_ObjectHideFlags: 0

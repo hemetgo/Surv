@@ -14,6 +14,7 @@ public class ItemData : ScriptableObject
 
     [Header("Battle")]
     public int power = 1;
+    [Range(0, 100)] public float critRate = 10;
     public int knockbackForce = 10;
 
     public List<IngredientItem> recipe;

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 4343275805593948735}
   - component: {fileID: 4343275805591048735}
   - component: {fileID: 4343275805592047839}
-  - component: {fileID: 7114897240708818174}
   - component: {fileID: 5952839727071805926}
   - component: {fileID: 3732921493323918850}
+  - component: {fileID: -8524498052858918154}
   m_Layer: 0
   m_Name: Wooden Door
   m_TagString: Untagged
@@ -84,22 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!54 &7114897240708818174
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4343275805594242591}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &5952839727071805926
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -127,3 +111,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
   dropPrefab: {fileID: 3940274201024846754, guid: 7df54420ef339774bb18ce881cff29d4, type: 3}
+  isPlacing: 0
+  isOverlapping: 0
+  originalMaterial: {fileID: 0}
+  redMaterial: {fileID: 0}
+--- !u!54 &-8524498052858918154
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4343275805594242591}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 126
+  m_CollisionDetection: 0

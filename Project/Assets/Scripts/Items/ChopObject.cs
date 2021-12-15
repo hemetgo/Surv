@@ -25,7 +25,7 @@ public class ChopObject : SmartObject
                     {
                         if (!GetComponent<Rigidbody>())
                         {
-                            gameObject.AddComponent<Rigidbody>();
+                            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
                             Destroy(gameObject, 5);
                         }
                     }
@@ -44,7 +44,7 @@ public class ChopObject : SmartObject
 
                         if (!GetComponent<Rigidbody>())
                         {
-                            gameObject.AddComponent<Rigidbody>();
+                            Rigidbody rb = gameObject.AddComponent<Rigidbody>();
                             Destroy(gameObject, 5);
                         }
                     }

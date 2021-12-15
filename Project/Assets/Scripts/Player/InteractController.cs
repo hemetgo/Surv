@@ -36,10 +36,11 @@ public class InteractController : MonoBehaviour
     private GameObject placingObject;
     private float currentRange;
     private HandManager handManager;
-    private Material objectMaterial;
+    //private Material objectMaterial;
     private float turnObjectTimer;
     private float turnObjectAngle;
     private string interactButton = "Fire1";
+    private bool gridPlacement;
 
     void Start()
     {
@@ -50,6 +51,8 @@ public class InteractController : MonoBehaviour
 
     void Update()
     {
+        Tools();
+
         InteractControl();
         UseItem();
     }
@@ -126,110 +129,130 @@ public class InteractController : MonoBehaviour
 
 
     #region Items
+    private FurnitureObject furniture = null;
     private void UseItem()
     {
         if (handManager.handItem.itemData)
-        switch (handManager.handItem.itemData.itemType)
         {
-            case ItemData.ItemType.Furniture:
-                turnObjectTimer -= Time.deltaTime;
-                if (placingObject) 
-                {
-                    if (placingObject.name != handManager.handItem.itemData.itemName.english)
-                        Destroy(placingObject);
-                }
-
-                GameObject prefab = Resources.Load<GameObject>("Furnitures/" + handManager.handItem.itemData.itemName.english);
-
-                if (!placingObject)
-                {
-                    placingObject = Instantiate(prefab, GameObject.Find("Furnitures").transform);
-                    placingObject.name = placingObject.name.Replace("(Clone)", "");
-                    placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
-                }
-                if (!objectMaterial && objectMaterial == null) 
-                    objectMaterial = placingObject.GetComponent<Renderer>().material;
-
-                // Disable components
-                placingObject.GetComponent<Rigidbody>().isKinematic = true;
-                placingObject.GetComponent<FurnitureObject>().enabled = false;
-                foreach (Collider col in placingObject.GetComponents<Collider>())
-                {
-                    col.enabled = false;
-                }
-
-                // Controls
-                if (Input.GetButton("Turn") && turnObjectTimer <= 0)
-                {
-                    turnObjectAngle += 45;
-                    placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
-                    turnObjectTimer = actionDelay / 2;
-                } else if (Input.GetButtonDown("Turn"))
-                {
-                    turnObjectAngle += 45;
-                    placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
-                    turnObjectTimer = actionDelay / 2;
-                }
-
-                // Snap to grid
-
-                if (placingObject)
-                {
-                    if (Input.GetButton("Crouch"))
+            switch (handManager.handItem.itemData.itemType)
+            {
+                case ItemData.ItemType.Furniture:
+                    turnObjectTimer -= Time.deltaTime;
+                    // If exists an placing object, destroy it
+                    if (placingObject)
                     {
-                        
-                        placingObject.transform.position = new Vector3((int)hitPoint.x, hitPoint.y, (int)hitPoint.z);
-                    }
-                    else
-                    {
-                        placingObject.transform.position = hitPoint;
+                        if (placingObject.name != handManager.handItem.itemData.itemName.english)
+                            Destroy(placingObject);
                     }
 
+                    // Load the furniture prefab
+                    GameObject prefab = Resources.Load<GameObject>("Furnitures/" + handManager.handItem.itemData.itemName.english);
 
-                    if (Vector3.Distance(transform.position, placingObject.transform.position) < placingRange)
+                    // Instantiate the furniture, if it isn't instantiated yet
+                    if (!placingObject)
                     {
-                        placingObject.GetComponent<Renderer>().material = objectMaterial;
-
-                        if (Input.GetButtonDown("Fire1"))
+                        placingObject = Instantiate(prefab, GameObject.Find("Furnitures").transform);
+                        placingObject.layer = 2;
+                        placingObject.name = placingObject.name.Replace("(Clone)", "");
+                        placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
+                        foreach (Collider col in placingObject.GetComponents<Collider>())
                         {
-                            // Enable components
-                            placingObject.GetComponent<Rigidbody>().isKinematic = false;
-                            placingObject.GetComponent<FurnitureObject>().enabled = true;
-                            foreach (Collider col in placingObject.GetComponents<Collider>())
+                            col.isTrigger = true;
+                        }
+
+                        furniture = placingObject.GetComponent<FurnitureObject>();
+                        furniture.redMaterial = redMaterial;
+                        furniture.isPlacing = true;
+                    }
+
+                    // Controls
+                    if (Input.GetButton("Turn") && turnObjectTimer <= 0)
+                    {
+                        turnObjectAngle += 45;
+                        placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
+                        turnObjectTimer = actionDelay / 2;
+                    }
+                    else if (Input.GetButtonDown("Turn"))
+                    {
+                        turnObjectAngle += 45;
+                        placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
+                        turnObjectTimer = actionDelay / 2;
+                    }
+
+                    // If placement furniture object exists
+                    if (placingObject)
+                    {
+                        // Snap to grid
+                        if (gridPlacement)
+                            placingObject.transform.position = new Vector3((int)hitPoint.x, hitPoint.y, (int)hitPoint.z);
+                        else
+                            placingObject.transform.position = hitPoint;
+
+                        // Placement
+                        if (Vector3.Distance(transform.position, placingObject.transform.position) < placingRange)
+                        {
+                            if (furniture != null)
                             {
-                                col.enabled = true;
+                                // Overlapping materials
+                                if (!furniture.isOverlapping)
+                                    placingObject.GetComponent<Renderer>().material = furniture.originalMaterial;
+                                else
+                                    placingObject.GetComponent<Renderer>().material = redMaterial;
+
+                                // Place item
+                                if (Input.GetButtonDown("Fire1"))
+                                {
+                                    if (!furniture.isOverlapping)
+                                    {
+                                        // Enable components
+                                        furniture.isPlacing = false;
+                                        foreach (Collider col in placingObject.GetComponents<Collider>())
+                                        {
+                                            col.isTrigger = false;
+                                        }
+                                        handManager.PlaceItem();
+                                        placingObject.layer = 0;
+                                        placingObject = null;
+                                        furniture.isOverlapping = false;
+                                    }
+                                }
                             }
-                            handManager.PlaceItem();
-                            placingObject = null;
-                            objectMaterial = null;
+                        }
+                        else
+                        {
+                            // If far from player, red material to it
+                            placingObject.GetComponent<Renderer>().material = redMaterial;
                         }
                     }
-                    else
-                    {
-                        placingObject.GetComponent<Renderer>().material = redMaterial;
-                    }
-                }
 
-                if (hit.collider) hitPoint = hit.point;
+                    if (hit.collider) hitPoint = hit.point;
 
-                break;
-            default:
-                interactButton = "Fire1";
-                break;
-        }
+                    break;
+                default:
+                    interactButton = "Fire1";
+                    break;
+            }
 
-        if (handManager.handItem.itemData)
-        {
-            if (handManager.handItem.itemData.itemType != ItemData.ItemType.Furniture)
+            if (handManager.handItem.itemData)
             {
-                if (placingObject)
+                if (handManager.handItem.itemData.itemType != ItemData.ItemType.Furniture)
                 {
-                    objectMaterial = null;
-                    Destroy(placingObject);
+                    if (placingObject)
+                    {
+                        Destroy(placingObject);
+                    }
                 }
             }
         }
-        
     }
+
     #endregion
+
+    private void Tools()
+	{
+        if (Input.GetButtonDown("SnapToGrid"))
+		{
+            gridPlacement = !gridPlacement;
+		}
+	}
 }

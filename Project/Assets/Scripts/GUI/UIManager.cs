@@ -11,11 +11,9 @@ public class UIManager : MonoBehaviour
 	public GameObject inventoryGUI;
 	public GameObject craftGUI;
 
-
-
 	private void Start()
 	{
-		ResumeGame();
+		CloseMenus();
 	}
 
 	private void Update()
@@ -32,17 +30,21 @@ public class UIManager : MonoBehaviour
 			OpenCrafts();
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape)) ResumeGame();
+		if (Input.GetKeyDown(KeyCode.Escape)) CloseMenus();
 	}
 
 	public void OpenMenus()
 	{
+		Singleton.Instance.OpenMenu();
 		Cursor.lockState = CursorLockMode.None;
+
 		menusGUI.SetActive(true);
 	}
-	public void ResumeGame()
+	public void CloseMenus()
 	{
+		Singleton.Instance.CloseMenu();
 		Cursor.lockState = CursorLockMode.Locked;
+
 		menusGUI.SetActive(false);
 		inventoryGUI.SetActive(false);
 		craftGUI.SetActive(false);
@@ -51,7 +53,7 @@ public class UIManager : MonoBehaviour
 	{
 		if (inventoryGUI.activeSelf)
 		{
-			ResumeGame();
+			CloseMenus();
 			return;
 		}
 
@@ -62,7 +64,7 @@ public class UIManager : MonoBehaviour
 	{
 		if (craftGUI.activeSelf)
 		{
-			ResumeGame();
+			CloseMenus();
 			return;
 		}
 

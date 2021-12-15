@@ -5,50 +5,58 @@ using UnityEngine;
 public class FurnitureObject : SmartObject
 {
 	public GameObject dropPrefab;
-
+	public bool isPlacing;
+	public bool isOverlapping;
+	
 	private int damage;
 	private float timer;
-	private Rigidbody rb;
+	//private Rigidbody rb;
 	private QuickOutline outline;
 
-	private void Start()
-	{
-		rb = GetComponent<Rigidbody>();
-		outline = gameObject.AddComponent<QuickOutline>();
-		outline.enabled = false;
-		outline.OutlineColor = new Color32(0, 255, 0, 255);
-		outline.OutlineWidth = 10;
-		outline.OutlineMode = QuickOutline.Mode.OutlineVisible;
+	 public Material originalMaterial;
+	 public Material redMaterial;
 
-		rb.isKinematic = true;
+	private void Awake()
+	{
+		originalMaterial = GetComponent<Renderer>().material;
 	}
+
+	//private void Start()
+	//{
+	//	//outline = gameObject.AddComponent<QuickOutline>();
+	//	////outline.enabled = false;
+	//	//outline.OutlineColor = new Color32(0, 255, 0, 255);
+	//	//outline.OutlineWidth = 10;
+	//	//outline.OutlineMode = QuickOutline.Mode.OutlineVisible;
+	//}
+
+	//private void Update()
+	//{
+	//	//timer += Time.deltaTime;
+	//	//if (timer > 3)
+	//	//{
+	//	//	damage = 0;
+	//	//}
+	//}
 
 	public override void Interact()
 	{
-		/*damage += 1;
-		timer = 0;
+		//damage += 1;
+		//timer = 0;
 
-		if (damage >= 3)
-		{
-			CatchObject();
-		}*/
-		
+		//if (damage >= 3)
+		//{
+		//	CatchObject();
+		//}
+
 		CatchObject();
 	}
 
-	private void Update()
-	{
-		timer += Time.deltaTime;
-		if (timer > 3)
-		{
-			damage = 0;
-		}
-	}
 
-	private void FixedUpdate()
-	{
-		outline.enabled = false;
-	}
+	//private void FixedUpdate()
+	//{
+	//	outline.enabled = false;
+	//}
 
 	public override bool CanInteract(GameObject obj)
 	{
@@ -84,16 +92,44 @@ public class FurnitureObject : SmartObject
 		return ObjectType.Furniture;
     }
 
-	public void ToggleLocked()
-    {
-		rb.isKinematic = !rb.isKinematic;
+	//public void ToggleLocked()
+ //   {
+	//	rb.isKinematic = !rb.isKinematic;
 
-		if (rb.isKinematic) outline.OutlineColor = new Color32(255, 0, 0, 255);
-		else outline.OutlineColor = new Color32(0, 255, 0, 255);
-	}
+	//	if (rb.isKinematic) outline.OutlineColor = new Color32(255, 0, 0, 255);
+	//	else outline.OutlineColor = new Color32(0, 255, 0, 255);
+	//}
 
 	public void SetOutlineEnabled(bool enabled)
 	{
 		outline.enabled = enabled;
 	}
+
+	private void OnTriggerStay(Collider other)
+	{
+		if (other.GetComponent<FurnitureObject>() ||
+			other.GetComponent<AiAgent>() ||
+			other.GetComponent<SmartObject>())
+		{
+			if (isPlacing) 
+			{
+				GetComponent<Renderer>().material = redMaterial;
+				isOverlapping = true;
+			}
+		}
+	}
+
+	private void OnTriggerExit(Collider other)
+	{
+		if (other.GetComponent<FurnitureObject>() ||
+			other.GetComponent<AiAgent>() ||
+			other.GetComponent<SmartObject>())
+		{
+			if (isPlacing) {
+				GetComponent<Renderer>().material = originalMaterial;
+				isOverlapping = false;
+			} }
+	}
 }
+
+

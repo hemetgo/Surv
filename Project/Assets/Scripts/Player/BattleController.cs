@@ -57,7 +57,9 @@ public class BattleController : MonoBehaviour
     public void TakeDamage(int dmg, Transform damageOrigin, float knockbackForce)
     {
         currentHp -= dmg;
-        GetComponent<FirstPersonController>().Knockback(damageOrigin, knockbackForce);
+        if (knockbackForce > 0)
+            GetComponent<FirstPersonController>().Knockback(damageOrigin, knockbackForce);
+
         TakenDamage(currentHp);
 
         if (currentHp <= 0)
@@ -70,7 +72,14 @@ public class BattleController : MonoBehaviour
     {
         if (handManager.handItem.itemData)
         {
-            return handManager.handItem.itemData.power;
+            ItemData item = handManager.handItem.itemData;
+            int dmg = item.power; 
+            
+            if (Toolkit.RandomBool(item.critRate / 100))
+			{
+                dmg = dmg * 2;
+            }
+            return dmg;
         }
         else return 1;
     }
