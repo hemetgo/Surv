@@ -13,8 +13,6 @@ public class InventoryManager : MonoBehaviour
 	[Header("Game Objects")]
 	public Transform inventorySlotContainer;
 	public Transform itemBarContainer;
-	public GameObject inventoryGUI;
-	public GameObject darkBackground;
 
 	[Header("Item Bar")]
 	public ItemBarManager itemBar; 
@@ -31,7 +29,7 @@ public class InventoryManager : MonoBehaviour
 	[HideInInspector] public List<InventorySlot> inventorySlotList;
 
 	// Aux
-	[HideInInspector] public bool isDropping;
+	public bool isDropping;
 	[HideInInspector] public InventorySlot dragSlot = null;
 	[HideInInspector] public InventorySlot dropSlot = null;
 
@@ -41,16 +39,12 @@ public class InventoryManager : MonoBehaviour
 		GenerateSlots();
 	}
 
-	private void Update()
-	{
-		ShowInventory();
-	}
-
 	public void StartInventory()
 	{
 		inventory = new Inventory(inventorySize);
 		inventory.ItemCollected += OnItemCollected;
 		itemBar.handManager.ItemDropped += OnItemDropped;
+		itemBar.handManager.ItemDeleted += OnItemDeleted;
 		FindObjectOfType<HandManager>().ItemPlaced += OnItemPlaced;
 	}
 
@@ -64,33 +58,11 @@ public class InventoryManager : MonoBehaviour
 			InventorySlot slot = inventorySlotList[i];
 			slot.SetManager(this);
 			slot.item = item;
+			item.inventoryIndex = i;
 			slot.RefreshSlot();
 		}
 
 		itemBar.RefreshItemBar();
-	}
-
-	private void ShowInventory()
-	{
-		if (Input.GetButtonDown("Inventory"))
-		{
-			inventoryGUI.SetActive(!inventoryGUI.activeInHierarchy);
-			darkBackground.SetActive(!darkBackground.activeInHierarchy);
-
-			if (inventoryGUI.activeInHierarchy)
-			{
-				Cursor.lockState = CursorLockMode.None;
-			}
-			else
-			{
-				Cursor.lockState = CursorLockMode.Locked;
-			}
-		}
-	}
-
-	public void ResumeGame()
-	{
-		Time.timeScale = 1;
 	}
 
 	public void DropItem(Item item)
@@ -116,11 +88,12 @@ public class InventoryManager : MonoBehaviour
 
 			slot.SetManager(this);
 			slot.slotId = i;
-			slot.item = new Item();
+			slot.item = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 			inventorySlotList.Add(slot);
 		}
 
 		itemBar.gameObject.SetActive(true);
+		itemBar.RefreshItemBar();
 	}
 
 	public void SetDropping(bool isDropping)
@@ -128,20 +101,20 @@ public class InventoryManager : MonoBehaviour
 		this.isDropping = isDropping;
 	}
 
-
 	#region Listeners
 	private void OnItemCollected(Item item)
 	{
-		feedbackManager.ShowFeedback("+" + item.amount + " " + item.itemName);
+		feedbackManager.ShowFeedback("+" + item.amount + " " + item.itemData.GetItemName());
 		RefreshInventory();
 		itemBar.RefreshItemBar();
+		item.UpdatedInventory += OnInventoryUpdated;
 	}
 
 	private void OnItemDropped(Item item)
 	{
 		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
 		{
-			inventory.GetItemList()[item.GetInventoryIndex()] = new Item();
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 		}
 		else
 		{
@@ -156,7 +129,7 @@ public class InventoryManager : MonoBehaviour
     {
 		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
 		{
-			inventory.GetItemList()[item.GetInventoryIndex()] = new Item();
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 		} 
 		else
         {
@@ -166,20 +139,27 @@ public class InventoryManager : MonoBehaviour
 		RefreshInventory();
 		itemBar.RefreshItemBar();
 	}
-	#endregion
 
-	#region Tools
-	public void ToggleCursor()
+	private void OnItemDeleted(Item item)
 	{
-		if (Cursor.lockState == CursorLockMode.Locked)
+		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
 		{
-			Time.timeScale = 0;
-			Cursor.lockState = CursorLockMode.None;
-		} else
-		{
-			Time.timeScale = 1; 
-			Cursor.lockState = CursorLockMode.Locked;
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 		}
+		else
+		{
+			inventory.GetItemList()[item.GetInventoryIndex()] = item;
+		}
+
+		RefreshInventory();
+		itemBar.RefreshItemBar();
+	}
+
+	private void OnInventoryUpdated()
+	{
+		RefreshInventory();
 	}
 	#endregion
+
+	
 }

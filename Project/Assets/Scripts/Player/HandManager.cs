@@ -7,17 +7,27 @@ public class HandManager : MonoBehaviour
 	public delegate void DroppedItemHandler(Item item);
 	public event DroppedItemHandler ItemDropped;
 
+	public delegate void DeletedItemHandler(Item item);
+	public event DeletedItemHandler ItemDeleted;
+
 	public delegate void PlacedItemHandler(Item item);
 	public event PlacedItemHandler ItemPlaced;
 
-	public GameObject handItem;
-	public Item handItemData;
+	public GameObject handItemObject = null;
+	public Item handItem;
 	[Range(0.01f, 10)] public float dropForce;
 	[Range(0.01f, 10)] public float dropCooldown;
 	public Transform dropParent;
 
-
 	private float dropTimer;
+	[HideInInspector] public Animator animator;
+
+	private void Start()
+	{
+		handItem = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
+
+		animator = GetComponent<Animator>();
+	}
 
 	private void Update()
 	{
@@ -29,43 +39,44 @@ public class HandManager : MonoBehaviour
 				DropItem();
 			}
 		}
+
+		animator.SetFloat("MoveSpeed", FindObjectOfType<FirstPersonController>().GetNormalizedSpeed() * 0.75f);
 	}
 
 
 	public void HoldItem(Item item)
 	{
-		if (handItem) handItem.SetActive(false);
+		if (handItemObject) handItemObject.SetActive(false);
 
-		handItemData = item;
-		if (!item.itemName.Equals(""))
+		handItem = item;
+		if (item.amount > 0)
 		{
-			if (handItemData.itemType == Item.ItemType.Furniture)
+			if (!item.itemData.itemName.english.Equals(""))
 			{
-				handItem = transform.Find("Furniture").gameObject;
-			} else
-            {
-				handItem = transform.Find(item.itemName).gameObject;
+				if (transform.Find(item.itemData.itemName.english))
+				{
+					if (transform.Find(item.itemData.itemName.english))
+					{
+						if (handItem.itemData.itemType == ItemData.ItemType.Furniture)
+						{
+							handItemObject = transform.Find("Furniture").gameObject;
+						}
+						else
+						{
+							handItemObject = transform.Find(item.itemData.itemName.english).gameObject;
+						}
+						handItemObject.SetActive(true);
+					}
+				}
 			}
-			handItem.SetActive(true);
 		}
 	}
 
 	public void DropItem()
 	{
-		if (handItemData.amount > 0)
+		if (handItem.amount > 0)
 		{
-			GameObject dropPrefab = null; 
-			GameObject[] dropsList = Resources.LoadAll<GameObject>("DropsPrefabs");
-			foreach (GameObject go in dropsList)
-			{
-				if (go.name.Equals(handItemData.itemName)) 
-				{ 
-					dropPrefab = go;
-					break;
-				}
-			}
-
-			GameObject drop = Instantiate(dropPrefab, transform.parent);
+			GameObject drop = Instantiate(handItem.itemData.drop, transform.parent);
 			drop.GetComponent<DropItem>().dropTimer = dropCooldown;
 			drop.transform.position += transform.forward / 2;
 			drop.transform.SetParent(dropParent);
@@ -75,8 +86,8 @@ public class HandManager : MonoBehaviour
 			drop.GetComponent<Rigidbody>().AddForce(Vector3.up * dropForce / 1.5f, ForceMode.Impulse);
 			
 
-			handItemData.amount -= 1;
-			ItemDropped(handItemData);
+			handItem.amount -= 1;
+			ItemDropped(handItem);
 
 			dropTimer = 0.2f;
 		}
@@ -88,18 +99,7 @@ public class HandManager : MonoBehaviour
 
 		if (item.amount > 0)
 		{
-			GameObject dropPrefab = null;
-			GameObject[] dropsList = Resources.LoadAll<GameObject>("DropsPrefabs");
-			foreach (GameObject go in dropsList)
-			{
-				if (go.name.Equals(item.itemName))
-				{
-					dropPrefab = go;
-					break;
-				}
-			}
-
-			GameObject drop = Instantiate(dropPrefab, transform.parent);
+			GameObject drop = Instantiate(item.itemData.drop, transform.parent);
 			drop.GetComponent<DropItem>().dropTimer = dropTime;
 			drop.GetComponent<DropItem>().item.amount = item.amount;
 			drop.transform.position += transform.forward / 2;
@@ -121,18 +121,7 @@ public class HandManager : MonoBehaviour
 	{
 		if (item.amount > 0)
 		{
-			GameObject dropPrefab = null;
-			GameObject[] dropsList = Resources.LoadAll<GameObject>("DropsPrefabs");
-			foreach (GameObject go in dropsList)
-			{
-				if (go.name.Equals(item.itemName))
-				{
-					dropPrefab = go;
-					break;
-				}
-			}
-
-			GameObject drop = Instantiate(dropPrefab, transform.parent);
+			GameObject drop = Instantiate(handItem.itemData.drop, transform.parent);
 			drop.GetComponent<DropItem>().dropTimer = dropCooldown;
 			drop.transform.position += transform.forward / 2;
 			drop.transform.SetParent(dropParent);
@@ -149,9 +138,18 @@ public class HandManager : MonoBehaviour
 		}
 	}
 
+	public void RemoveItem(Item item)
+	{
+		if (item.amount > 0)
+		{
+			item.amount -= 1;
+			ItemDeleted(item);
+		}
+	}
+
 	public void PlaceItem()
     {
-		handItemData.amount -= 1;
-		ItemPlaced(handItemData);
+		handItem.amount -= 1;
+		ItemPlaced(handItem);
 	}
 }

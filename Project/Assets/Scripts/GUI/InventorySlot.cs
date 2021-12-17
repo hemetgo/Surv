@@ -13,20 +13,27 @@ public class InventorySlot : MonoBehaviour
 	[Header("Graphics")]
 	public Image itemImage;
     public TextMeshProUGUI txtAmount;
-    public TextMeshProUGUI txtName;
 	public Sprite emptyImage;
+
+	[Header("Infos")]
+	public GameObject infos;
+	public Text nameText;
+	public Text typeText;
+	public Text descriptionText;
+	public GameObject durabilityData;
+	public Image durabilityBar;
 
 	// aux
 	private InventoryManager inventoryManager;
 	private GameObject slotHolder;
-
-	// Aux
     private bool isDraging;
 	private Vector2 startPos;
 
 	private void Start()
 	{
 		inventoryManager = FindObjectOfType<InventoryManager>();
+		infos.SetActive(false);
+		durabilityData.SetActive(false);
 	}
 
 	private void Update()
@@ -38,24 +45,24 @@ public class InventorySlot : MonoBehaviour
 		}
 	}
 
-	public void SetLabelActive(bool active)
-	{
-		if (!isDraging)
-		{
-			txtName.transform.parent.gameObject.SetActive(active);
-		} else
-		{
-			txtName.transform.parent.gameObject.SetActive(false);
-		}
-	}
 
 	public void PointerExit()
 	{
+		infos.SetActive(false);
 		inventoryManager.dropSlot = null;
 	}
 
 	public void PointerEnter()
 	{
+		if (item.amount > 0)
+		{
+			infos.SetActive(true);
+
+			nameText.text = item.itemData.itemName.GetString();
+			typeText.text = item.itemData.GetLangType();
+			descriptionText.text = item.itemData.description.GetString();
+		}
+
 		if (inventoryManager.dragSlot != null)
 		{
 			inventoryManager.dropSlot = this;
@@ -72,7 +79,7 @@ public class InventorySlot : MonoBehaviour
 		{
 			itemImage.raycastTarget = false;
 			slotHolder.GetComponent<Image>().raycastTarget = false;
-			slotHolder.GetComponent<Image>().sprite = item.icon;
+			slotHolder.GetComponent<Image>().sprite = item.itemData.icon;
 
 			startPos = GetComponent<RectTransform>().position;
 			inventoryManager.dragSlot = this;
@@ -100,11 +107,11 @@ public class InventorySlot : MonoBehaviour
 		{
 			if (dropSlot != null)
 			{
-				if (item.itemName.Equals(dropSlot.item.itemName))
+				if (item.itemData == dropSlot.item.itemData)
 				{
 					for (int i = 0; i < item.amount; i++)
 					{
-						if (dropSlot.item.amount < dropSlot.item.stackLimit)
+						if (dropSlot.item.amount < dropSlot.item.itemData.GetStackLimit())
 						{
 							dropSlot.item.amount += 1;
 							item.amount -= 1;
@@ -129,13 +136,14 @@ public class InventorySlot : MonoBehaviour
 		}
 	}
 
+
 	public bool IsEmpty()
 	{
 		if (item == null) return true;
 		else
 		{
 			if (item.amount <= 0) return true;
-			if (item.itemName.Equals("")) return true;
+			if (item.itemData.itemName.english.Equals("")) return true;
 		}
 		return false;
 	}
@@ -158,18 +166,30 @@ public class InventorySlot : MonoBehaviour
 		{
 			itemImage.gameObject.SetActive(true);
 			txtAmount.gameObject.SetActive(true);
-			txtName.gameObject.SetActive(true);
 
-			itemImage.sprite = item.icon;
-			txtAmount.text = "x" + item.amount;
-			txtName.text = item.itemName;
+			itemImage.sprite = item.itemData.icon;
+
+			if (item.itemData.UseDurability())
+			{
+				txtAmount.text = "";
+				if (item.durability < item.itemData.GetDurability())
+				{
+					durabilityData.SetActive(true);
+					durabilityBar.fillAmount = (float)item.durability / (float)item.itemData.GetDurability();
+				}
+			}
+			else
+			{
+				durabilityData.SetActive(false);
+				txtAmount.text = "x" + item.amount;
+			}
 		}
-		else 
+		else
 		{
 			itemImage.sprite = emptyImage;
+			durabilityData.SetActive(false); 
 			txtAmount.gameObject.SetActive(false);
 			txtAmount.text = "";
-			txtName.gameObject.SetActive(false);
 		}
 	}
 
