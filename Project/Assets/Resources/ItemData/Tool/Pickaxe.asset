@@ -19,8 +19,8 @@ MonoBehaviour:
   rarity: 0
   itemType: 1
   description:
-    english: 
-    portugues: "Realmente \xE9 uma picareta?"
+    english: Is it really a pickaxe?
+    portugues: "Isso realmente \xE9 uma picareta?"
   value: 0
   drop: {fileID: 1088887235204360991, guid: 08343f48b4adea744a5e28c88351621a, type: 3}
   power: 2
@@ -32,4 +32,4 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
     amount: 2
   toolType: 1
-  durability: 100
+  durability: 50

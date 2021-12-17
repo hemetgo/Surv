@@ -13,8 +13,15 @@ public class InventorySlot : MonoBehaviour
 	[Header("Graphics")]
 	public Image itemImage;
     public TextMeshProUGUI txtAmount;
-    public TextMeshProUGUI txtName;
 	public Sprite emptyImage;
+
+	[Header("Infos")]
+	public GameObject infos;
+	public Text nameText;
+	public Text typeText;
+	public Text descriptionText;
+	public GameObject durabilityData;
+	public Image durabilityBar;
 
 	// aux
 	private InventoryManager inventoryManager;
@@ -25,6 +32,8 @@ public class InventorySlot : MonoBehaviour
 	private void Start()
 	{
 		inventoryManager = FindObjectOfType<InventoryManager>();
+		infos.SetActive(false);
+		durabilityData.SetActive(false);
 	}
 
 	private void Update()
@@ -36,24 +45,24 @@ public class InventorySlot : MonoBehaviour
 		}
 	}
 
-	public void SetLabelActive(bool active)
-	{
-		if (!isDraging)
-		{
-			txtName.transform.parent.gameObject.SetActive(active);
-		} else
-		{
-			txtName.transform.parent.gameObject.SetActive(false);
-		}
-	}
 
 	public void PointerExit()
 	{
+		infos.SetActive(false);
 		inventoryManager.dropSlot = null;
 	}
 
 	public void PointerEnter()
 	{
+		if (item.amount > 0)
+		{
+			infos.SetActive(true);
+
+			nameText.text = item.itemData.itemName.GetString();
+			typeText.text = item.itemData.GetLangType();
+			descriptionText.text = item.itemData.description.GetString();
+		}
+
 		if (inventoryManager.dragSlot != null)
 		{
 			inventoryManager.dropSlot = this;
@@ -157,18 +166,30 @@ public class InventorySlot : MonoBehaviour
 		{
 			itemImage.gameObject.SetActive(true);
 			txtAmount.gameObject.SetActive(true);
-			txtName.gameObject.SetActive(true);
 
 			itemImage.sprite = item.itemData.icon;
-			txtAmount.text = "x" + item.amount;
-			txtName.text = item.itemData.GetItemName();
+
+			if (item.itemData.UseDurability())
+			{
+				txtAmount.text = "";
+				if (item.durability < item.itemData.GetDurability())
+				{
+					durabilityData.SetActive(true);
+					durabilityBar.fillAmount = (float)item.durability / (float)item.itemData.GetDurability();
+				}
+			}
+			else
+			{
+				durabilityData.SetActive(false);
+				txtAmount.text = "x" + item.amount;
+			}
 		}
-		else 
+		else
 		{
 			itemImage.sprite = emptyImage;
+			durabilityData.SetActive(false); 
 			txtAmount.gameObject.SetActive(false);
 			txtAmount.text = "";
-			txtName.gameObject.SetActive(false);
 		}
 	}
 

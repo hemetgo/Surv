@@ -19,11 +19,12 @@ MonoBehaviour:
   rarity: 0
   itemType: 4
   description:
-    english: 
+    english: A perfect table for your dining room.
     portugues: Uma mesa perfeita para sua sala de jantar.
   value: 0
   drop: {fileID: 4631906520371952654, guid: 9ac0eceae282cc3448b81a3fd111f892, type: 3}
   power: 1
+  critRate: 10
   knockbackForce: 10
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}

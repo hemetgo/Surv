@@ -11,19 +11,4 @@ public class ToolData : ItemData
 
     public enum ToolType { Axe, Pickaxe, Shovel, Hoe }
 
-    public void UseItem(int cost)
-	{
-        durability -= cost;
-
-        if (durability <= 0)
-		{
-            BreakTool();
-		}
-	}
-
-    private void BreakTool()
-	{
-        Debug.Log("Broken");
-    }
-
 }

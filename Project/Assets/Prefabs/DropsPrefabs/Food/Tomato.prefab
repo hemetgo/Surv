@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1191335049967527815}
+  - component: {fileID: 7846056143317983231}
   - component: {fileID: 1191335049970919335}
   - component: {fileID: 1191335049969821031}
-  - component: {fileID: 7846056143317983231}
   - component: {fileID: -1097903409922448851}
   - component: {fileID: 1594374279436051811}
   m_Layer: 6
@@ -35,6 +35,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7846056143317983231
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1191335049967893415}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c01d984270322bd4ab83a10f19790520, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item:
+    itemData: {fileID: 11400000, guid: f0902e9977941b840b99bd8020ecd7ac, type: 2}
+    amount: 1
+    inventoryIndex: 0
+  dropTimer: 0
 --- !u!33 &1191335049970919335
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -84,23 +101,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &7846056143317983231
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1191335049967893415}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c01d984270322bd4ab83a10f19790520, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  item:
-    itemData: {fileID: 11400000, guid: b70fa036f4c1df843b00f1942af638c0, type: 2}
-    amount: 1
-    inventoryIndex: 0
-  dropTimer: 0
 --- !u!65 &-1097903409922448851
 BoxCollider:
   m_ObjectHideFlags: 0

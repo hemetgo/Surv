@@ -48,7 +48,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
-    itemData: {fileID: 11400000, guid: bb95bb0d1efcf5c478b69f46acc677df, type: 2}
+    itemData: {fileID: 11400000, guid: ea09c24dab0b9984aa13d8db9e1ca4b9, type: 2}
     amount: 1
     inventoryIndex: 0
   dropTimer: 0

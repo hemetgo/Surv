@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
+  m_Script: {fileID: 11500000, guid: 83c40eafd1a17c442892e95d3a9c7246, type: 3}
   m_Name: Tomato
   m_EditorClassIdentifier: 
   itemName:
@@ -19,10 +19,15 @@ MonoBehaviour:
   rarity: 0
   itemType: 3
   description:
-    english: 
-    portugues: 
+    english: "\rAttention: It is forbidden to shoot tomatoes at artists."
+    portugues: "Aten\xE7\xE3o: Proibido atirar tomate em artistas."
   value: 0
   drop: {fileID: 1191335049967893415, guid: 9eff4acc75c37e24cb7dfc8e6a7bc3f3, type: 3}
   power: 1
+  critRate: 10
   knockbackForce: 10
   recipe: []
+  foodType: 0
+  effect:
+    effectType: 0
+    healPower: 1

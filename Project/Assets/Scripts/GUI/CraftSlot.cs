@@ -54,7 +54,7 @@ public class CraftSlot : MonoBehaviour
         {
             Item craftItem = new Item(itemData);
             craftItem.amount = 1;
-
+            craftItem.durability = itemData.GetDurability();
             craftManager.lastSelectedIndex = index;
             craftManager.craftItem = craftItem;
 		}

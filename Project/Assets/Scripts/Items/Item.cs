@@ -8,7 +8,11 @@ public class Item
 {
     public ItemData itemData;
     public int amount;
+    [HideInInspector] public int durability;
     [HideInInspector] public int inventoryIndex;
+
+    public delegate void UpdatedInventoryHandler();
+    public event UpdatedInventoryHandler UpdatedInventory;
 
     public Item(ItemData data)
 	{
@@ -24,4 +28,15 @@ public class Item
     {
         return inventoryIndex;
     }
+
+    public void RemoveDurability(HandManager hand)
+	{
+        durability -= 1;
+        if (durability <= 0)
+		{
+            hand.RemoveItem(this);
+		}
+        UpdatedInventory();
+    }
+
 }

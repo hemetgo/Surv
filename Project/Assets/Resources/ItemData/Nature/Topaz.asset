@@ -19,10 +19,11 @@ MonoBehaviour:
   rarity: 2
   itemType: 2
   description:
-    english: 
+    english: A beautiful yellow stone.
     portugues: Uma linda pedra amarela.
   value: 10
   drop: {fileID: 1235142396943216478, guid: fba2b110fcb0c83418be7e9a95fc416a, type: 3}
   power: 1
+  critRate: 10
   knockbackForce: 10
   recipe: []

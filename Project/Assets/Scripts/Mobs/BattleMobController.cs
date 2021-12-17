@@ -66,7 +66,7 @@ public class BattleMobController : MonoBehaviour
             healthBar.gameObject.SetActive(false);
             healthBarBackground.gameObject.SetActive(false);
             aiAgent.animator.SetTrigger("Die");
-            Invoke("Die", 0.8f);
+            Invoke("Die", 0.6f);
 		} else
 		{
             aiAgent.animator.SetTrigger("Take Damage");

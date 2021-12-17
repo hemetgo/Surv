@@ -41,15 +41,13 @@ public class FurnitureObject : SmartObject
 
 	public override void Interact()
 	{
-		//damage += 1;
-		//timer = 0;
+		damage += 1;
+		timer = 0;
 
-		//if (damage >= 3)
-		//{
-		//	CatchObject();
-		//}
-
-		CatchObject();
+		if (damage >= 3)
+		{
+			CatchObject();
+		}
 	}
 
 
@@ -109,7 +107,8 @@ public class FurnitureObject : SmartObject
 	{
 		if (other.GetComponent<FurnitureObject>() ||
 			other.GetComponent<AiAgent>() ||
-			other.GetComponent<SmartObject>())
+			other.GetComponent<SmartObject>() ||
+			other.GetComponent<DropItem>())
 		{
 			if (isPlacing) 
 			{
@@ -123,7 +122,8 @@ public class FurnitureObject : SmartObject
 	{
 		if (other.GetComponent<FurnitureObject>() ||
 			other.GetComponent<AiAgent>() ||
-			other.GetComponent<SmartObject>())
+			other.GetComponent<SmartObject>() ||
+			other.GetComponent<DropItem>())
 		{
 			if (isPlacing) {
 				GetComponent<Renderer>().material = originalMaterial;

@@ -44,6 +44,7 @@ public class InventoryManager : MonoBehaviour
 		inventory = new Inventory(inventorySize);
 		inventory.ItemCollected += OnItemCollected;
 		itemBar.handManager.ItemDropped += OnItemDropped;
+		itemBar.handManager.ItemDeleted += OnItemDeleted;
 		FindObjectOfType<HandManager>().ItemPlaced += OnItemPlaced;
 	}
 
@@ -106,6 +107,7 @@ public class InventoryManager : MonoBehaviour
 		feedbackManager.ShowFeedback("+" + item.amount + " " + item.itemData.GetItemName());
 		RefreshInventory();
 		itemBar.RefreshItemBar();
+		item.UpdatedInventory += OnInventoryUpdated;
 	}
 
 	private void OnItemDropped(Item item)
@@ -136,6 +138,26 @@ public class InventoryManager : MonoBehaviour
 
 		RefreshInventory();
 		itemBar.RefreshItemBar();
+	}
+
+	private void OnItemDeleted(Item item)
+	{
+		if (inventory.GetItemList()[item.GetInventoryIndex()].amount <= 0)
+		{
+			inventory.GetItemList()[item.GetInventoryIndex()] = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
+		}
+		else
+		{
+			inventory.GetItemList()[item.GetInventoryIndex()] = item;
+		}
+
+		RefreshInventory();
+		itemBar.RefreshItemBar();
+	}
+
+	private void OnInventoryUpdated()
+	{
+		RefreshInventory();
 	}
 	#endregion
 

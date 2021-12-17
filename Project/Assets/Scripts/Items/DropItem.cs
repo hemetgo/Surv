@@ -25,6 +25,12 @@ public class DropItem : MonoBehaviour
 		{
             Physics.IgnoreCollision(col, player.gameObject.GetComponent<Collider>());
         }
+
+        // Add durability
+        if (item.itemData.UseDurability())
+		{
+            item.durability = item.itemData.GetDurability();
+		}
     }
 
     // Update is called once per frame
@@ -60,8 +66,4 @@ public class DropItem : MonoBehaviour
         }
     }
 
-    public void SetItem(Item item)
-	{
-        this.item = item;
-	}
 }

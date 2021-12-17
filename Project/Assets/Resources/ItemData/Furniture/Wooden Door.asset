@@ -19,11 +19,12 @@ MonoBehaviour:
   rarity: 0
   itemType: 4
   description:
-    english: 
+    english: It's a wooden door, you know?
     portugues: "\xC9 uma porta de madeira, sabia?"
   value: 0
   drop: {fileID: 4343275805594242591, guid: 130a44048d215814285e6338ae4e4a2e, type: 3}
   power: 1
+  critRate: 10
   knockbackForce: 10
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}

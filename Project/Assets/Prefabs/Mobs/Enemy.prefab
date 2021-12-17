@@ -999,7 +999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialState: 0
   moveSpeed: 4
-  jumpForce: 8
+  jumpForce: 10
   viewRange: 20
   chaseRangeModifier: 1.8
   damagePower: 2
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ecac78709d62a439f6d6fe89719fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 10
+  maxHp: 20
   dmgMaterial: {fileID: 2100000, guid: 831e470081f39d241ac5e7d6dbd3ecaa, type: 2}
   deathParticles: {fileID: 2135318124701165686, guid: 037acd9bdce33b04b90afcad48f2a3cf, type: 3}
   healthBar: {fileID: 6592764320098824063}
@@ -1060,10 +1060,10 @@ CapsuleCollider:
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.8472366
+  m_Radius: 1.009414
   m_Height: 3.7804894
   m_Direction: 2
-  m_Center: {x: 0.0021119118, y: 0.73294514, z: 0.116490126}
+  m_Center: {x: 0.0021119118, y: 0.92215204, z: 0.116490126}
 --- !u!54 &6949730540182544264
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -15,6 +15,7 @@ public class FirstPersonController : MonoBehaviour
     public float fallDmgModifier = 1;
     public float speedLimitFallDamage = 7;
     [HideInInspector] public float currentStamina;
+    public bool isEating;
 
     [Header("Camera Settings")]
     [SerializeField]
@@ -86,28 +87,31 @@ public class FirstPersonController : MonoBehaviour
     private void Movement()
     {
         rb.velocity = new Vector3(0, rb.velocity.y, 0); // Para evitar que o movimento trave e o plauer se movimente sozinho
-        
+
         if (!isKnockbacking)
         {
-            float horizontal = Input.GetAxis("Horizontal");
-            float vertical = Input.GetAxis("Vertical");
+            float horizontal = Input.GetAxisRaw("Horizontal");
+            float vertical = Input.GetAxisRaw("Vertical");
 
             float realSpeed;
 
-            isRunning = false;
-            if (Input.GetButton("Run") && currentStamina > 0)
+            if (Input.GetButton("Run") && (Input.GetKey(KeyCode.W) 
+                || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) 
+                || Input.GetKey(KeyCode.D)) && currentStamina > 0)
             {
                 realSpeed = moveSpeed * runSpeedModifier;
-                
-                if (Mathf.Abs(horizontal) > moveSpeed / 10 || Mathf.Abs(vertical) > moveSpeed / 10) isRunning = true;
-                else isRunning = false;
+                isRunning = true;
+
+                //if (Mathf.Abs(horizontal) > moveSpeed / 8 || Mathf.Abs(vertical) > moveSpeed / 8) isRunning = true;
+                //else isRunning = false;
             }
             else
             {
                 realSpeed = moveSpeed;
+                isRunning = false;
             }
 
-            if (isCrouching) realSpeed = realSpeed / crouchSpeedModifier;
+            if (isCrouching || isEating) realSpeed = realSpeed / crouchSpeedModifier;
             if (vertical < 0) realSpeed = realSpeed / 2;
 
             Vector3 moveInput = new Vector3(horizontal, 0, vertical);
@@ -150,7 +154,7 @@ public class FirstPersonController : MonoBehaviour
             if (IsGrounded())
 			{
                 if (trigger) head.GetComponent<Animator>().SetTrigger("Shake");
-                GetComponent<BattleController>().TakeDamage((int)fallingDamage, transform, 0);
+                GetComponent<HealthController>().TakeDamage((int)fallingDamage, transform, 0);
                 fallingDamage = 0;
             }
         }

@@ -81,7 +81,7 @@ public class InteractController : MonoBehaviour
                     switch (smart.GetObjectType())
                     {
                         case SmartObject.ObjectType.Furniture:
-                            interactButton = "Fire2";
+                            interactButton = "Fire1";
                             currentRange = interactRange * 1.5f;
                             //smart.GetComponent<FurnitureObject>().SetOutlineEnabled(true);
                             //if (Input.GetButtonDown("Lock")) smart.GetComponent<FurnitureObject>().ToggleLocked();
@@ -107,38 +107,66 @@ public class InteractController : MonoBehaviour
             }
 
             if (actionTimer <= 0)
-            { 
-                if (Input.GetButtonDown(interactButton))
+            {
+                if (hit.collider)
                 {
-                    actionTimer = actionDelay;
-                    handAnimator.SetTrigger("Action");
-
-                    if (canInteract)
+                    if (!hit.collider.GetComponent<AiAgent>())
                     {
-                        smart.Interact();
+                        if (Input.GetButton(interactButton)
+                            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
+                        {
+                            actionTimer = actionDelay;
+                            handAnimator.SetTrigger("Action");
 
-                        if (smart.particle)
-                            Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
+                            if (canInteract)
+                            {
+                                smart.Interact();
+                                if (smart.particle)
+                                    Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
+                                
+                                handManager.handItem.RemoveDurability(handManager);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (Input.GetButtonDown(interactButton)
+                            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
+                        {
+                            actionTimer = actionDelay;
+                            handAnimator.SetTrigger("Action");
+                        }
+                    }
+                }
+                else
+                {
+                    if (Input.GetButton(interactButton)
+                            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
+                    {
+                        actionTimer = actionDelay;
+                        handAnimator.SetTrigger("Action");
                     }
                 }
             }
         }
-
     }
 
 
 
     #region Items
+    float foodTimer; 
     private FurnitureObject furniture = null;
     private void UseItem()
     {
+        GetComponent<FirstPersonController>().isEating = false;
         if (handManager.handItem.itemData)
         {
             switch (handManager.handItem.itemData.itemType)
             {
-                case ItemData.ItemType.Furniture:
+				#region Furniture
+				case ItemData.ItemType.Furniture:
                     turnObjectTimer -= Time.deltaTime;
-                    // If exists an placing object, destroy it
+                    // If exists a placing object, destroy it
                     if (placingObject)
                     {
                         if (placingObject.name != handManager.handItem.itemData.itemName.english)
@@ -186,7 +214,7 @@ public class InteractController : MonoBehaviour
                         if (gridPlacement)
                             placingObject.transform.position = new Vector3((int)hitPoint.x, hitPoint.y, (int)hitPoint.z);
                         else
-                            placingObject.transform.position = hitPoint;
+                            placingObject.transform.position = hitPoint + (Vector3.up  * 0.015f);
 
                         // Placement
                         if (Vector3.Distance(transform.position, placingObject.transform.position) < placingRange)
@@ -228,7 +256,35 @@ public class InteractController : MonoBehaviour
                     if (hit.collider) hitPoint = hit.point;
 
                     break;
-                default:
+                    #endregion
+                #region Food
+				case ItemData.ItemType.Food:
+                    if (Input.GetButton("Fire2") && handManager.handItem.amount > 0 && GetComponent<HealthController>().currentHp < GetComponent<HealthController>().maxHp)
+                    {
+                        foodTimer += Time.deltaTime;
+                        handAnimator.SetBool("IsEating", true);
+                        GetComponent<FirstPersonController>().isEating = true;
+                        if (foodTimer > 1.5f)
+                        {
+                            foodTimer = 0;
+                            handAnimator.SetBool("IsEating", false);
+                            GetComponent<FirstPersonController>().isEating = true; 
+                            FoodData food = handManager.handItem.itemData as FoodData;
+                            food.UseItem(gameObject);
+                            handManager.RemoveItem(handManager.handItem);
+                        }
+                    }
+                    else
+                    {
+                        foodTimer = 0;
+                        handAnimator.SetBool("IsEating", false);
+                        GetComponent<FirstPersonController>().isEating = false;
+                    }
+
+                    break;
+				#endregion
+
+				default:
                     interactButton = "Fire1";
                     break;
             }

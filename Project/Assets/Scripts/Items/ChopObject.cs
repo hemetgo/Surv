@@ -5,6 +5,7 @@ using UnityEngine;
 public class ChopObject : SmartObject
 {
     public ChopType chopType;
+    public bool disableCollisionAfter;
     public ToolData.ToolType requiredTool;
     public GameObject dropPrefab;
     public int stock;
@@ -25,7 +26,13 @@ public class ChopObject : SmartObject
                     {
                         if (!GetComponent<Rigidbody>())
                         {
+                            Transform player = FindObjectOfType<FirstPersonController>().transform;
+                            if (disableCollisionAfter) Physics.IgnoreCollision(GetComponent<Collider>(), player.GetComponent<Collider>());
                             Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+                            rb.constraints = RigidbodyConstraints.FreezeRotationY;
+                            rb.AddForceAtPosition(
+                                player.forward * 2,
+                                transform.position + GetComponent<Collider>().bounds.max, ForceMode.Impulse);
                             Destroy(gameObject, 5);
                         }
                     }
@@ -44,7 +51,13 @@ public class ChopObject : SmartObject
 
                         if (!GetComponent<Rigidbody>())
                         {
+                            Transform player = FindObjectOfType<FirstPersonController>().transform;
+                            if (disableCollisionAfter) Physics.IgnoreCollision(GetComponent<Collider>(), player.GetComponent<Collider>());
                             Rigidbody rb = gameObject.AddComponent<Rigidbody>();
+                            rb.constraints = RigidbodyConstraints.FreezeRotationY;
+                            rb.AddForceAtPosition(
+                                player.forward * 2, 
+                                transform.position + GetComponent<Collider>().bounds.max, ForceMode.Impulse);
                             Destroy(gameObject, 5);
                         }
                     }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BattleController : MonoBehaviour
+public class HealthController : MonoBehaviour
 {
     public int maxHp;
     [HideInInspector] public int currentHp;
@@ -16,8 +16,8 @@ public class BattleController : MonoBehaviour
     private float atkDelay;
     private float atkTimer;
 
-    public delegate void TakenDamageHandler(int hp);
-    public event TakenDamageHandler TakenDamage;
+    public delegate void UpdatedHealthHandler(int hp);
+    public event UpdatedHealthHandler UpdatedHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +47,8 @@ public class BattleController : MonoBehaviour
                     if (Input.GetButtonDown("Fire1"))
                     {
                         atkTimer = 0;
-                        damageTaker.TakeDamage(GetDamagePower(), transform, GetKnockbackForce());
+                        handManager.handItem.RemoveDurability(handManager);
+                        damageTaker.TakeDamage(GetBattlePower().damage, transform, GetBattlePower().knockBack);
                     }
                 }
             }
@@ -60,7 +61,7 @@ public class BattleController : MonoBehaviour
         if (knockbackForce > 0)
             GetComponent<FirstPersonController>().Knockback(damageOrigin, knockbackForce);
 
-        TakenDamage(currentHp);
+        UpdatedHealth(currentHp);
 
         if (currentHp <= 0)
         {
@@ -68,31 +69,31 @@ public class BattleController : MonoBehaviour
         }
     }
 
-    public int GetDamagePower()
+    public BattlePower GetBattlePower()
     {
+        BattlePower power = new BattlePower();
         if (handManager.handItem.itemData)
         {
             ItemData item = handManager.handItem.itemData;
-            int dmg = item.power; 
-            
+            power.damage = item.power;
+            power.knockBack = item.knockbackForce;
+
             if (Toolkit.RandomBool(item.critRate / 100))
 			{
-                dmg = dmg * 2;
+                power.damage = power.damage * 2;
+                power.knockBack = power.knockBack * 2;
             }
-            return dmg;
         }
-        else return 1;
+        
+        return power;
     }
 
-    public int GetKnockbackForce()
-    {
-        if (handManager.handItem.itemData)
-        {
-            return handManager.handItem.itemData.knockbackForce;
-        }
-        else return 10;
+    public void Heal(int healPower)
+	{
+        currentHp += healPower;
+        if (currentHp > maxHp) currentHp = maxHp;
+        UpdatedHealth(currentHp);
     }
-
 
     private void OnCollisionStay(Collision collision)
 	{

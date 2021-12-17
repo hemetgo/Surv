@@ -7,6 +7,9 @@ public class HandManager : MonoBehaviour
 	public delegate void DroppedItemHandler(Item item);
 	public event DroppedItemHandler ItemDropped;
 
+	public delegate void DeletedItemHandler(Item item);
+	public event DeletedItemHandler ItemDeleted;
+
 	public delegate void PlacedItemHandler(Item item);
 	public event PlacedItemHandler ItemPlaced;
 
@@ -17,7 +20,7 @@ public class HandManager : MonoBehaviour
 	public Transform dropParent;
 
 	private float dropTimer;
-	private Animator animator;
+	[HideInInspector] public Animator animator;
 
 	private void Start()
 	{
@@ -132,6 +135,15 @@ public class HandManager : MonoBehaviour
 			ItemDropped(item);
 
 			dropTimer = 0.2f;
+		}
+	}
+
+	public void RemoveItem(Item item)
+	{
+		if (item.amount > 0)
+		{
+			item.amount -= 1;
+			ItemDeleted(item);
 		}
 	}
 

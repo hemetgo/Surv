@@ -19,7 +19,7 @@ MonoBehaviour:
   rarity: 1
   itemType: 0
   description:
-    english: 
+    english: The better sword you ever saw... or the almost better.
     portugues: "A melhor espada que voc\xEA j\xE1 viu... ou quase melhor."
   value: 10
   drop: {fileID: 3901290829084400903, guid: b205d14c00ebae34f92a13a064f635d3, type: 3}

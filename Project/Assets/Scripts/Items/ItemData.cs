@@ -41,4 +41,54 @@ public class ItemData : ScriptableObject
 	{
         return description.GetString();
     }
+    
+    public string GetLangType()
+	{
+		switch (PlayerPrefs.GetString("Lang"))
+		{
+            case "English":
+                return itemType.ToString();
+            case "Portugues":
+                switch (itemType)
+                {
+                    case ItemType.Battle:
+                        return "Batalha";
+                    case ItemType.Food:
+                        return "Alimento";
+                    case ItemType.Furniture:
+                        return "Mobília";
+                    case ItemType.Nature:
+                        return "Natureza";
+                    case ItemType.Tool:
+                        return "Ferramenta";
+                    default:
+                        return itemType.ToString();
+                }
+        }
+        return itemType.ToString();
+    }
+
+    public bool UseDurability()
+	{
+        if (itemType == ItemType.Battle
+            || itemType == ItemType.Tool)
+		{
+            return true;
+		} 
+        return false;
+	}
+
+    public int GetDurability()
+	{
+        if (itemType == ItemType.Battle)
+		{
+            WeaponData weapon = this as WeaponData;
+            return weapon.durability;
+		} else if (itemType == ItemType.Tool)
+		{
+            ToolData tool = this as ToolData;
+            return tool.durability;
+        }
+        return 1;
+	}
 }

@@ -13,7 +13,7 @@ public class PlayerGUIManager : MonoBehaviour
 
 	private void Start()
 	{
-		FindObjectOfType<BattleController>().TakenDamage += OnTakenDamage;
+		FindObjectOfType<HealthController>().UpdatedHealth += OnUpdateHealth;
 		fpController = FindObjectOfType<FirstPersonController>();
 		gameOver.SetActive(false);
 	}
@@ -26,7 +26,7 @@ public class PlayerGUIManager : MonoBehaviour
 		else staminaBar.transform.parent.gameObject.SetActive(true);
 	}
 
-	private void OnTakenDamage(int hp)
+	private void OnUpdateHealth(int hp)
 	{
 		healthBar.fillAmount = hp * 0.1f;
 
