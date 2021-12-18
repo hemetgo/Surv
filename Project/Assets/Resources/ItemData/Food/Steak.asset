@@ -23,11 +23,11 @@ MonoBehaviour:
     portugues: Carneee!!!
   value: 0
   drop: {fileID: 4180419311346623425, guid: 1fa32fa674cbf0f4d8f1d513b1870539, type: 3}
-  power: 1
+  power: 5
   critRate: 10
   knockbackForce: 10
   recipe: []
   foodType: 1
   effect:
     effectType: 0
-    healPower: 1
+    healPower: 5

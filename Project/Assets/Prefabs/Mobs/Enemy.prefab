@@ -1002,7 +1002,7 @@ MonoBehaviour:
   jumpForce: 10
   viewRange: 20
   chaseRangeModifier: 1.8
-  damagePower: 2
+  damagePower: 10
   knockbackPower: 10
   player: {fileID: 0}
   animator: {fileID: 0}
@@ -1019,7 +1019,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68ecac78709d62a439f6d6fe89719fea, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHp: 20
+  maxHp: 100
   dmgMaterial: {fileID: 2100000, guid: 831e470081f39d241ac5e7d6dbd3ecaa, type: 2}
   deathParticles: {fileID: 2135318124701165686, guid: 037acd9bdce33b04b90afcad48f2a3cf, type: 3}
   healthBar: {fileID: 6592764320098824063}

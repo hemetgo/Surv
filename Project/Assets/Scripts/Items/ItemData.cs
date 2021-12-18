@@ -17,6 +17,7 @@ public class ItemData : ScriptableObject
     [Range(0, 100)] public float critRate = 10;
     public int knockbackForce = 10;
 
+    [Header("Craft")]
     public List<IngredientItem> recipe;
 
     public enum ItemType { Battle, Tool, Nature, Food, Furniture }

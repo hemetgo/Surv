@@ -136,6 +136,7 @@ public class FirstPersonController : MonoBehaviour
     {
         if (IsGrounded() && Input.GetButtonDown("Jump"))
         {
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.y);
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
         }
     }

@@ -23,11 +23,11 @@ MonoBehaviour:
     portugues: "Aten\xE7\xE3o: Proibido atirar tomate em artistas."
   value: 0
   drop: {fileID: 1191335049967893415, guid: 9eff4acc75c37e24cb7dfc8e6a7bc3f3, type: 3}
-  power: 1
+  power: 5
   critRate: 10
   knockbackForce: 10
   recipe: []
   foodType: 0
   effect:
     effectType: 0
-    healPower: 1
+    healPower: 10

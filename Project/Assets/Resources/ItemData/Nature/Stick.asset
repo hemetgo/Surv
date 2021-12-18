@@ -23,7 +23,7 @@ MonoBehaviour:
     portugues: Sabe com quantos paus se faz uma canoa?
   value: 0
   drop: {fileID: 922482970136923879, guid: 949d67639b4123a4bb0dd0e306854123, type: 3}
-  power: 1
+  power: 5
   critRate: 10
   knockbackForce: 10
   recipe: []

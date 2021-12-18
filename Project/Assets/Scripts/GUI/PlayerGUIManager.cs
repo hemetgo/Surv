@@ -10,11 +10,14 @@ public class PlayerGUIManager : MonoBehaviour
 	public GameObject gameOver;
 
 	private FirstPersonController fpController;
+	private HealthController healthController;
 
 	private void Start()
 	{
-		FindObjectOfType<HealthController>().UpdatedHealth += OnUpdateHealth;
 		fpController = FindObjectOfType<FirstPersonController>();
+		healthController = fpController.GetComponent<HealthController>();
+		healthController.UpdatedHealth += OnUpdateHealth;
+
 		gameOver.SetActive(false);
 	}
 
@@ -28,7 +31,7 @@ public class PlayerGUIManager : MonoBehaviour
 
 	private void OnUpdateHealth(int hp)
 	{
-		healthBar.fillAmount = hp * 0.1f;
+		healthBar.fillAmount = (float)hp / (float)healthController.maxHp;
 
 		if (hp <= 0)
 		{

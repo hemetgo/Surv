@@ -30,13 +30,16 @@ public class Item
     }
 
     public void RemoveDurability(HandManager hand)
-	{
-        durability -= 1;
-        if (durability <= 0)
-		{
-            hand.RemoveItem(this);
-		}
-        UpdatedInventory();
+    {
+        if (itemData.UseDurability())
+        {
+            durability -= 1;
+            if (durability <= 0)
+            {
+                hand.RemoveItem(this);
+            }
+            UpdatedInventory();
+        }
     }
 
 }

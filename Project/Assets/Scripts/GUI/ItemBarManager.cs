@@ -16,7 +16,7 @@ public class ItemBarManager : MonoBehaviour
 	{
 		//if (Cursor.lockState == CursorLockMode.Locked)
 		//{
-		if (Input.mouseScrollDelta.y > 0)
+		if (Input.mouseScrollDelta.y < 0)
 		{
 			if (selectedSlot >= itemBarSlots.Count - 1)
 			{
@@ -27,7 +27,7 @@ public class ItemBarManager : MonoBehaviour
 				SetCurrentSlot(selectedSlot + 1);
 			}
 		}
-		else if (Input.mouseScrollDelta.y < 0)
+		else if (Input.mouseScrollDelta.y > 0)
 		{
 			if (selectedSlot <= 0)
 			{

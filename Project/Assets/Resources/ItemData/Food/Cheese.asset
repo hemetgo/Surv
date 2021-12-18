@@ -23,11 +23,11 @@ MonoBehaviour:
     portugues: "Gostoso e n\xE3o cheiroso."
   value: 0
   drop: {fileID: 6457058518493459919, guid: 64992334a95d2e74fb82b54787e182f1, type: 3}
-  power: 1
+  power: 5
   critRate: 10
   knockbackForce: 10
   recipe: []
   foodType: 0
   effect:
     effectType: 0
-    healPower: 2
+    healPower: 20

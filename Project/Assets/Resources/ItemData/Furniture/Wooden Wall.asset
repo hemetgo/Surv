@@ -23,7 +23,7 @@ MonoBehaviour:
     portugues: Parede para sua casa.
   value: 0
   drop: {fileID: 2222881255175178744, guid: 6c09e871205f7354fac14eac665fba96, type: 3}
-  power: 1
+  power: 5
   critRate: 10
   knockbackForce: 10
   recipe:

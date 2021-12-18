@@ -23,7 +23,7 @@ MonoBehaviour:
     portugues: "A melhor espada que voc\xEA j\xE1 viu... ou quase melhor."
   value: 10
   drop: {fileID: 3901290829084400903, guid: b205d14c00ebae34f92a13a064f635d3, type: 3}
-  power: 3
+  power: 35
   critRate: 25
   knockbackForce: 10
   recipe:

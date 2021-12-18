@@ -23,7 +23,7 @@ MonoBehaviour:
     portugues: "Uma cadeira melhor do que a que voc\xEA est\xE1 sentado."
   value: 0
   drop: {fileID: 6278724201056964863, guid: 72a1fcf6acc8b7944956b8003ba944f2, type: 3}
-  power: 1
+  power: 5
   critRate: 10
   knockbackForce: 10
   recipe:
