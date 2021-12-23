@@ -43,6 +43,8 @@ public class FirstPersonController : MonoBehaviour
 
     void Start()
     {
+        PlayerPrefs.SetString("Lang", "Portugues");
+
         Cursor.lockState = CursorLockMode.Locked;
 
         rb = GetComponent<Rigidbody>();
