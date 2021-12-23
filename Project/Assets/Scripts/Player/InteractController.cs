@@ -116,11 +116,13 @@ public class InteractController : MonoBehaviour
                             && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                         {
                             actionTimer = actionDelay;
-                            handAnimator.SetTrigger("Action");
+                            handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
 
                             if (canInteract)
                             {
                                 smart.Interact();
+                                StartCoroutine(InteractFeedback(smart.gameObject));
+
                                 if (smart.particle)
                                     Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
                                 
@@ -134,7 +136,7 @@ public class InteractController : MonoBehaviour
                             && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                         {
                             actionTimer = actionDelay;
-                            handAnimator.SetTrigger("Action");
+                            handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
                         }
                     }
                 }
@@ -144,7 +146,7 @@ public class InteractController : MonoBehaviour
                             && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                     {
                         actionTimer = actionDelay;
-                        handAnimator.SetTrigger("Action");
+                        handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
                     }
                 }
             }
@@ -264,6 +266,7 @@ public class InteractController : MonoBehaviour
                         foodTimer += Time.deltaTime;
                         handAnimator.SetBool("IsEating", true);
                         GetComponent<FirstPersonController>().isEating = true;
+
                         if (foodTimer > 1.5f)
                         {
                             foodTimer = 0;
@@ -280,6 +283,11 @@ public class InteractController : MonoBehaviour
                         handAnimator.SetBool("IsEating", false);
                         GetComponent<FirstPersonController>().isEating = false;
                     }
+
+                    if (handAnimator.GetBool("IsEating"))
+                        handManager.gameObject.transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime / 2;
+                    else
+                        handManager.transform.localScale = new Vector3(1, 1, 1);
 
                     break;
 				#endregion
@@ -310,5 +318,14 @@ public class InteractController : MonoBehaviour
 		{
             gridPlacement = !gridPlacement;
 		}
+	}
+
+    private IEnumerator InteractFeedback(GameObject obj)
+	{
+        Vector3 scale = obj.transform.localScale;
+
+        obj.transform.localScale = scale * 0.98f;
+        yield return new WaitForSeconds(0.1f);
+        obj.transform.localScale = scale;
 	}
 }

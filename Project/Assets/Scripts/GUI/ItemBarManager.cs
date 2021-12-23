@@ -7,6 +7,7 @@ public class ItemBarManager : MonoBehaviour
 {
     [SerializeField]
     private int selectedSlot = 0;
+	public bool invertScroll;
     public List<InventorySlot> itemBarSlots;
 	public List<GameObject> barBackgroundSlot;
 	[HideInInspector] public HandManager handManager;
@@ -18,24 +19,52 @@ public class ItemBarManager : MonoBehaviour
 		//{
 		if (Input.mouseScrollDelta.y < 0)
 		{
-			if (selectedSlot >= itemBarSlots.Count - 1)
+			if (invertScroll)
 			{
-				SetCurrentSlot(0);
+				if (selectedSlot >= itemBarSlots.Count - 1)
+				{
+					SetCurrentSlot(0);
+				}
+				else
+				{
+					SetCurrentSlot(selectedSlot + 1);
+				}
 			}
 			else
 			{
-				SetCurrentSlot(selectedSlot + 1);
+				if (selectedSlot <= 0)
+				{
+					SetCurrentSlot(itemBarSlots.Count - 1);
+				}
+				else
+				{
+					SetCurrentSlot(selectedSlot - 1);
+				}
 			}
 		}
 		else if (Input.mouseScrollDelta.y > 0)
 		{
-			if (selectedSlot <= 0)
+			if (invertScroll)
 			{
-				SetCurrentSlot(itemBarSlots.Count - 1);
-			}
+				if (selectedSlot <= 0)
+				{
+					SetCurrentSlot(itemBarSlots.Count - 1);
+				}
+				else
+				{
+					SetCurrentSlot(selectedSlot - 1);
+				}
+			} 
 			else
 			{
-				SetCurrentSlot(selectedSlot - 1);
+				if (selectedSlot >= itemBarSlots.Count - 1)
+				{
+					SetCurrentSlot(0);
+				}
+				else
+				{
+					SetCurrentSlot(selectedSlot + 1);
+				}
 			}
 		}
 

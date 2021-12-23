@@ -12,6 +12,9 @@ public class ItemData : ScriptableObject
     public float value;
     public GameObject drop;
 
+    [Header("Animation")]
+    public Animations animation;
+
     [Header("Battle")]
     public int power = 1;
     [Range(0, 100)] public float critRate = 10;
@@ -21,6 +24,7 @@ public class ItemData : ScriptableObject
     public List<IngredientItem> recipe;
 
     public enum ItemType { Battle, Tool, Nature, Food, Furniture }
+    public enum Animations { Default, Sword }
     public enum Rarity { Common, Uncommon, Rare, Epic, Legendary}
 
     public int GetStackLimit()
