@@ -6,7 +6,7 @@ public class SmartObject : MonoBehaviour
 {
     public GameObject particle;
     
-    public enum ObjectType { None, Chop, Furniture }
+    public enum ObjectType { None, Chop, Decoration, Chest }
 
     public virtual void Interact()
     {
@@ -25,4 +25,6 @@ public class SmartObject : MonoBehaviour
     {
         return ObjectType.None;
     }
+
+    public virtual string GetInteractButton() { return ""; }
 }

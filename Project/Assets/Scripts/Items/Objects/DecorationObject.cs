@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FurnitureObject : SmartObject
+public class DecorationObject : SmartObject
 {
 	public GameObject dropPrefab;
 	public bool isPlacing;
@@ -21,24 +21,6 @@ public class FurnitureObject : SmartObject
 		originalMaterial = GetComponent<Renderer>().material;
 	}
 
-	//private void Start()
-	//{
-	//	//outline = gameObject.AddComponent<QuickOutline>();
-	//	////outline.enabled = false;
-	//	//outline.OutlineColor = new Color32(0, 255, 0, 255);
-	//	//outline.OutlineWidth = 10;
-	//	//outline.OutlineMode = QuickOutline.Mode.OutlineVisible;
-	//}
-
-	//private void Update()
-	//{
-	//	//timer += Time.deltaTime;
-	//	//if (timer > 3)
-	//	//{
-	//	//	damage = 0;
-	//	//}
-	//}
-
 	public override void Interact()
 	{
 		damage += 1;
@@ -49,12 +31,6 @@ public class FurnitureObject : SmartObject
 			CatchObject();
 		}
 	}
-
-
-	//private void FixedUpdate()
-	//{
-	//	outline.enabled = false;
-	//}
 
 	public override bool CanInteract(GameObject obj)
 	{
@@ -87,25 +63,12 @@ public class FurnitureObject : SmartObject
 
 	public override ObjectType GetObjectType()
     {
-		return ObjectType.Furniture;
+		return ObjectType.Decoration;
     }
-
-	//public void ToggleLocked()
- //   {
-	//	rb.isKinematic = !rb.isKinematic;
-
-	//	if (rb.isKinematic) outline.OutlineColor = new Color32(255, 0, 0, 255);
-	//	else outline.OutlineColor = new Color32(0, 255, 0, 255);
-	//}
-
-	public void SetOutlineEnabled(bool enabled)
-	{
-		outline.enabled = enabled;
-	}
 
 	private void OnTriggerStay(Collider other)
 	{
-		if (other.GetComponent<FurnitureObject>() ||
+		if (other.GetComponent<DecorationObject>() ||
 			other.GetComponent<AiAgent>() ||
 			other.GetComponent<SmartObject>() ||
 			other.GetComponent<DropItem>())
@@ -120,7 +83,7 @@ public class FurnitureObject : SmartObject
 
 	private void OnTriggerExit(Collider other)
 	{
-		if (other.GetComponent<FurnitureObject>() ||
+		if (other.GetComponent<DecorationObject>() ||
 			other.GetComponent<AiAgent>() ||
 			other.GetComponent<SmartObject>() ||
 			other.GetComponent<DropItem>())

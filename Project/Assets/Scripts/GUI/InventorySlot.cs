@@ -71,21 +71,53 @@ public class InventorySlot : MonoBehaviour
 
 	public void PointerDown()
 	{
-		slotHolder = Instantiate(inventoryManager.slotHolderPrefab, transform);
-		slotHolder.transform.SetParent(inventoryManager.transform.parent);
-		slotHolder.transform.SetAsLastSibling();
-
 		if (item.amount > 0)
 		{
-			itemImage.raycastTarget = false;
-			slotHolder.GetComponent<Image>().raycastTarget = false;
-			slotHolder.GetComponent<Image>().sprite = item.itemData.icon;
+			UIManager manager = FindObjectOfType<UIManager>();
+			if (manager.state == UIManager.MenuState.Inventory)
+			{
+				slotHolder = Instantiate(inventoryManager.slotHolderPrefab, transform);
+				slotHolder.transform.SetParent(inventoryManager.transform.parent);
+				slotHolder.transform.SetAsLastSibling();
 
-			startPos = GetComponent<RectTransform>().position;
-			inventoryManager.dragSlot = this;
-			txtAmount.gameObject.SetActive(false);
-			itemImage.gameObject.SetActive(false);
-			isDraging = true;
+				if (item.amount > 0)
+				{
+					itemImage.raycastTarget = false;
+					slotHolder.GetComponent<Image>().raycastTarget = false;
+					slotHolder.GetComponent<Image>().sprite = item.itemData.icon;
+
+					startPos = GetComponent<RectTransform>().position;
+					inventoryManager.dragSlot = this;
+					txtAmount.gameObject.SetActive(false);
+					itemImage.gameObject.SetActive(false);
+					isDraging = true;
+				}
+			}
+			else if (manager.state == UIManager.MenuState.Chest)
+			{
+				if (Input.GetButtonDown("Fire1"))
+				{
+					Item it = new Item(item);
+					it.amount = 1;
+					manager.GetComponent<ChestManager>().AddItem(it);
+
+					item.amount -= 1;
+					RefreshSlot();
+					manager.GetComponent<ChestManager>().RefreshChest();
+					if (item.amount <= 0) infos.SetActive(false);
+				}
+
+				if (Input.GetButtonDown("Fire2"))
+				{
+					Item it = new Item(item);
+					manager.GetComponent<ChestManager>().AddItem(it);
+
+					item.amount = 0;
+					RefreshSlot();
+					manager.GetComponent<ChestManager>().RefreshChest();
+					if (item.amount <= 0) infos.SetActive(false);
+				}
+			}
 		}
 	}
 

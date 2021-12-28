@@ -14,6 +14,13 @@ public class Item
     public delegate void UpdatedInventoryHandler();
     public event UpdatedInventoryHandler UpdatedInventory;
 
+    public Item(Item item)
+	{
+        itemData = item.itemData;
+        amount = item.amount;
+        durability = item.durability;
+	}
+
     public Item(ItemData data)
 	{
         itemData = data;
@@ -31,7 +38,7 @@ public class Item
 
     public void RemoveDurability(HandManager hand)
     {
-        if (itemData.UseDurability())
+        if (itemData.UseDurability() && durability > 0)
         {
             durability -= 1;
             if (durability <= 0)
@@ -41,5 +48,4 @@ public class Item
             UpdatedInventory();
         }
     }
-
 }

@@ -67,7 +67,7 @@ public class InteractController : MonoBehaviour
 
             if (handManager.handItem.itemData)
             {
-                if (handManager.handItem.itemData.itemType == ItemData.ItemType.Furniture) currentRange = 9999;
+                if (handManager.handItem.itemData.itemType == ItemData.ItemType.Decoration) currentRange = 9999;
                 else currentRange = interactRange;
             }
             if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, currentRange))
@@ -80,11 +80,14 @@ public class InteractController : MonoBehaviour
 
                     switch (smart.GetObjectType())
                     {
-                        case SmartObject.ObjectType.Furniture:
+                        case SmartObject.ObjectType.Decoration:
                             interactButton = "Fire1";
                             currentRange = interactRange * 1.5f;
                             //smart.GetComponent<FurnitureObject>().SetOutlineEnabled(true);
                             //if (Input.GetButtonDown("Lock")) smart.GetComponent<FurnitureObject>().ToggleLocked();
+                            break;
+                        case SmartObject.ObjectType.Chest:
+                            interactButton = "Fire2";
                             break;
                         default:
                             interactButton = "Fire1";
@@ -153,20 +156,18 @@ public class InteractController : MonoBehaviour
         }
     }
 
-
-
     #region Items
     float foodTimer; 
-    private FurnitureObject furniture = null;
+    private DecorationObject furniture = null;
     private void UseItem()
     {
         GetComponent<FirstPersonController>().isEating = false;
         if (handManager.handItem.itemData)
         {
-            switch (handManager.handItem.itemData.itemType)
+            switch (handManager.handItem.itemData.ability)
             {
 				#region Furniture
-				case ItemData.ItemType.Furniture:
+				case ItemData.Ability.Placeable:
                     turnObjectTimer -= Time.deltaTime;
                     // If exists a placing object, destroy it
                     if (placingObject)
@@ -190,7 +191,7 @@ public class InteractController : MonoBehaviour
                             col.isTrigger = true;
                         }
 
-                        furniture = placingObject.GetComponent<FurnitureObject>();
+                        furniture = placingObject.GetComponent<DecorationObject>();
                         furniture.redMaterial = redMaterial;
                         furniture.isPlacing = true;
                     }
@@ -260,7 +261,7 @@ public class InteractController : MonoBehaviour
                     break;
                     #endregion
                 #region Food
-				case ItemData.ItemType.Food:
+				case ItemData.Ability.Consumable:
                     if (Input.GetButton("Fire2") && handManager.handItem.amount > 0 && GetComponent<HealthController>().currentHp < GetComponent<HealthController>().maxHp)
                     {
                         foodTimer += Time.deltaTime;
@@ -299,7 +300,7 @@ public class InteractController : MonoBehaviour
 
             if (handManager.handItem.itemData)
             {
-                if (handManager.handItem.itemData.itemType != ItemData.ItemType.Furniture)
+                if (handManager.handItem.itemData.itemType != ItemData.ItemType.Decoration)
                 {
                     if (placingObject)
                     {
@@ -321,11 +322,11 @@ public class InteractController : MonoBehaviour
 	}
 
     private IEnumerator InteractFeedback(GameObject obj)
-	{
+    {
         Vector3 scale = obj.transform.localScale;
 
-        obj.transform.localScale = scale * 0.98f;
-        yield return new WaitForSeconds(0.1f);
-        obj.transform.localScale = scale;
-	}
+        if (obj) obj.transform.localScale = scale * 0.98f;
+        if (obj) yield return new WaitForSeconds(0.1f);
+        if (obj) obj.transform.localScale = scale;
+    }
 }

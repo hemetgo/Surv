@@ -18,11 +18,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 8a4f97ca7b06edd489fcbbbd09c79d2c, type: 3}
   rarity: 0
   itemType: 1
+  ability: 0
   description:
     english: A beautiful and efficient ax.
     portugues: Um belo e eficiente machado
   value: 0
   drop: {fileID: 4251096401772897882, guid: d391d137d7b994749bb1798963fe98cb, type: 3}
+  animation: 0
   power: 20
   critRate: 25
   knockbackForce: 10
@@ -32,4 +34,4 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
     amount: 2
   toolType: 0
-  durability: 50
+  durability: 10

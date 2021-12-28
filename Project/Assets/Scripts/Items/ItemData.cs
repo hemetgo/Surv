@@ -8,6 +8,7 @@ public class ItemData : ScriptableObject
     public Sprite icon;
     public Rarity rarity;
     public ItemType itemType;
+    public Ability ability;
     public AreaLangString description;
     public float value;
     public GameObject drop;
@@ -23,9 +24,10 @@ public class ItemData : ScriptableObject
     [Header("Craft")]
     public List<IngredientItem> recipe;
 
-    public enum ItemType { Battle, Tool, Nature, Food, Furniture }
+    public enum ItemType { Battle, Tool, Nature, Food, Decoration }
     public enum Animations { Default, Sword }
     public enum Rarity { Common, Uncommon, Rare, Epic, Legendary}
+    public enum Ability { None, Placeable, Consumable }
 
     public int GetStackLimit()
     { 
@@ -60,7 +62,7 @@ public class ItemData : ScriptableObject
                         return "Batalha";
                     case ItemType.Food:
                         return "Alimento";
-                    case ItemType.Furniture:
+                    case ItemType.Decoration:
                         return "Mobília";
                     case ItemType.Nature:
                         return "Natureza";

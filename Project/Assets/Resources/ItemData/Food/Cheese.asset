@@ -18,11 +18,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: f78d91424df2e6942861440ef66c0928, type: 3}
   rarity: 0
   itemType: 3
+  ability: 2
   description:
     english: Tasty and not smelling.
     portugues: "Gostoso e n\xE3o cheiroso."
   value: 0
   drop: {fileID: 6457058518493459919, guid: 64992334a95d2e74fb82b54787e182f1, type: 3}
+  animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10

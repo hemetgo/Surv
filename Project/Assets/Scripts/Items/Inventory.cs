@@ -9,6 +9,7 @@ public class Inventory
 	public delegate void ItemCollectedHandler(Item item);
 	public event ItemCollectedHandler ItemCollected;
 
+	public bool main;
 	public List<Item> itemList;
 
 

@@ -18,11 +18,13 @@ MonoBehaviour:
   icon: {fileID: 21300000, guid: 66e90a77732c2d64e830a046a7463f27, type: 3}
   rarity: 0
   itemType: 3
+  ability: 2
   description:
     english: Steeeaak!!!
     portugues: Carneee!!!
   value: 0
   drop: {fileID: 4180419311346623425, guid: 1fa32fa674cbf0f4d8f1d513b1870539, type: 3}
+  animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10

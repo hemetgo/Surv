@@ -7,9 +7,14 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
+	public MenuState state;
 	public GameObject menusGUI;
+	public GameObject sideBarGUI;
 	public GameObject inventoryGUI;
 	public GameObject craftGUI;
+	public GameObject chestGUI;
+
+	public enum MenuState { None, Inventory, Craft, Chest }
 
 	private void Start()
 	{
@@ -20,13 +25,11 @@ public class UIManager : MonoBehaviour
 	{
 		if (Input.GetButtonDown("OpenInventory"))
 		{
-			OpenMenus();
 			OpenInventory();
 		}
 
 		if (Input.GetButtonDown("OpenCrafts"))
 		{
-			OpenMenus();
 			OpenCrafts();
 		}
 
@@ -42,36 +45,60 @@ public class UIManager : MonoBehaviour
 	}
 	public void CloseMenus()
 	{
+		state = MenuState.None;
 		Singleton.Instance.CloseMenu();
 		Cursor.lockState = CursorLockMode.Locked;
 
 		menusGUI.SetActive(false);
 		inventoryGUI.SetActive(false);
 		craftGUI.SetActive(false);
+		chestGUI.SetActive(false);
 	}
 	public void OpenInventory()
 	{
-		if (inventoryGUI.activeSelf)
+		state = MenuState.Inventory;
+		OpenMenus();
+		if(inventoryGUI.activeSelf)
 		{
 			CloseMenus();
 			return;
 		}
 
+		sideBarGUI.SetActive(true);
 		inventoryGUI.SetActive(true);
 		craftGUI.SetActive(false);
+		chestGUI.SetActive(false);
 	}
+
 	public void OpenCrafts()
 	{
-		if (craftGUI.activeSelf)
+		state = MenuState.Craft;
+		OpenMenus();
+		
+		if(craftGUI.activeSelf)
 		{
 			CloseMenus();
 			return;
 		}
 
+		sideBarGUI.SetActive(true);
 		craftGUI.SetActive(true);
 		inventoryGUI.SetActive(false);
+		chestGUI.SetActive(false);
 		GetComponent<CraftManager>().currentType = "All";
 		GetComponent<CraftManager>().RefreshCrafts(true);
+	}
+
+	public void OpenChest(ChestObject chest)
+	{
+		state = MenuState.Chest;
+		OpenMenus();
+		sideBarGUI.SetActive(false);
+		inventoryGUI.SetActive(true);
+		chestGUI.SetActive(true);
+		craftGUI.SetActive(false);
+		GetComponent<ChestManager>().chest = chest;
+		GetComponent<ChestManager>().RefreshChest();
 	}
 
 	public void Restart()
