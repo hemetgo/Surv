@@ -28,6 +28,7 @@ MonoBehaviour:
   power: 5
   critRate: 10
   knockbackForce: 10
+  recipeTool: 1
   recipe:
-  - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
-    amount: 15
+  - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
+    amount: 5

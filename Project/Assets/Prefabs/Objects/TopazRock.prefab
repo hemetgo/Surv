@@ -117,10 +117,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   particle: {fileID: 5100472910814271774, guid: f584cc588f9778949b3f28d6c13279a1, type: 3}
   chopType: 0
-  disableCollisionAfter: 0
+  disableCollisionAfter: 1
   requiredTool: 1
   dropPrefab: {fileID: 1235142396943216478, guid: fba2b110fcb0c83418be7e9a95fc416a, type: 3}
-  stock: 50
+  health: 10
+  damageRecovery: 0
+  destroyAfter: 1
+  drops:
+  - itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
+    amountRange: {x: 1, y: 2}
+    dropChance: 100
 --- !u!136 &8456620216434548307
 CapsuleCollider:
   m_ObjectHideFlags: 0

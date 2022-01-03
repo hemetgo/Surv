@@ -14,22 +14,20 @@ public class InteractController : MonoBehaviour
     [Range(0, 1)] public float actionDelay;
 
     [Header("Furniture Placement")]
-    [SerializeField]
-    [Range(1, 20)] private float placingRange;
-    [SerializeField]
-    private Material redMaterial;
+    [Range(1, 20)] public float placingRange;
+    public Material redMaterial;
 
 
     [Header("GUI")]
-    [SerializeField]
-    private Image crosshairObject;
-    [SerializeField]
-    private Sprite defaultCrosshair;
+    public Image crosshairObject;
+    public Sprite defaultCrosshair;
 
-    //Aux
-    private Animator handAnimator;
+	#region Privates
+	//Aux
+	private Animator handAnimator;
     private float actionTimer;
     private SmartObject smart;
+	public List<SmartObject> smartBehaviours;
     private bool canInteract;
     private RaycastHit hit;
     private Vector3 hitPoint;
@@ -41,8 +39,9 @@ public class InteractController : MonoBehaviour
     private float turnObjectAngle;
     private string interactButton = "Fire1";
     private bool gridPlacement;
+	#endregion
 
-    void Start()
+	void Start()
     {
         crosshairObject.sprite = defaultCrosshair;
         handAnimator = hand.GetComponent<Animator>();
@@ -53,103 +52,89 @@ public class InteractController : MonoBehaviour
     {
         Tools();
 
-        InteractControl();
+        HandHelper();
+        Interact();
         UseItem();
     }
 
+    private void HandHelper()
+	{
+        // Range
+        if (handManager.handItem.itemData)
+        {
+            if (handManager.handItem.itemData.itemType == ItemData.ItemType.Decoration) currentRange = 9999;
+            else currentRange = interactRange;
+        }
 
+        // Animation
+        if (actionTimer <= 0
+            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
+        {
+            if (hit.collider?.GetComponent<AiAgent>())
+            {
+                if (Input.GetButtonDown("Fire1"))
+                    handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
+            }
+            else
+            {
+                if (Input.GetButton("Fire1"))
+                    handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
+            }
+        }
+	}
 
-    private void InteractControl()
+    private void Interact()
     {
+        // If cursor isn't showing
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             actionTimer -= Time.deltaTime;
 
-            if (handManager.handItem.itemData)
-            {
-                if (handManager.handItem.itemData.itemType == ItemData.ItemType.Decoration) currentRange = 9999;
-                else currentRange = interactRange;
-            }
+            // Raycast man
             if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, currentRange))
             {
-                if (hit.collider.GetComponent<SmartObject>())
-                {
-                    smart = hit.collider.GetComponent<SmartObject>();
-                    if (smart.CanInteract(hand)) canInteract = true;
-                    else canInteract = false;
+                // If colliding with a smart object
+                smartBehaviours = new List<SmartObject>(hit.collider?.GetComponents<SmartObject>());
 
-                    switch (smart.GetObjectType())
+                // Interacting with each smart property
+                foreach (SmartObject smart in smartBehaviours)
+                {
+                    if (smart.GetObjectType() == SmartObject.ObjectType.CraftTool)
                     {
-                        case SmartObject.ObjectType.Decoration:
-                            interactButton = "Fire1";
-                            currentRange = interactRange * 1.5f;
-                            //smart.GetComponent<FurnitureObject>().SetOutlineEnabled(true);
-                            //if (Input.GetButtonDown("Lock")) smart.GetComponent<FurnitureObject>().ToggleLocked();
-                            break;
-                        case SmartObject.ObjectType.Chest:
-                            interactButton = "Fire2";
-                            break;
-                        default:
-                            interactButton = "Fire1";
-                            currentRange = interactRange;
-                            break;
-                    }
-
-                    if (!smart || smart == null) interactButton = "Fire1";
-                }
-                else
-                {
-                    canInteract = false;
-                    smart = null;
-                }
-            }
-            else
-            {
-                canInteract = false;
-                smart = null;
-            }
-
-            if (actionTimer <= 0)
-            {
-                if (hit.collider)
-                {
-                    if (!hit.collider.GetComponent<AiAgent>())
-                    {
-                        if (Input.GetButton(interactButton)
+                        // Check button
+                        if (Input.GetButton(smart.GetInteractButton())
                             && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                         {
-                            actionTimer = actionDelay;
-                            handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
+                            // Interaction functions
+                            smart.Interact();
+                            StartCoroutine(InteractFeedback(smart.gameObject));
 
-                            if (canInteract)
+                            if (smart.particle)
+                                Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
+                        }
+                    }
+                    else
+                    {
+                        // If interact delay have finished
+                        if (actionTimer <= 0 && smart.CanInteract(hand))
+                        {
+                            // Check button
+                            if (Input.GetButton(smart.GetInteractButton())
+                                && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                             {
+                                actionTimer = actionDelay;
+                                
+                                // Interaction functions
                                 smart.Interact();
                                 StartCoroutine(InteractFeedback(smart.gameObject));
 
                                 if (smart.particle)
                                     Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
-                                
-                                handManager.handItem.RemoveDurability(handManager);
+
+                                if (smart.GetObjectType() == SmartObject.ObjectType.Chop)
+                                    handManager.handItem.RemoveDurability(handManager);
                             }
                         }
-                    }
-                    else
-                    {
-                        if (Input.GetButtonDown(interactButton)
-                            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
-                        {
-                            actionTimer = actionDelay;
-                            handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
-                        }
-                    }
-                }
-                else
-                {
-                    if (Input.GetButton(interactButton)
-                            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
-                    {
-                        actionTimer = actionDelay;
-                        handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
                     }
                 }
             }

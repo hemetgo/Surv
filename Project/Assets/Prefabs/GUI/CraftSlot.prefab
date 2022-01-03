@@ -126,6 +126,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f449d379a9cdb34fbd6db26b12463de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  index: 0
   itemData: {fileID: 0}
   itemSprite: {fileID: 8700013453669251706}
   isCraftable: 0

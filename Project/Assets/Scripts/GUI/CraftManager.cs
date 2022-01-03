@@ -9,6 +9,7 @@ using System;
 public class CraftManager : MonoBehaviour
 {
     public string currentType;
+    public ItemData.CraftTool currentCraftTool;
 
     [Header("Objects")]
     public Transform craftSlotsContainer;
@@ -73,21 +74,23 @@ public class CraftManager : MonoBehaviour
 
         List<ItemData> crafts = new List<ItemData>();
 
-        //foreach (ItemData item in itemDatas)
         int indexCount = 0;
         for (int i = 0; i < itemDatas.Count; i++)
         {
             ItemData item = itemDatas[i];
             if (item.recipe.Count > 0)
             {
-                crafts.Add(item);
-                CraftSlot slot = Instantiate(craftSlotPrefab, craftSlotsContainer).GetComponent<CraftSlot>();
-                slot.itemData = item;
-                slot.craftManager = this;
-                craftSlots.Add(slot);
+                if (item.recipeTool == ItemData.CraftTool.None || item.recipeTool == currentCraftTool)
+                {
+                    crafts.Add(item);
+                    CraftSlot slot = Instantiate(craftSlotPrefab, craftSlotsContainer).GetComponent<CraftSlot>();
+                    slot.itemData = item;
+                    slot.craftManager = this;
+                    craftSlots.Add(slot);
 
-                slot.index = indexCount;
-                indexCount += 1;
+                    slot.index = indexCount;
+                    indexCount += 1;
+                }
             }
         }
 
@@ -112,8 +115,8 @@ public class CraftManager : MonoBehaviour
                 else craftSlots[i].SetCraftEnabled(false);
             }
         }
-        if (reselect) craftSlots[0].SelectCraftSlot();
-        else craftSlots[lastSelectedIndex].SelectCraftSlot();
+        if (reselect) craftSlots[0]?.SelectCraftSlot();
+        else craftSlots[lastSelectedIndex]?.SelectCraftSlot();
     }
 
     public void Craft()

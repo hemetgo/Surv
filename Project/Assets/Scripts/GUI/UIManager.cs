@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
 		if (Input.GetButtonDown("OpenCrafts"))
 		{
-			OpenCrafts();
+			OpenCrafts(ItemData.CraftTool.None);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)) CloseMenus();
@@ -70,8 +70,11 @@ public class UIManager : MonoBehaviour
 		chestGUI.SetActive(false);
 	}
 
-	public void OpenCrafts()
+	public void OpenCrafts(ItemData.CraftTool tool)
 	{
+		CraftManager craft = GetComponent<CraftManager>();
+		craft.currentCraftTool = tool;
+		
 		state = MenuState.Craft;
 		OpenMenus();
 		
@@ -85,8 +88,8 @@ public class UIManager : MonoBehaviour
 		craftGUI.SetActive(true);
 		inventoryGUI.SetActive(false);
 		chestGUI.SetActive(false);
-		GetComponent<CraftManager>().currentType = "All";
-		GetComponent<CraftManager>().RefreshCrafts(true);
+		craft.currentType = "All";
+		craft.RefreshCrafts(true);
 	}
 
 	public void OpenChest(ChestObject chest)

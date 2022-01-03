@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DecorationObject : SmartObject
+public class DecorationObject : MonoBehaviour
 {
 	public GameObject dropPrefab;
 	public bool isPlacing;
@@ -21,35 +21,35 @@ public class DecorationObject : SmartObject
 		originalMaterial = GetComponent<Renderer>().material;
 	}
 
-	public override void Interact()
-	{
-		damage += 1;
-		timer = 0;
+	//public override void Interact()
+	//{
+	//	damage += 1;
+	//	timer = 0;
 
-		if (damage >= 3)
-		{
-			CatchObject();
-		}
-	}
+	//	if (damage >= 3)
+	//	{
+	//		CatchObject();
+	//	}
+	//}
 
-	public override bool CanInteract(GameObject obj)
-	{
-		return true;
-	}
+	//public override bool CanInteract(GameObject obj)
+	//{
+	//	return true;
+	//}
 
-	public void CatchObject()
-	{
-		GameObject drop =  Instantiate(dropPrefab, transform.position + new Vector3(0, 2, 0), new Quaternion());
-		drop.transform.SetParent(GameObject.Find("Drops").transform);
+	//public void CatchObject()
+	//{
+	//	GameObject drop =  Instantiate(dropPrefab, transform.position + new Vector3(0, 2, 0), new Quaternion());
+	//	drop.transform.SetParent(GameObject.Find("Drops").transform);
 
-		drop.transform.Rotate(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
-		drop.GetComponent<Rigidbody>().AddForce(transform.forward * 3, ForceMode.Impulse);
-		drop.GetComponent<Rigidbody>().AddForce(Vector3.up * 3 / 1.5f, ForceMode.Impulse);
-		drop.GetComponent<DropItem>().dropTimer = 0.5f;
+	//	drop.transform.Rotate(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
+	//	drop.GetComponent<Rigidbody>().AddForce(transform.forward * 3, ForceMode.Impulse);
+	//	drop.GetComponent<Rigidbody>().AddForce(Vector3.up * 3 / 1.5f, ForceMode.Impulse);
+	//	drop.GetComponent<DropItem>().dropTimer = 0.5f;
 
 
-		Destroy(gameObject);
-	}
+	//	Destroy(gameObject);
+	//}
 
     public void RotateLeft()
 	{
@@ -61,10 +61,10 @@ public class DecorationObject : SmartObject
 		transform.Rotate(0, 90, 0);
 	}
 
-	public override ObjectType GetObjectType()
-    {
-		return ObjectType.Decoration;
-    }
+	//public override ObjectType GetObjectType()
+ //   {
+	//	return ObjectType.Decoration;
+ //   }
 
 	private void OnTriggerStay(Collider other)
 	{
@@ -93,6 +93,11 @@ public class DecorationObject : SmartObject
 				isOverlapping = false;
 			} }
 	}
+
+	//public override string GetInteractButton()
+	//{
+	//	return "Fire1";
+	//}
 }
 
 

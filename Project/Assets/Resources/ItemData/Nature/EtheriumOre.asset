@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
+  m_Name: EtheriumOre
+  m_EditorClassIdentifier: 
+  itemName:
+    english: Etherium Ore
+    portugues: "Min\xE9rio de Etherium"
+  icon: {fileID: 21300000, guid: f5802e8ff5992b04092a20047b355faf, type: 3}
+  rarity: 0
+  itemType: 2
+  ability: 0
+  description:
+    english: You can use it to craft many things.
+    portugues: "Voc\xEA pode us\xE1-la para criar muitas coisas."
+  value: 10
+  drop: {fileID: 1323337857404568777, guid: 82ac0df6c0d326741b49cc95a8f49ef1, type: 3}
+  animation: 0
+  power: 5
+  critRate: 10
+  knockbackForce: 10
+  recipeTool: 0
+  recipe: []

@@ -13,6 +13,7 @@ public class Spawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        PlayerPrefs.Save();
         spawnTimer += Time.deltaTime;
 
         if (spawnTimer >= Random.Range(timeRange.x, timeRange.y))

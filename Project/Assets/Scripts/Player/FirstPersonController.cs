@@ -69,6 +69,7 @@ public class FirstPersonController : MonoBehaviour
 
         StaminaControl();
         FallDamage();
+        rb.velocity = new Vector3(0, rb.velocity.y, 0);
     }
 
     private void FixedUpdate()
@@ -88,9 +89,8 @@ public class FirstPersonController : MonoBehaviour
 
     private void Movement()
     {
-        rb.velocity = new Vector3(0, rb.velocity.y, 0); // Para evitar que o movimento trave e o plauer se movimente sozinho
-
-        if (!isKnockbacking)
+		if (!isKnockbacking)
+        //if (true)
         {
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");

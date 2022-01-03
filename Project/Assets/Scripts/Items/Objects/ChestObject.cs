@@ -34,9 +34,9 @@ public class ChestObject : SmartObject
         return ObjectType.Chest;
     }
 
-	public override string GetInteractButton()
-	{
-        return "InteractButton";
-	}
+    public override string GetInteractButton()
+    {
+        return "Interact";
+    }
 
 }

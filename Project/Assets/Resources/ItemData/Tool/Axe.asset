@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Axe
     portugues: Machado
-  icon: {fileID: 21300000, guid: 8a4f97ca7b06edd489fcbbbd09c79d2c, type: 3}
+  icon: {fileID: 21300000, guid: 5e48e101c423651449b50016802664b1, type: 3}
   rarity: 0
   itemType: 1
   ability: 0
@@ -28,10 +28,11 @@ MonoBehaviour:
   power: 20
   critRate: 25
   knockbackForce: 10
+  recipeTool: 1
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
     amount: 5
   - itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
     amount: 2
   toolType: 0
-  durability: 10
+  durability: 50

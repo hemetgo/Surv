@@ -22,12 +22,14 @@ public class ItemData : ScriptableObject
     public int knockbackForce = 10;
 
     [Header("Craft")]
+    public CraftTool recipeTool;
     public List<IngredientItem> recipe;
 
     public enum ItemType { Battle, Tool, Nature, Food, Decoration }
     public enum Animations { Default, Sword }
     public enum Rarity { Common, Uncommon, Rare, Epic, Legendary}
     public enum Ability { None, Placeable, Consumable }
+    public enum CraftTool { None, Table, Anvil }
 
     public int GetStackLimit()
     { 

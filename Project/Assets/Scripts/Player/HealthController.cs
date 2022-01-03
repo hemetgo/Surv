@@ -22,7 +22,7 @@ public class HealthController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        currentHp = maxHp;
+		currentHp = maxHp;
         interactController = GetComponent<InteractController>();
         rb = GetComponent<Rigidbody>();
         head = interactController.head;

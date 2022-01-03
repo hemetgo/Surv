@@ -9,11 +9,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1335555719641238960}
+  - component: {fileID: 909070532850967496}
+  - component: {fileID: 1335555719641076113}
   - component: {fileID: 1335555719637847440}
   - component: {fileID: 1335555719638814544}
   - component: {fileID: 3632881062016158326}
   - component: {fileID: 3632881062016158327}
-  - component: {fileID: 1335555719641076113}
   - component: {fileID: 2735233111027574455}
   - component: {fileID: 5737361949861672767}
   - component: {fileID: 373337338264159382}
@@ -40,6 +41,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &909070532850967496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335555719641076112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
+  chopType: 1
+  disableCollisionAfter: 0
+  requiredTool: 0
+  dropPrefab: {fileID: 6278724201056964863, guid: 72a1fcf6acc8b7944956b8003ba944f2, type: 3}
+  health: 3
+  damageRecovery: 1
+  destroyAfter: 0
+  drops:
+  - itemData: {fileID: 11400000, guid: d585676c6b15ffe4e9921afd640112cc, type: 2}
+    amountRange: {x: 1, y: 1}
+    dropChance: 100
+--- !u!114 &1335555719641076113
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335555719641076112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 6278724201056964863, guid: 72a1fcf6acc8b7944956b8003ba944f2, type: 3}
+  isPlacing: 0
+  isOverlapping: 0
+  originalMaterial: {fileID: 0}
+  redMaterial: {fileID: 0}
 --- !u!33 &1335555719637847440
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -115,24 +157,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.5374771, y: 0.042927384, z: 0.4562254}
   m_Center: {x: -0.010751392, y: 0.36602178, z: -0.005887199}
---- !u!114 &1335555719641076113
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335555719641076112}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
-  dropPrefab: {fileID: 6278724201056964863, guid: 72a1fcf6acc8b7944956b8003ba944f2, type: 3}
-  isPlacing: 0
-  isOverlapping: 0
-  originalMaterial: {fileID: 0}
-  redMaterial: {fileID: 0}
 --- !u!65 &2735233111027574455
 BoxCollider:
   m_ObjectHideFlags: 0

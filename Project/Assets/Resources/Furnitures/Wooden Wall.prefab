@@ -9,10 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6227772469029504754}
+  - component: {fileID: -2044390080658770033}
+  - component: {fileID: 3031559741277871574}
   - component: {fileID: 6227772469026113234}
   - component: {fileID: 6227772469027210258}
   - component: {fileID: 6768749759821090657}
-  - component: {fileID: 3031559741277871574}
   - component: {fileID: 321617826525099103}
   m_Layer: 0
   m_Name: Wooden Wall
@@ -35,6 +36,47 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &-2044390080658770033
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6227772469029214930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
+  chopType: 1
+  disableCollisionAfter: 0
+  requiredTool: 0
+  dropPrefab: {fileID: 2222881255175178744, guid: 6c09e871205f7354fac14eac665fba96, type: 3}
+  health: 3
+  damageRecovery: 1
+  destroyAfter: 0
+  drops:
+  - itemData: {fileID: 11400000, guid: d97bb61a32532dc44a8a8610a52914c7, type: 2}
+    amountRange: {x: 1, y: 1}
+    dropChance: 100
+--- !u!114 &3031559741277871574
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6227772469029214930}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 2222881255175178744, guid: 6c09e871205f7354fac14eac665fba96, type: 3}
+  isPlacing: 0
+  isOverlapping: 0
+  originalMaterial: {fileID: 0}
+  redMaterial: {fileID: 0}
 --- !u!33 &6227772469026113234
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,24 +139,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 4.7591004, y: 2.8017974, z: 0.419198}
   m_Center: {x: 0.0009913445, y: 1.3911531, z: -0.020894065}
---- !u!114 &3031559741277871574
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6227772469029214930}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
-  dropPrefab: {fileID: 2222881255175178744, guid: 6c09e871205f7354fac14eac665fba96, type: 3}
-  isPlacing: 0
-  isOverlapping: 0
-  originalMaterial: {fileID: 0}
-  redMaterial: {fileID: 0}
 --- !u!54 &321617826525099103
 Rigidbody:
   m_ObjectHideFlags: 0

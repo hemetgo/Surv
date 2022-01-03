@@ -100,7 +100,16 @@ MonoBehaviour:
   disableCollisionAfter: 1
   requiredTool: 0
   dropPrefab: {fileID: 922482970136923879, guid: 949d67639b4123a4bb0dd0e306854123, type: 3}
-  stock: 10
+  health: 10
+  damageRecovery: 0
+  destroyAfter: 5
+  drops:
+  - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
+    amountRange: {x: 5, y: 10}
+    dropChance: 100
+  - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
+    amountRange: {x: 3, y: 8}
+    dropChance: 100
 --- !u!136 &4476626675523478287
 CapsuleCollider:
   m_ObjectHideFlags: 0
