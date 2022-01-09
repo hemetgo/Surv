@@ -24,11 +24,14 @@ MonoBehaviour:
     portugues: "Voc\xEA pode us\xE1-la para quebrar pedras."
   value: 0
   drop: {fileID: 5319307487499143186, guid: b53e946b5ef7b384b93db1eb1449667c, type: 3}
+  gasTypes: 
+  gasValue: 0
   animation: 0
   power: 5
   critRate: 25
   knockbackForce: 10
-  recipeTool: 1
+  recipeTool: 0
+  toolLevel: 0
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
     amount: 5

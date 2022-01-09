@@ -6,12 +6,13 @@ public class CraftToolObject : SmartObject
 {
     [Header("Craft")]
     public ItemData.CraftTool craftTool;
-    
+    public int toolLevel;
 
-    public override void Interact()
+	public override void Interact()
     {
-        FindObjectOfType<UIManager>().OpenCrafts(craftTool);
-        FindObjectOfType<CraftManager>().currentCraftTool = craftTool;
+        FindObjectOfType<UIManager>().OpenCrafts(craftTool, toolLevel, this);
+        //FindObjectOfType<CraftManager>().currentCraftTool = craftTool;
+        //FindObjectOfType<CraftManager>().toolLevel = toolLevel;
     }
 
     public override bool CanInteract(GameObject obj)
@@ -28,5 +29,4 @@ public class CraftToolObject : SmartObject
 	{
         return "Interact";
 	}
-
 }

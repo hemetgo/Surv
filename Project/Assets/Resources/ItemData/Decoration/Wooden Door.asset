@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Wooden Door
     portugues: Porta de Madeira
-  icon: {fileID: 21300000, guid: d186f8d9a9f8e2148a21389d585c4a62, type: 3}
+  icon: {fileID: 21300000, guid: 4e29991d3ebe223418329242fada62d7, type: 3}
   rarity: 0
   itemType: 4
   ability: 1

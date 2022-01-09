@@ -10,6 +10,8 @@ public class CraftManager : MonoBehaviour
 {
     public string currentType;
     public ItemData.CraftTool currentCraftTool;
+    public int toolLevel;
+    [HideInInspector] public CraftToolObject craftTool;
 
     [Header("Objects")]
     public Transform craftSlotsContainer;
@@ -78,9 +80,9 @@ public class CraftManager : MonoBehaviour
         for (int i = 0; i < itemDatas.Count; i++)
         {
             ItemData item = itemDatas[i];
-            if (item.recipe.Count > 0)
+            if (item.recipe.Count > 0 && toolLevel >= item.toolLevel)
             {
-                if (item.recipeTool == ItemData.CraftTool.None || item.recipeTool == currentCraftTool)
+                if (item.recipeTool == currentCraftTool)
                 {
                     crafts.Add(item);
                     CraftSlot slot = Instantiate(craftSlotPrefab, craftSlotsContainer).GetComponent<CraftSlot>();
@@ -110,8 +112,18 @@ public class CraftManager : MonoBehaviour
                         yes += 1;
                     }
                 }
-                
-                if (yes >= item.recipe.Count) craftSlots[i].SetCraftEnabled(true);
+
+                bool canCraft = true;
+                if (currentCraftTool == ItemData.CraftTool.Forge)
+				{
+                    GasToolObject gasTool = craftTool as GasToolObject;
+                    if (!gasTool.HaveGas(item.gasCost))
+					{
+                        canCraft = false;
+                    } 
+				}
+
+                if (yes >= item.recipe.Count && canCraft) craftSlots[i].SetCraftEnabled(true);
                 else craftSlots[i].SetCraftEnabled(false);
             }
         }
@@ -129,6 +141,12 @@ public class CraftManager : MonoBehaviour
             GetComponent<InventoryManager>().inventory.RemoveItem(removeItem);
         }
         GetComponent<InventoryManager>().inventory.AddItem(craftItem);
+
+        if (currentCraftTool == ItemData.CraftTool.Forge)
+        {
+            GasToolObject gasTool = craftTool as GasToolObject;
+            gasTool.RemoveGas(craftItem.itemData.gasCost);
+        }
 
         RefreshCrafts(false);
     }

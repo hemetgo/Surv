@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
+  m_Name: EtheriumIngot
+  m_EditorClassIdentifier: 
+  itemName:
+    english: Etherium Ingot
+    portugues: Lingote de Etherium
+  icon: {fileID: 21300000, guid: 6c8a7e5be079c054b8235c84b169d526, type: 3}
+  rarity: 3
+  itemType: 2
+  ability: 0
+  description:
+    english: You can use it to craft many things.
+    portugues: "Voc\xEA pode us\xE1-la para criar muitas coisas."
+  value: 10
+  drop: {fileID: 2039544350102923505, guid: 8051804234f8bc94fa4a57b04d573802, type: 3}
+  gasValue: 0
+  gasTypes: 
+  animation: 0
+  power: 5
+  critRate: 10
+  knockbackForce: 10
+  recipeTool: 3
+  gasCost: 5
+  toolLevel: 0
+  recipe:
+  - itemData: {fileID: 11400000, guid: adbcca8a67cfc3940af55f38856cc2c7, type: 2}
+    amount: 5

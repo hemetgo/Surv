@@ -30,7 +30,7 @@ public class UIManager : MonoBehaviour
 
 		if (Input.GetButtonDown("OpenCrafts"))
 		{
-			OpenCrafts(ItemData.CraftTool.None);
+			OpenCrafts(ItemData.CraftTool.None, 0, null);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape)) CloseMenus();
@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
 
 	public void OpenMenus()
 	{
+		PlayerPrefs.SetString("GameState", "Menu");
 		Singleton.Instance.OpenMenu();
 		Cursor.lockState = CursorLockMode.None;
 
@@ -45,6 +46,7 @@ public class UIManager : MonoBehaviour
 	}
 	public void CloseMenus()
 	{
+		PlayerPrefs.SetString("GameState", "Resume");
 		state = MenuState.None;
 		Singleton.Instance.CloseMenu();
 		Cursor.lockState = CursorLockMode.Locked;
@@ -54,6 +56,7 @@ public class UIManager : MonoBehaviour
 		craftGUI.SetActive(false);
 		chestGUI.SetActive(false);
 	}
+
 	public void OpenInventory()
 	{
 		state = MenuState.Inventory;
@@ -70,11 +73,13 @@ public class UIManager : MonoBehaviour
 		chestGUI.SetActive(false);
 	}
 
-	public void OpenCrafts(ItemData.CraftTool tool)
+	public void OpenCrafts(ItemData.CraftTool tool, int toolLevel, CraftToolObject craftTool)
 	{
 		CraftManager craft = GetComponent<CraftManager>();
 		craft.currentCraftTool = tool;
-		
+		craft.toolLevel = toolLevel;
+		craft.craftTool = craftTool;
+
 		state = MenuState.Craft;
 		OpenMenus();
 		
@@ -90,6 +95,11 @@ public class UIManager : MonoBehaviour
 		chestGUI.SetActive(false);
 		craft.currentType = "All";
 		craft.RefreshCrafts(true);
+	}
+
+	public void OpenCraftUI()
+	{
+		OpenCrafts(ItemData.CraftTool.None, 0, null);
 	}
 
 	public void OpenChest(ChestObject chest)

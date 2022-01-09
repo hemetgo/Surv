@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Wooden Table
     portugues: Mesa de Madeira
-  icon: {fileID: 21300000, guid: 4c0cf82fd983e0f42ac9f536290cf25a, type: 3}
+  icon: {fileID: 21300000, guid: c5bfe97d17a20fc4f9b0793b10e03deb, type: 3}
   rarity: 0
   itemType: 4
   ability: 1

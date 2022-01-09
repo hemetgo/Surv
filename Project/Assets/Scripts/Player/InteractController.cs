@@ -112,6 +112,22 @@ public class InteractController : MonoBehaviour
                             if (smart.particle)
                                 Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
                         }
+
+                        if (smart.GetComponent<GasToolObject>())
+                        {
+                            GasToolObject gastTool = smart.GetComponent<GasToolObject>();
+                            gastTool.gui.SetActive(true);
+
+                            if (Input.GetButtonDown("Fire1"))
+                            {
+                                if (handManager.handItem.itemData.gasTypes.Contains(
+                                    gastTool.gasType))
+                                {
+                                    gastTool.AddGas(handManager.handItem.itemData.gasValue);
+                                    handManager.RemoveItem(handManager.handItem);
+                                }
+                            }
+                        }
                     }
                     else
                     {
@@ -123,7 +139,7 @@ public class InteractController : MonoBehaviour
                                 && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                             {
                                 actionTimer = actionDelay;
-                                
+
                                 // Interaction functions
                                 smart.Interact();
                                 StartCoroutine(InteractFeedback(smart.gameObject));

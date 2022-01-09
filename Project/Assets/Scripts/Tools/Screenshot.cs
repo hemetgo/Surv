@@ -6,13 +6,17 @@ using UnityEngine;
 public class Screenshot : MonoBehaviour
 {
 	public string path;
+	public ItemData.ItemType type;
 	public string fileName;
 
 	private Camera camera;
 
     public void TakeScreenshot()
 	{
-		string fullPath = path + "/" + fileName + ".png";
+		// Screenshot
+		ItemData itemData = GetComponentInChildren<DropItem>().item.itemData;
+		string fullPath = path + "/" + type.ToString() + "/" + fileName + ".png";
+		fullPath = path + "/" + itemData.itemType + "/" + itemData.itemName.english + ".png";
 
 		if (camera == null)
 			camera = GetComponent<Camera>();
@@ -31,6 +35,12 @@ public class Screenshot : MonoBehaviour
 
 		byte[] bytes = screenShot.EncodeToPNG();
 		System.IO.File.WriteAllBytes(fullPath, bytes);
+
+		// Texture type 
+		AssetDatabase.ImportAsset(fullPath);
+		TextureImporter importer = AssetImporter.GetAtPath(fullPath) as TextureImporter;
+		importer.textureType = TextureImporterType.Sprite;
+		AssetDatabase.WriteImportSettingsIfDirty(path);
 
 #if UNITY_EDITOR
 		AssetDatabase.Refresh();

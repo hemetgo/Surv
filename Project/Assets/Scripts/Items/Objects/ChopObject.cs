@@ -56,7 +56,6 @@ public class ChopObject : SmartObject
                     damage += 1;
                     if (damage == health)
                     {
-                        Debug.Log("aa");
                         Drop();
 
                         if (!GetComponent<Rigidbody>())

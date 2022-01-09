@@ -12,6 +12,8 @@ public class ItemData : ScriptableObject
     public AreaLangString description;
     public float value;
     public GameObject drop;
+    public float gasValue;
+    public List<GasType> gasTypes;
 
     [Header("Animation")]
     public Animations animation;
@@ -23,13 +25,16 @@ public class ItemData : ScriptableObject
 
     [Header("Craft")]
     public CraftTool recipeTool;
+    public float gasCost;
+    public int toolLevel;
     public List<IngredientItem> recipe;
 
-    public enum ItemType { Battle, Tool, Nature, Food, Decoration }
+    public enum ItemType { Battle, Tool, Material, Consumable, Decoration, Miscellaneous }
     public enum Animations { Default, Sword }
     public enum Rarity { Common, Uncommon, Rare, Epic, Legendary}
     public enum Ability { None, Placeable, Consumable }
-    public enum CraftTool { None, Table, Anvil }
+    public enum CraftTool { None, Table, Anvil, Forge }
+    public enum GasType { None, Fuel }
 
     public int GetStackLimit()
     { 
@@ -62,14 +67,16 @@ public class ItemData : ScriptableObject
                 {
                     case ItemType.Battle:
                         return "Batalha";
-                    case ItemType.Food:
-                        return "Alimento";
+                    case ItemType.Consumable:
+                        return "Consumível";
                     case ItemType.Decoration:
-                        return "Mobília";
-                    case ItemType.Nature:
-                        return "Natureza";
+                        return "Decoração";
+                    case ItemType.Material:
+                        return "Material";
                     case ItemType.Tool:
                         return "Ferramenta";
+                    case ItemType.Miscellaneous:
+                        return "Diversos";
                     default:
                         return itemType.ToString();
                 }

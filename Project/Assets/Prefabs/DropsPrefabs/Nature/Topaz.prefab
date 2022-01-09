@@ -99,6 +99,7 @@ MonoBehaviour:
   item:
     itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
     amount: 1
+    durability: 0
     inventoryIndex: 0
   dropTimer: 0
 --- !u!54 &2577676951104945760
@@ -116,7 +117,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &2561831012458928045
 BoxCollider:
   m_ObjectHideFlags: 0
