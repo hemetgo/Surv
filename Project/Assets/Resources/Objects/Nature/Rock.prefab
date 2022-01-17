@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5192065269413870273}
+  - component: {fileID: 5192065269413570272}
   - component: {fileID: 5192065269416737505}
   - component: {fileID: 5192065269415770145}
   - component: {fileID: 5192065269413570275}
-  - component: {fileID: 5192065269413570272}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -34,6 +34,29 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -43.33, z: 0}
+--- !u!114 &5192065269413570272
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192065269413570273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5100472910814271774, guid: f584cc588f9778949b3f28d6c13279a1, type: 3}
+  chopType: 0
+  disableCollisionAfter: 1
+  requiredTool: 1
+  health: 10
+  damageRecovery: 0
+  destroyAfter: 1
+  drops:
+  - itemData: {fileID: 11400000, guid: 5f12f1521e14fb0459482a394da110fe, type: 2}
+    amountRange: {x: 1, y: 2}
+    dropChance: 100
 --- !u!33 &5192065269416737505
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -97,27 +120,3 @@ CapsuleCollider:
   m_Height: 2.9393616
   m_Direction: 2
   m_Center: {x: 0.08956289, y: 0.8016034, z: -0.10138512}
---- !u!114 &5192065269413570272
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192065269413570273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 5100472910814271774, guid: f584cc588f9778949b3f28d6c13279a1, type: 3}
-  chopType: 0
-  disableCollisionAfter: 1
-  requiredTool: 1
-  dropPrefab: {fileID: 1235142396943216478, guid: fba2b110fcb0c83418be7e9a95fc416a, type: 3}
-  health: 10
-  damageRecovery: 0
-  destroyAfter: 1
-  drops:
-  - itemData: {fileID: 11400000, guid: 5f12f1521e14fb0459482a394da110fe, type: 2}
-    amountRange: {x: 1, y: 2}
-    dropChance: 100

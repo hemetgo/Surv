@@ -3,21 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
+[System.Serializable]
 public class FirstPersonController : MonoBehaviour
 {
     [Header("Player Settings")]
     public float moveSpeed = 5f;
-    [Tooltip("Multiplicate the movespeed")] public float runSpeedModifier = 10f;
+    public float runSpeedModifier = 10f;
     public float maxStamina;
     public float staminaModifier;
     public float jumpForce = 5f;
-    [Tooltip("Divide the movespeed")] public float crouchSpeedModifier = 2f;
+    public float crouchSpeedModifier = 2f;
     public float fallDmgModifier = 1;
     public float speedLimitFallDamage = 7;
     [HideInInspector] public float currentStamina;
     public bool isEating;
 
     [Header("Camera Settings")]
+    public Animator handAnimator;
     [SerializeField]
     private Transform camPosition;
     [SerializeField]
@@ -92,8 +94,10 @@ public class FirstPersonController : MonoBehaviour
 		if (!isKnockbacking)
         //if (true)
         {
+
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
+            handAnimator.SetFloat("Bobbing", new Vector2(horizontal, vertical).magnitude);
 
             float realSpeed;
 
@@ -103,7 +107,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 realSpeed = moveSpeed * runSpeedModifier;
                 isRunning = true;
-
+                handAnimator.SetFloat("Bobbing", new Vector2(horizontal * runSpeedModifier, vertical * runSpeedModifier).magnitude);
                 //if (Mathf.Abs(horizontal) > moveSpeed / 8 || Mathf.Abs(vertical) > moveSpeed / 8) isRunning = true;
                 //else isRunning = false;
             }

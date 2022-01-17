@@ -11,7 +11,8 @@ public class Screenshot : MonoBehaviour
 
 	private Camera camera;
 
-    public void TakeScreenshot()
+#if UNITY_EDITOR
+	public void TakeScreenshot()
 	{
 		// Screenshot
 		ItemData itemData = GetComponentInChildren<DropItem>().item.itemData;
@@ -42,14 +43,13 @@ public class Screenshot : MonoBehaviour
 		importer.textureType = TextureImporterType.Sprite;
 		AssetDatabase.WriteImportSettingsIfDirty(path);
 
-#if UNITY_EDITOR
 		AssetDatabase.Refresh();
-#endif
-	}
 
+	}
+#endif
 }
 
-
+#if UNITY_EDITOR
 [CustomEditor(typeof(Screenshot))]
 public class ScreenshotInspector : Editor
 {
@@ -64,3 +64,4 @@ public class ScreenshotInspector : Editor
 		}
 	}
 }
+#endif

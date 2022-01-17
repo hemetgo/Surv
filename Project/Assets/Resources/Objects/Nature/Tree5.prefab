@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2998223627276458345}
+  - component: {fileID: 2679035398960135846}
   - component: {fileID: 2998223627273066825}
   - component: {fileID: 2998223627274034057}
-  - component: {fileID: 2679035398960135846}
   - component: {fileID: 5831387476934592182}
   m_Layer: 6
   m_Name: Tree5
@@ -34,6 +34,32 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2679035398960135846
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2998223627276027209}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
+  chopType: 1
+  disableCollisionAfter: 1
+  requiredTool: 0
+  health: 10
+  damageRecovery: 0
+  destroyAfter: 5
+  drops:
+  - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
+    amountRange: {x: 5, y: 10}
+    dropChance: 100
+  - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
+    amountRange: {x: 3, y: 8}
+    dropChance: 100
 --- !u!33 &2998223627273066825
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -83,33 +109,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &2679035398960135846
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2998223627276027209}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
-  chopType: 1
-  disableCollisionAfter: 1
-  requiredTool: 0
-  dropPrefab: {fileID: 922482970136923879, guid: 949d67639b4123a4bb0dd0e306854123, type: 3}
-  health: 10
-  damageRecovery: 0
-  destroyAfter: 5
-  drops:
-  - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
-    amountRange: {x: 5, y: 10}
-    dropChance: 100
-  - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
-    amountRange: {x: 3, y: 8}
-    dropChance: 100
 --- !u!136 &5831387476934592182
 CapsuleCollider:
   m_ObjectHideFlags: 0

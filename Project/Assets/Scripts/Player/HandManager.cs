@@ -39,8 +39,6 @@ public class HandManager : MonoBehaviour
 				DropItem();
 			}
 		}
-
-		animator.SetFloat("MoveSpeed", FindObjectOfType<FirstPersonController>().GetNormalizedSpeed() * 0.75f);
 	}
 
 
