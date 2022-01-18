@@ -84,17 +84,6 @@ public class ChestSlot : MonoBehaviour
 		}
 	}
 
-	public void PointerDown()
-	{
-		
-	}
-
-	public void PointerUp()
-	{
-		
-	}
-
-
 	public bool IsEmpty()
 	{
 		if (item == null) return true;

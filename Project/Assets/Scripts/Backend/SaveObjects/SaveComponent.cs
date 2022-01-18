@@ -6,7 +6,7 @@ using UnityEngine;
 [System.Serializable]
 public class SaveComponent
 {
-	public virtual void AddComponent(GameObject gameObject)
+	public virtual void LoadComponent(GameObject gameObject)
 	{
 		
 	}

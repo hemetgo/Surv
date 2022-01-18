@@ -16,8 +16,8 @@ public class InteractController : MonoBehaviour
 
     [Header("Furniture Placement")]
     [Range(1, 20)] public float placingRange;
+    public float currentRange;
     public Material redMaterial;
-
 
     [Header("GUI")]
     public Image crosshairObject;
@@ -33,7 +33,6 @@ public class InteractController : MonoBehaviour
     private RaycastHit hit;
     private Vector3 hitPoint;
     private GameObject placingObject;
-    private float currentRange;
     private HandManager handManager;
     //private Material objectMaterial;
     private float turnObjectTimer;

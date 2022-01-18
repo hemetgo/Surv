@@ -116,14 +116,21 @@ public class ChopObject : SmartObject
             case ChopType.EachInteract:
                 if (health > 0)
                 {
-                        ToolData tool = obj.GetComponent<HandManager>().handItem.itemData as ToolData;
+                    ToolData tool = obj.GetComponent<HandManager>().handItem.itemData as ToolData;
+                    if (tool != null)
+                    {
                         if (tool.toolType == requiredTool)
                         {
                             return true;
                         }
                         else return false;
                     }
-                    else return false;
+					else
+					{
+                        return false;
+					}
+                }
+                else return false;
 
             case ChopType.WhenFinished:
                 if (damage < health)

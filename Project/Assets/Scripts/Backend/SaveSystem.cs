@@ -6,12 +6,8 @@ using UnityEngine;
 
 public class SaveSystem : MonoBehaviour
 {
-	private List<GameObject> prefabs; 
-
-	private void Start()
-	{
-		LoadGame();
-	}
+	private List<GameObject> prefabs = new List<GameObject>();
+	private List<ItemData> itemDatas = new List<ItemData>();
 
 	private void Update()
 	{
@@ -50,7 +46,6 @@ public class SaveSystem : MonoBehaviour
 
 			foreach(SaveObject saveObject in saveObjects)
 			{
-				Debug.Log(saveObject.id);
 				GameObject prefab = saveObject.GetPrefab();
 				SavableObject gameObject = Instantiate(prefab).GetComponent<SavableObject>();
 				gameObject.LoadData(saveObject);

@@ -7,7 +7,6 @@ public class ChestObject : SmartObject
     [Header("Chest")]
     public int itemSlots;
     public List<Item> itemList;
-    
 
     public override void Interact()
     {

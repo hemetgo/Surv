@@ -9,20 +9,23 @@ public class SaveObject
 	public SaveTransform saveTransform;
 	public List<SaveComponent> saveComponents = new List<SaveComponent>();
 
-	public void UpdateObject(GameObject gameObject)
+	public void Save(GameObject gameObject)
 	{
 		id = gameObject.GetComponent<SavableObject>().id;
 		saveComponents.Clear();
 		saveTransform = new SaveTransform(gameObject.transform);
 		foreach (Component component in gameObject.GetComponents<Component>())
 		{
-			AddComponentToList(component);
+			AddComponentToSaveObject(component);
 		}
 	}
 
-	private void AddComponentToList(Component component)
+	private void AddComponentToSaveObject(Component component)
 	{
-
+		if (component.GetType() == typeof(ChestObject))
+		{
+			saveComponents.Add(new SaveChestObject(component as ChestObject));
+		}
 	}
 
 	public GameObject GetPrefab()

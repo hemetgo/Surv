@@ -34,7 +34,7 @@ public class SaveTransform : SaveComponent
         return new Quaternion(rx, ry, rz, rw);
 	}
 
-    public override void AddComponent(GameObject gameObject)
+    public override void LoadComponent(GameObject gameObject)
     {
         gameObject.transform.position = GetPosition();
         gameObject.transform.rotation = GetRotation();

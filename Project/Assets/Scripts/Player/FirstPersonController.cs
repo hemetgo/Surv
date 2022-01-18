@@ -181,7 +181,7 @@ public class FirstPersonController : MonoBehaviour
 
     private void Camera()
     {
-        head.transform.position = new Vector3(head.transform.position.x, capsule.bounds.max.y - capsuleCenter/8, head.transform.position.z);
+        head.transform.position = new Vector3(head.transform.position.x, capsule.bounds.max.y, head.transform.position.z);
 
         //CAMERA X
         var rotatePlayer = Input.GetAxis("Mouse X") * mouseSensibility;
@@ -202,7 +202,7 @@ public class FirstPersonController : MonoBehaviour
         verticalAngle = Mathf.Clamp(rotateCamera + verticalAngle, -89f, 89f);
         var currentAnglesY = camPosition.transform.localEulerAngles;
         currentAnglesY.x = verticalAngle;
-        camPosition.transform.localEulerAngles = currentAnglesY;
+        head.transform.localEulerAngles = currentAnglesY;
     }
 
     private void Crouch()

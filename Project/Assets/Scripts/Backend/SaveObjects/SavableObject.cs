@@ -10,7 +10,7 @@ public class SavableObject : MonoBehaviour
 
 	public SaveObject GetSaveObject()
 	{
-		saveObject.UpdateObject(gameObject);
+		saveObject.Save(gameObject);
 		return saveObject;
 	}
 
@@ -18,6 +18,10 @@ public class SavableObject : MonoBehaviour
 	{
 		saveObject = dataObject;
 		LoadTransform(dataObject.saveTransform);
+		foreach(SaveComponent component in saveObject.saveComponents)
+		{
+			component.LoadComponent(gameObject);
+		}
 	}
 
 	private void LoadTransform(SaveTransform transformData)
