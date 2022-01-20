@@ -5,7 +5,7 @@ using UnityEngine;
 public class HealthController : MonoBehaviour
 {
     public int maxHp;
-    [HideInInspector] public int currentHp;
+    public int currentHp;
 
     private InteractController interactController;
     private Rigidbody rb;

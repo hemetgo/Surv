@@ -962,6 +962,7 @@ GameObject:
   - component: {fileID: 7000841841252514673}
   - component: {fileID: 6949730540182544267}
   - component: {fileID: 6949730540182544264}
+  - component: {fileID: -7291969612334644855}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -1020,6 +1021,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHp: 100
+  currentHp: 0
   dmgMaterial: {fileID: 2100000, guid: 831e470081f39d241ac5e7d6dbd3ecaa, type: 2}
   deathParticles: {fileID: 2135318124701165686, guid: 037acd9bdce33b04b90afcad48f2a3cf, type: 3}
   healthBar: {fileID: 6592764320098824063}
@@ -1080,6 +1082,31 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 2
+--- !u!114 &-7291969612334644855
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6949730540182540407}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Enemy
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []
 --- !u!1 &6949758335567988117
 GameObject:
   m_ObjectHideFlags: 0

@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class BattleMobController : MonoBehaviour
 {
     public int maxHp;
+    public int currentHp;
     public Material dmgMaterial;
     public GameObject deathParticles;
 
@@ -16,7 +17,6 @@ public class BattleMobController : MonoBehaviour
     [Header("Drops")]
 	public List<DropData> dropsData;
 
-    private int currentHp;
     private Material originalMaterial;
     private Rigidbody rb;
     private AiAgent aiAgent;

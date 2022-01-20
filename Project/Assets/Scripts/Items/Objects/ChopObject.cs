@@ -11,7 +11,7 @@ public class ChopObject : SmartObject
     public int health;
     public bool damageRecovery;
     public float destroyAfter;
-    private int damage;
+    public int currentDamage;
 
     private float damageTimer;
 
@@ -25,7 +25,7 @@ public class ChopObject : SmartObject
 		if (damageRecovery)
 		{
             damageTimer += Time.deltaTime;
-            if (damageTimer > 3) damage = 0;
+            if (damageTimer > 3) currentDamage = 0;
 		}
 	}
 
@@ -37,10 +37,9 @@ public class ChopObject : SmartObject
             case ChopType.EachInteract:
                 if (health > 0)
                 {
-                    health -= 1;
+                    currentDamage += 1;
                     Drop();
-                    Debug.Log("A");
-                    if (health <= 0)
+                    if (currentDamage >= health)
                     {
                         if (!GetComponent<Rigidbody>())
                         {
@@ -51,10 +50,10 @@ public class ChopObject : SmartObject
                 }
                 break;
             case ChopType.WhenFinished:
-                if (damage < health)
+                if (currentDamage < health)
                 {
-                    damage += 1;
-                    if (damage == health)
+                    currentDamage += 1;
+                    if (currentDamage >= health)
                     {
                         Drop();
 
@@ -133,7 +132,7 @@ public class ChopObject : SmartObject
                 else return false;
 
             case ChopType.WhenFinished:
-                if (damage < health)
+                if (currentDamage < health)
                 {
                     ToolData tool = obj.GetComponent<HandManager>().handItem.itemData as ToolData;
                     if (tool)

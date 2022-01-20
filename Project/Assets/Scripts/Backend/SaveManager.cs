@@ -4,10 +4,16 @@ using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 
-public class SaveSystem : MonoBehaviour
+public class SaveManager : MonoBehaviour
 {
 	private List<GameObject> prefabs = new List<GameObject>();
 	private List<ItemData> itemDatas = new List<ItemData>();
+	private SavableObject[] savableObjects;
+
+	private void Start()
+	{
+		savableObjects = FindObjectsOfType<SavableObject>();
+	}
 
 	private void Update()
 	{
@@ -46,11 +52,23 @@ public class SaveSystem : MonoBehaviour
 
 			foreach(SaveObject saveObject in saveObjects)
 			{
-				GameObject prefab = saveObject.GetPrefab();
-				SavableObject gameObject = Instantiate(prefab).GetComponent<SavableObject>();
-				gameObject.LoadData(saveObject);
+				if (saveObject.useSceneObject)
+				{
+					foreach(SavableObject sav in savableObjects)
+					{
+						if (sav.id == saveObject.id)
+						{
+							sav.LoadData(saveObject);
+						}
+					}
+				}
+				else
+				{
+					GameObject prefab = saveObject.GetPrefab();
+					SavableObject gameObject = Instantiate(prefab).GetComponent<SavableObject>();
+					gameObject.LoadData(saveObject);
+				}
 			}
-			
 		}
 	}
 }

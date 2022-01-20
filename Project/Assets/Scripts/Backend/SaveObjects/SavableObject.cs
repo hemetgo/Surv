@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 [System.Serializable]
@@ -29,4 +30,31 @@ public class SavableObject : MonoBehaviour
 		transform.position = transformData.GetPosition();
 		transform.rotation = transformData.GetRotation();
 	}
+
+	private void Reset()
+	{
+		id = gameObject.name;
+	}
+
+	public void ReloadComponent()
+	{
+		id = gameObject.name;
+	}
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(SavableObject))]
+public class SavableObjectInspector : Editor
+{
+	public override void OnInspectorGUI()
+	{
+		DrawDefaultInspector();
+
+		SavableObject script = (SavableObject)target;
+		if (GUILayout.Button("Reload"))
+		{
+			script.ReloadComponent();
+		}
+	}
+}
+#endif

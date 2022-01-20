@@ -8,13 +8,10 @@ public class Sapling : MonoBehaviour
     public GameObject saplingPrefab;
     public GameObject grewPrefab;
 
-    private bool grew;
-
     // Start is called before the first frame update
     void Start()
     {
         saplingPrefab.SetActive(true);
-        grewPrefab.SetActive(false);
     }
 
     // Update is called once per frame
@@ -22,11 +19,12 @@ public class Sapling : MonoBehaviour
     {
         growTimer -= Time.deltaTime;
 
-        if (growTimer <= 0 && !grew)
+        if (growTimer <= 0)
 		{
-            grew = true;
-            saplingPrefab.SetActive(false);
-            grewPrefab.SetActive(true);
+            saplingPrefab.GetComponent<MeshRenderer>().enabled = false;
+            GameObject grew = Instantiate(grewPrefab);
+            grew.transform.position = transform.position;
+            Destroy(gameObject);
         }
     }
 }
