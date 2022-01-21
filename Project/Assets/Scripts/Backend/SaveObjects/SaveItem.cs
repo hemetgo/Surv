@@ -12,8 +12,9 @@ public class SaveItem
 
     public SaveItem(Item item)
 	{
-        loadName = item.itemData.itemName.english;
-        loadAmount = item.amount;
+		if (item.itemData != null) loadName = item.itemData.itemName.english;
+		else loadName = "_Empty";
+		loadAmount = item.amount;
 		loadDurability = item.durability;
 	}
 

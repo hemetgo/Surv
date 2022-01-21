@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class SaveManager : MonoBehaviour
 {
+	public bool load;
 	private List<GameObject> prefabs = new List<GameObject>();
 	private List<ItemData> itemDatas = new List<ItemData>();
 	private SavableObject[] savableObjects;
@@ -26,7 +27,7 @@ public class SaveManager : MonoBehaviour
 		SavableObject[] savableObjectList = FindObjectsOfType<SavableObject>();
 		
 		BinaryFormatter formatter = new BinaryFormatter();
-		string path = Application.persistentDataPath + "/SaveGame.fun";
+		string path = Application.persistentDataPath + PlayerPrefs.GetString("CurrentSave");
 		FileStream stream = File.Create(path);
 
 		List<SaveObject> saveObjects = new List<SaveObject>();
@@ -41,7 +42,9 @@ public class SaveManager : MonoBehaviour
 
 	public void LoadGame()
 	{
-		string path = Application.persistentDataPath + "/SaveGame.fun";
+		PlayerPrefs.SetInt("LoadGame", 1);
+
+		string path = Application.persistentDataPath + PlayerPrefs.GetString("CurrentSave");
 		if (File.Exists(path))
 		{
 			BinaryFormatter formatter = new BinaryFormatter();

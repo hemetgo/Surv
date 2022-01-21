@@ -5,13 +5,26 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-	public void NewGame(string scene)
+	public string currentSave;
+	public string gameScene;
+
+	public void NewGame()
 	{
-		SceneManager.LoadScene(scene);
+		PlayerPrefs.SetInt("LoadGame", 0);
+		SetCurrentSave(currentSave);
+		SceneManager.LoadScene(gameScene);
 	}
 
-    public void LoadGame()
+	public void LoadGame()
 	{
+		PlayerPrefs.SetInt("LoadGame", 1);
+		SetCurrentSave(currentSave);
+		SceneManager.LoadScene(gameScene);
+	}
+
+	public void SetCurrentSave(string sav)
+	{
+		PlayerPrefs.SetString("CurrentSave", "/" + sav + ".fun");
 
 	}
 

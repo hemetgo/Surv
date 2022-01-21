@@ -119,6 +119,11 @@ public class UIManager : MonoBehaviour
 		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
+	public void SwitchScene(string sceneName)
+	{
+		SceneManager.LoadScene(sceneName);
+	}
+
 	public void QuitGame()
 	{
 		Application.Quit();

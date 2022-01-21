@@ -72,12 +72,12 @@ public class InteractController : MonoBehaviour
         {
             if (hit.collider?.GetComponent<AiAgent>())
             {
-                if (Input.GetButtonDown("Fire1"))
+                if (Input.GetButtonDown("Fire1") && handManager.handItem.itemData != null)
                     handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
             }
             else
             {
-                if (Input.GetButton("Fire1"))
+                if (Input.GetButton("Fire1") && handManager.handItem.itemData != null)
                     handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
             }
         }
