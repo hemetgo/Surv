@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class SaveManager : MonoBehaviour
 {
-	public bool load;
+	public GameObject savingGUI;
+	public Text saveProgressText;
 	private List<GameObject> prefabs = new List<GameObject>();
 	private List<ItemData> itemDatas = new List<ItemData>();
 	private SavableObject[] savableObjects;
 
 	private void Start()
 	{
-		savableObjects = FindObjectsOfType<SavableObject>();
 	}
 
 	private void Update()
@@ -24,6 +25,8 @@ public class SaveManager : MonoBehaviour
 
 	public void SaveGame()
 	{
+		savingGUI.SetActive(true);
+
 		SavableObject[] savableObjectList = FindObjectsOfType<SavableObject>();
 		
 		BinaryFormatter formatter = new BinaryFormatter();
@@ -31,19 +34,24 @@ public class SaveManager : MonoBehaviour
 		FileStream stream = File.Create(path);
 
 		List<SaveObject> saveObjects = new List<SaveObject>();
-		foreach(SavableObject save in savableObjectList)
+		for(int i = 0; i < savableObjectList.Length; i++)
 		{
+			SavableObject save = savableObjectList[i];
 			saveObjects.Add(save.GetSaveObject());
+
+			saveProgressText.text = i / savableObjectList.Length * 100 + "%";
 		}
 
 		formatter.Serialize(stream, saveObjects);
 		stream.Close();
+
+		savingGUI.SetActive(false);
 	}
 
 	public void LoadGame()
 	{
-		PlayerPrefs.SetInt("LoadGame", 1);
-
+		savableObjects = FindObjectsOfType<SavableObject>();
+		
 		string path = Application.persistentDataPath + PlayerPrefs.GetString("CurrentSave");
 		if (File.Exists(path))
 		{
@@ -59,6 +67,7 @@ public class SaveManager : MonoBehaviour
 				{
 					foreach(SavableObject sav in savableObjects)
 					{
+						
 						if (sav.id == saveObject.id)
 						{
 							sav.LoadData(saveObject);

@@ -24,11 +24,15 @@ MonoBehaviour:
     portugues: Uma mesa perfeita para sua sala de jantar.
   value: 0
   drop: {fileID: 4631906520371952654, guid: 9ac0eceae282cc3448b81a3fd111f892, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10
-  recipeTool: 1
+  recipeTool: 0
+  gasCost: 0
+  toolLevel: 0
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
     amount: 10

@@ -16,9 +16,9 @@ public class SaveInventory : SaveComponent
     public override void LoadComponent(GameObject gameObject)
     {
         InventoryManager component = gameObject.GetComponent<InventoryManager>();
-        component.inventory.itemList = LoadInventoryItems();
-        component.RefreshInventory();
-    }
+        
+        component.LoadInventory(LoadInventoryItems());
+	}
 
     private List<SaveItem> SaveInventoryItems(Inventory inventory)
 	{

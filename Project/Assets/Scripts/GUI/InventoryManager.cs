@@ -33,12 +33,6 @@ public class InventoryManager : MonoBehaviour
 	[HideInInspector] public InventorySlot dragSlot = null;
 	[HideInInspector] public InventorySlot dropSlot = null;
 
-	private void Start()
-	{
-		StartInventory();
-		GenerateSlots();
-	}
-
 	public void StartInventory()
 	{
 		inventory = new Inventory(inventorySize);
@@ -46,6 +40,28 @@ public class InventoryManager : MonoBehaviour
 		itemBar.handManager.ItemDropped += OnItemDropped;
 		itemBar.handManager.ItemDeleted += OnItemDeleted;
 		FindObjectOfType<HandManager>().ItemPlaced += OnItemPlaced;
+		
+		GenerateSlots();
+
+		// start increment
+		if (PlayerPrefs.GetInt("LoadGame") == 0)
+		{
+			foreach (Item item in FindObjectOfType<GameManager>().startItems)
+			{
+				inventory.AddItem(item);
+			}
+		}
+
+		RefreshInventory();
+	}
+
+	public void LoadInventory(List<Item> itemList)
+	{
+		StartInventory();
+
+		inventory.itemList = itemList;
+
+		RefreshInventory();
 	}
 
 	public void RefreshInventory()
@@ -100,6 +116,7 @@ public class InventoryManager : MonoBehaviour
 	{
 		this.isDropping = isDropping;
 	}
+
 
 	#region Listeners
 	private void OnItemCollected(Item item)

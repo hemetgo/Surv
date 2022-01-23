@@ -13,8 +13,9 @@ public class UIManager : MonoBehaviour
 	public GameObject inventoryGUI;
 	public GameObject craftGUI;
 	public GameObject chestGUI;
+	public GameObject superMenu;
 
-	public enum MenuState { None, Inventory, Craft, Chest }
+	public enum MenuState { None, Inventory, Craft, Chest, Super }
 
 	private void Start()
 	{
@@ -33,7 +34,19 @@ public class UIManager : MonoBehaviour
 			OpenCrafts(ItemData.CraftTool.None, 0, null);
 		}
 
-		if (Input.GetKeyDown(KeyCode.Escape)) CloseMenus();
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			if (superMenu.activeSelf)
+			{
+				CloseMenus();
+				superMenu.SetActive(false);
+			}
+			else
+			{
+				OpenMenus();
+				superMenu.SetActive(true);
+			}
+		}
 	}
 
 	public void OpenMenus()
@@ -44,6 +57,7 @@ public class UIManager : MonoBehaviour
 
 		menusGUI.SetActive(true);
 	}
+
 	public void CloseMenus()
 	{
 		PlayerPrefs.SetString("GameState", "Resume");
@@ -122,6 +136,17 @@ public class UIManager : MonoBehaviour
 	public void SwitchScene(string sceneName)
 	{
 		SceneManager.LoadScene(sceneName);
+	}
+
+	public void ResumeGame()
+	{
+		CloseMenus();
+		superMenu.SetActive(false);
+	}
+
+	public void SaveGame()
+	{
+		GetComponent<SaveManager>().SaveGame();
 	}
 
 	public void QuitGame()

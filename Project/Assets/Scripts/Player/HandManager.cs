@@ -24,7 +24,6 @@ public class HandManager : MonoBehaviour
 
 	private void Start()
 	{
-		handItem = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
 
 		animator = GetComponent<Animator>();
 	}
@@ -41,9 +40,13 @@ public class HandManager : MonoBehaviour
 		}
 	}
 
-
 	public void HoldItem(Item item)
 	{
+		if (handItem == null)
+		{
+			handItem = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
+		}
+
 		if (handItemObject) handItemObject.SetActive(false);
 
 		handItem = item;

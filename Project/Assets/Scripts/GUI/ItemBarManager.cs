@@ -95,5 +95,4 @@ public class ItemBarManager : MonoBehaviour
 		barBackgroundSlot[selectedSlot].GetComponent<Outline>().enabled = true;
 		handManager.HoldItem(itemBarSlots[selectedSlot].item);
     }
-
 }

@@ -28,8 +28,5 @@ public class RandomTerrain : MonoBehaviour
             tree.transform.Rotate(0, Random.Range(0, 360), 0);
             tree.transform.SetParent(transform);
 		}
-
-        // save game
-        FindObjectOfType<SaveManager>().SaveGame();
 	}
 }
