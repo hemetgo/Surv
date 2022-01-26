@@ -12,7 +12,6 @@ public class ItemBarManager : MonoBehaviour
 	public List<GameObject> barBackgroundSlot;
 	[HideInInspector] public HandManager handManager;
 
-
 	private void Update()
 	{
 		//if (Cursor.lockState == CursorLockMode.Locked)
@@ -90,9 +89,10 @@ public class ItemBarManager : MonoBehaviour
         this.selectedSlot = selectedSlot;
         for (int i = 0; i < 10; i++)
 		{
-			barBackgroundSlot[i].GetComponent<Outline>().enabled = false;
+			barBackgroundSlot[i].transform.localScale = new Vector3(1, 1, 1);
 		}
-		barBackgroundSlot[selectedSlot].GetComponent<Outline>().enabled = true;
+		barBackgroundSlot[selectedSlot].GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1);
+
 		handManager.HoldItem(itemBarSlots[selectedSlot].item);
     }
 }

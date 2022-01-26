@@ -20,7 +20,7 @@ RenderSettings:
   m_FogDensity: 0.05
   m_LinearFogStart: 35
   m_LinearFogEnd: 65
-  m_AmbientSkyColor: {r: 1, g: 0.9962222, b: 0.9537121, a: 1}
+  m_AmbientSkyColor: {r: 1, g: 0.9798566, b: 0.7531923, a: 1}
   m_AmbientEquatorColor: {r: 0.5660378, g: 0.5660378, b: 0.5660378, a: 1}
   m_AmbientGroundColor: {r: 0.4056604, g: 0.40361935, b: 0.39953724, a: 1}
   m_AmbientIntensity: 0.73
@@ -10590,7 +10590,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   directionalLight: {fileID: 2138677392}
   preset: {fileID: 11400000, guid: 24d76bccb16eb21418fc94df0d730345, type: 2}
-  timeOfDay: 11.4
+  timeOfDay: 8.8
   timeSpeed: 1
 --- !u!1 &730723857
 GameObject:
@@ -23278,6 +23278,7 @@ MonoBehaviour:
   inventoryGUI: {fileID: 1627489444}
   craftGUI: {fileID: 319662663}
   chestGUI: {fileID: 1158285863}
+  superMenu: {fileID: 0}
 --- !u!114 &1562107714
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -23380,6 +23381,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff77cc929fabc2c409bfff54cb6b8bb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  savingGUI: {fileID: 0}
+  saveProgressText: {fileID: 0}
 --- !u!114 &1562107719
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -32277,7 +32280,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9499855, g: 0.9499855, b: 0.9499855, a: 1}
+  m_Color: {r: 0.73332214, g: 0, b: 0, a: 1}
   m_Intensity: 0.78
   m_Range: 10
   m_SpotAngle: 30
@@ -32335,7 +32338,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2138677391}
-  m_LocalRotation: {x: 0.056603167, y: 0.7575124, z: -0.6469767, w: 0.06627379}
+  m_LocalRotation: {x: 0.031233849, y: 0.93002784, z: -0.35700428, w: 0.08136695}
   m_LocalPosition: {x: 0.32894492, y: 3.8727663, z: 3.4801383}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -33883,6 +33886,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 402445815921527759, guid: 8ff78200668798d4591e4b61c0c109c9, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 402445815923791119, guid: 8ff78200668798d4591e4b61c0c109c9, type: 3}
       propertyPath: m_Name
       value: Tree1

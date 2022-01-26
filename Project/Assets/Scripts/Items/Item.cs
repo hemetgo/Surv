@@ -8,7 +8,7 @@ public class Item
 {
     public ItemData itemData;
     public int amount;
-    [HideInInspector] public int durability;
+    public int durability;
     [HideInInspector] public int inventoryIndex;
 
     public delegate void UpdatedInventoryHandler();

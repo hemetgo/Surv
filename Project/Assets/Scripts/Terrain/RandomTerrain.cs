@@ -10,7 +10,7 @@ public class RandomTerrain : MonoBehaviour
 
     public void StarTerrain()
     {
-        FindObjectOfType<FirstPersonController>().transform.position = GetComponent<TerrainCollider>().bounds.center + Vector3.up * 2;
+        FindObjectOfType<FirstPersonController>().transform.position = GetComponent<Collider>().bounds.center + Vector3.up * 2;
         PlantTress();
     }
 
@@ -18,8 +18,8 @@ public class RandomTerrain : MonoBehaviour
 	{
         for (int i = 0; i < Random.Range(spawnTrees.x, spawnTrees.y); i++)
 		{
-            Vector3 startTerrain = transform.position;
-            Vector3 endTerrain = transform.position + GetComponent<Terrain>().terrainData.size;
+            Vector3 startTerrain = transform.position - GetComponent<Collider>().bounds.size / 2;
+            Vector3 endTerrain = transform.position + GetComponent<Collider>().bounds.size / 2;
             Vector3 spawnPos = new Vector3(
                 Random.Range(startTerrain.x, endTerrain.x),
                 transform.position.y,

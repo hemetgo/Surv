@@ -178,7 +178,7 @@ public class InteractController : MonoBehaviour
                     }
 
                     // Load the furniture prefab
-                    GameObject prefab = Resources.Load<GameObject>("Furnitures/" + handManager.handItem.itemData.itemName.english);
+                    GameObject prefab = Resources.Load<GameObject>("Objects/Furnitures/" + handManager.handItem.itemData.itemName.english);
 
                     // Instantiate the furniture, if it isn't instantiated yet
                     if (!placingObject)
