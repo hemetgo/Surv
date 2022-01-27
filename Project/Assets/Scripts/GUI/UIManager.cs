@@ -9,7 +9,6 @@ public class UIManager : MonoBehaviour
 {
 	public MenuState state;
 	public GameObject menusGUI;
-	public GameObject sideBarGUI;
 	public GameObject inventoryGUI;
 	public GameObject craftGUI;
 	public GameObject chestGUI;
@@ -27,11 +26,7 @@ public class UIManager : MonoBehaviour
 		if (Input.GetButtonDown("OpenInventory"))
 		{
 			OpenInventory();
-		}
-
-		if (Input.GetButtonDown("OpenCrafts"))
-		{
-			OpenCrafts(ItemData.CraftTool.None, 0, null);
+			ResetCrafts(ItemData.CraftTool.None, 0, null);
 		}
 
 		if (Input.GetKeyDown(KeyCode.Escape))
@@ -75,55 +70,43 @@ public class UIManager : MonoBehaviour
 	{
 		state = MenuState.Inventory;
 		OpenMenus();
-		if(inventoryGUI.activeSelf)
+		if (inventoryGUI.activeSelf)
 		{
 			CloseMenus();
 			return;
 		}
 
-		sideBarGUI.SetActive(true);
 		inventoryGUI.SetActive(true);
-		craftGUI.SetActive(false);
 		chestGUI.SetActive(false);
 	}
 
-	public void OpenCrafts(ItemData.CraftTool tool, int toolLevel, CraftToolObject craftTool)
+	public void ResetCrafts(ItemData.CraftTool tool, int toolLevel, CraftToolObject craftTool)
 	{
+		craftGUI.SetActive(true);
+
 		CraftManager craft = GetComponent<CraftManager>();
 		craft.currentCraftTool = tool;
 		craft.toolLevel = toolLevel;
 		craft.craftTool = craftTool;
-
-		state = MenuState.Craft;
-		OpenMenus();
+		//state = MenuState.Craft;
 		
-		if(craftGUI.activeSelf)
-		{
-			CloseMenus();
-			return;
-		}
-
-		sideBarGUI.SetActive(true);
-		craftGUI.SetActive(true);
-		inventoryGUI.SetActive(false);
-		chestGUI.SetActive(false);
 		craft.currentType = "All";
 		craft.RefreshCrafts(true);
 	}
 
-	public void OpenCraftUI()
+	public void StartCraft(ItemData.CraftTool tool, int toolLevel, CraftToolObject craftTool)
 	{
-		OpenCrafts(ItemData.CraftTool.None, 0, null);
+		OpenInventory();
+		ResetCrafts(tool, toolLevel, craftTool);
 	}
 
 	public void OpenChest(ChestObject chest)
 	{
 		state = MenuState.Chest;
 		OpenMenus();
-		sideBarGUI.SetActive(false);
+		craftGUI.SetActive(false);
 		inventoryGUI.SetActive(true);
 		chestGUI.SetActive(true);
-		craftGUI.SetActive(false);
 		GetComponent<ChestManager>().chest = chest;
 		GetComponent<ChestManager>().RefreshChest();
 	}

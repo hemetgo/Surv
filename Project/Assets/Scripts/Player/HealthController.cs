@@ -47,6 +47,7 @@ public class HealthController : MonoBehaviour
                     if (Input.GetButtonDown("Fire1"))
                     {
                         atkTimer = 0;
+                        Debug.Log(handManager);
                         handManager.handItem.RemoveDurability(handManager);
                         damageTaker.TakeDamage(GetBattlePower().damage, transform, GetBattlePower().knockBack);
                     }

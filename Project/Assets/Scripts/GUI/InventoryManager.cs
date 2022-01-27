@@ -49,6 +49,7 @@ public class InventoryManager : MonoBehaviour
 			foreach (Item item in FindObjectOfType<GameManager>().startItems)
 			{
 				inventory.AddItem(item);
+				item.UpdatedInventory += OnInventoryUpdated;
 			}
 		}
 

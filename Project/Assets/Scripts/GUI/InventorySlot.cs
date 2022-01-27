@@ -16,12 +16,9 @@ public class InventorySlot : MonoBehaviour
 	public Sprite emptyImage;
 
 	[Header("Infos")]
-	public GameObject infos;
-	public Text nameText;
-	public Text typeText;
-	public Text descriptionText;
 	public GameObject durabilityData;
 	public Image durabilityBar;
+	public TextMeshProUGUI txtName;
 
 	// aux
 	private InventoryManager inventoryManager;
@@ -32,7 +29,6 @@ public class InventorySlot : MonoBehaviour
 	private void Start()
 	{
 		inventoryManager = FindObjectOfType<InventoryManager>();
-		infos.SetActive(false);
 		durabilityData.SetActive(false);
 	}
 
@@ -48,24 +44,20 @@ public class InventorySlot : MonoBehaviour
 
 	public void PointerExit()
 	{
-		infos.SetActive(false);
 		inventoryManager.dropSlot = null;
+		txtName.gameObject.SetActive(false);
 	}
 
 	public void PointerEnter()
 	{
-		if (item.amount > 0)
-		{
-			infos.SetActive(true);
-
-			nameText.text = item.itemData.itemName.GetString();
-			typeText.text = item.itemData.GetLangType();
-			descriptionText.text = item.itemData.description.GetString();
-		}
-
 		if (inventoryManager.dragSlot != null)
 		{
 			inventoryManager.dropSlot = this;
+		}
+
+		if (item.amount > 0)
+		{
+			txtName.gameObject.SetActive(true);
 		}
 	}
 
@@ -104,7 +96,6 @@ public class InventorySlot : MonoBehaviour
 					item.amount -= 1;
 					RefreshSlot();
 					manager.GetComponent<ChestManager>().RefreshChest();
-					if (item.amount <= 0) infos.SetActive(false);
 				}
 
 				if (Input.GetButtonDown("Fire2"))
@@ -115,7 +106,6 @@ public class InventorySlot : MonoBehaviour
 					item.amount = 0;
 					RefreshSlot();
 					manager.GetComponent<ChestManager>().RefreshChest();
-					if (item.amount <= 0) infos.SetActive(false);
 				}
 			}
 		}
@@ -200,6 +190,7 @@ public class InventorySlot : MonoBehaviour
 			txtAmount.gameObject.SetActive(true);
 
 			itemImage.sprite = item.itemData.icon;
+			txtName.text = item.itemData.GetItemName();
 
 			if (item.itemData.UseDurability())
 			{

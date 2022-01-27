@@ -17,12 +17,9 @@ public class ChestSlot : MonoBehaviour
 	public Sprite emptyImage;
 
 	[Header("Infos")]
-	public GameObject infos;
-	public Text nameText;
-	public Text typeText;
-	public Text descriptionText;
 	public GameObject durabilityData;
 	public Image durabilityBar;
+	public TextMeshProUGUI txtName;
 
 	// aux
 	private ChestManager chestManager;
@@ -30,7 +27,6 @@ public class ChestSlot : MonoBehaviour
 
 	private void Start()
 	{
-		infos.SetActive(false);
 		durabilityData.SetActive(false);
 	}
 
@@ -48,7 +44,6 @@ public class ChestSlot : MonoBehaviour
 				RefreshSlot();
 				FindObjectOfType<InventoryManager>().RefreshInventory();
 				FindObjectOfType<InventoryManager>().itemBar.RefreshItemBar();
-				if (item.amount <= 0) infos.SetActive(false);
 			}
 
 			if (Input.GetButtonDown("Fire2"))
@@ -60,7 +55,6 @@ public class ChestSlot : MonoBehaviour
 				RefreshSlot();
 				FindObjectOfType<InventoryManager>().RefreshInventory();
 				FindObjectOfType<InventoryManager>().itemBar.RefreshItemBar();
-				if (item.amount <= 0) infos.SetActive(false);
 			}
 		}
 	}
@@ -68,20 +62,13 @@ public class ChestSlot : MonoBehaviour
 	public void PointerExit()
 	{
 		isOver = false;
-		infos.SetActive(false);
+		txtName.gameObject.SetActive(false);
 	}
 
 	public void PointerEnter()
 	{
 		isOver = true;
-		if (item.amount > 0)
-		{
-			infos.SetActive(true);
-
-			nameText.text = item.itemData.itemName.GetString();
-			typeText.text = item.itemData.GetLangType();
-			descriptionText.text = item.itemData.description.GetString();
-		}
+		if (item.amount > 0) txtName.gameObject.SetActive(true);
 	}
 
 	public bool IsEmpty()
@@ -101,11 +88,11 @@ public class ChestSlot : MonoBehaviour
 
 		if (item.amount > 0)
 		{
-			infos.SetActive(false);
 			itemImage.gameObject.SetActive(true);
 			txtAmount.gameObject.SetActive(true);
 
 			itemImage.sprite = item.itemData.icon;
+			txtName.text = item.itemData.GetItemName();
 
 			if (item.itemData.UseDurability())
 			{

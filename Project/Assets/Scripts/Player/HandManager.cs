@@ -141,6 +141,7 @@ public class HandManager : MonoBehaviour
 
 	public void RemoveItem(Item item)
 	{
+		Debug.Log(item.itemData);
 		if (item.amount > 0)
 		{
 			item.amount -= 1;

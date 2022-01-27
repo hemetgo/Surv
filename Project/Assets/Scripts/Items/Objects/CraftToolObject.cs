@@ -10,10 +10,10 @@ public class CraftToolObject : SmartObject
 
 	public override void Interact()
     {
-        FindObjectOfType<UIManager>().OpenCrafts(craftTool, toolLevel, this);
-        //FindObjectOfType<CraftManager>().currentCraftTool = craftTool;
-        //FindObjectOfType<CraftManager>().toolLevel = toolLevel;
-    }
+        FindObjectOfType<UIManager>().StartCraft(craftTool, toolLevel, this);
+  //      FindObjectOfType<CraftManager>().currentCraftTool = craftTool;
+		//FindObjectOfType<CraftManager>().toolLevel = toolLevel;
+	}
 
     public override bool CanInteract(GameObject obj)
 	{

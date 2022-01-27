@@ -20,7 +20,7 @@ public class ItemBarManager : MonoBehaviour
 		{
 			if (invertScroll)
 			{
-				if (selectedSlot >= itemBarSlots.Count - 1)
+				if (selectedSlot >= 9)
 				{
 					SetCurrentSlot(0);
 				}
@@ -33,7 +33,7 @@ public class ItemBarManager : MonoBehaviour
 			{
 				if (selectedSlot <= 0)
 				{
-					SetCurrentSlot(itemBarSlots.Count - 1);
+					SetCurrentSlot(9);
 				}
 				else
 				{
@@ -47,7 +47,7 @@ public class ItemBarManager : MonoBehaviour
 			{
 				if (selectedSlot <= 0)
 				{
-					SetCurrentSlot(itemBarSlots.Count - 1);
+					SetCurrentSlot(9);
 				}
 				else
 				{
@@ -56,7 +56,7 @@ public class ItemBarManager : MonoBehaviour
 			} 
 			else
 			{
-				if (selectedSlot >= itemBarSlots.Count - 1)
+				if (selectedSlot >= 9)
 				{
 					SetCurrentSlot(0);
 				}

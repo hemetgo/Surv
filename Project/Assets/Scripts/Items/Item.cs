@@ -45,7 +45,7 @@ public class Item
             {
                 hand.RemoveItem(this);
             }
-            UpdatedInventory();
+			UpdatedInventory();
         }
     }
 }

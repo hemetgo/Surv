@@ -37,7 +37,7 @@ public class InteractController : MonoBehaviour
     //private Material objectMaterial;
     private float turnObjectTimer;
     private float turnObjectAngle;
-    private string interactButton = "Fire1";
+    //private string interactButton = "Fire1";
     private bool gridPlacement;
 	#endregion
 
@@ -90,7 +90,7 @@ public class InteractController : MonoBehaviour
         {
             actionTimer -= Time.deltaTime;
 
-            // Raycast man
+            // Raycast
             if (Physics.Raycast(head.transform.position, head.transform.forward, out hit, currentRange))
             {
                 // If colliding with a smart object
@@ -107,7 +107,7 @@ public class InteractController : MonoBehaviour
                         {
                             // Interaction functions
                             smart.Interact();
-                            StartCoroutine(InteractFeedback(smart.gameObject));
+                            //StartCoroutine(InteractFeedback(smart.gameObject));
 
                             if (smart.particle)
                                 Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
@@ -148,7 +148,9 @@ public class InteractController : MonoBehaviour
                                     Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
 
                                 if (smart.GetObjectType() == SmartObject.ObjectType.Chop)
+                                {
                                     handManager.handItem.RemoveDurability(handManager);
+                                }
                             }
                         }
                     }
@@ -295,7 +297,6 @@ public class InteractController : MonoBehaviour
 				#endregion
 
 				default:
-                    interactButton = "Fire1";
                     break;
             }
 
@@ -326,8 +327,8 @@ public class InteractController : MonoBehaviour
     {
         Vector3 scale = obj.transform.localScale;
 
-        if (obj) obj.transform.localScale = scale * 0.98f;
-        if (obj) yield return new WaitForSeconds(0.1f);
+        if (obj) obj.transform.localScale = scale * 0.99f;
+        if (obj) yield return new WaitForSeconds(0.05f);
         if (obj) obj.transform.localScale = scale;
     }
 }
