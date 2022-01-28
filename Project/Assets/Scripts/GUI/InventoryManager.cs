@@ -42,17 +42,6 @@ public class InventoryManager : MonoBehaviour
 		FindObjectOfType<HandManager>().ItemPlaced += OnItemPlaced;
 		
 		GenerateSlots();
-
-		// start increment
-		if (PlayerPrefs.GetInt("LoadGame") == 0)
-		{
-			foreach (Item item in FindObjectOfType<GameManager>().startItems)
-			{
-				inventory.AddItem(item);
-				item.UpdatedInventory += OnInventoryUpdated;
-			}
-		}
-
 		RefreshInventory();
 	}
 
@@ -173,7 +162,7 @@ public class InventoryManager : MonoBehaviour
 		itemBar.RefreshItemBar();
 	}
 
-	private void OnInventoryUpdated()
+	public void OnInventoryUpdated()
 	{
 		RefreshInventory();
 	}

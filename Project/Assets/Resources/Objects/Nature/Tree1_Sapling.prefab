@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 2309671870448390916}
   - component: {fileID: 5307534446475780258}
   - component: {fileID: 8954117546073386259}
+  - component: {fileID: -7838636894486108158}
   m_Layer: 6
   m_Name: Tree1_Sapling
   m_TagString: Untagged
@@ -47,7 +48,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d23581704be7efd4595289fec380a0ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  growTimeInterval: {x: 50, y: 100}
   growTimer: 100
   saplingPrefab: {fileID: 2309671870450585028}
   grewPrefab: {fileID: 402445815923791119, guid: 8ff78200668798d4591e4b61c0c109c9, type: 3}
@@ -129,6 +129,7 @@ MonoBehaviour:
   id: Tree1_Sapling
   saveObject:
     id: 
+    useSceneObject: 0
     saveTransform:
       px: 0
       py: 0
@@ -138,3 +139,24 @@ MonoBehaviour:
       rz: 0
       rw: 0
     saveComponents: []
+--- !u!114 &-7838636894486108158
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2309671870450585028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
+  chopType: 1
+  disableCollisionAfter: 0
+  requiredTool: 1
+  health: 1
+  damageRecovery: 0
+  destroyAfter: 0
+  currentDamage: 0
+  drops: []

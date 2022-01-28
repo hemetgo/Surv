@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Tomato
     portugues: Tomate
-  icon: {fileID: 21300000, guid: f2aee97907be379469d7ed24121f2253, type: 3}
+  icon: {fileID: 21300000, guid: 7f20c0ce31fe1b5408c29a70c81c0440, type: 3}
   rarity: 0
   itemType: 3
   ability: 2
@@ -24,10 +24,15 @@ MonoBehaviour:
     portugues: "Aten\xE7\xE3o: Proibido atirar tomate em artistas."
   value: 0
   drop: {fileID: 1191335049967893415, guid: 9eff4acc75c37e24cb7dfc8e6a7bc3f3, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10
+  recipeTool: 0
+  gasCost: 0
+  toolLevel: 0
   recipe: []
   foodType: 0
   effect:

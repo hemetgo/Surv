@@ -12,22 +12,22 @@ public class SaveSlot : MonoBehaviour
     public Color selectedColor;
     public Color unselectedColor;
 
-	public void SetSave(FileInfo sav)
-	{
+    public void SetSave(FileInfo sav)
+    {
         save = sav.Name.Replace(".sav", "");
         saveNameText.text = save;
         dateText.text = sav.LastAccessTime.ToString("dd/MM/yyyy HH:mm");
     }
 
     public void Select()
-	{
+    {
         PlayerPrefs.SetInt("LoadGame", 1);
         SetCurrentSave(save);
 
         foreach (SaveSlot slot in FindObjectsOfType<SaveSlot>())
-		{
+        {
             slot.Unselect();
-		}
+        }
 
         GetComponent<Image>().color = selectedColor;
         saveNameText.color = unselectedColor;
@@ -35,7 +35,7 @@ public class SaveSlot : MonoBehaviour
     }
 
     public void Unselect()
-	{
+    {
         GetComponent<Image>().color = unselectedColor;
         saveNameText.color = selectedColor;
         dateText.color = selectedColor;
@@ -44,5 +44,21 @@ public class SaveSlot : MonoBehaviour
     public void SetCurrentSave(string sav)
     {
         PlayerPrefs.SetString("CurrentSave", "/saves/" + sav + ".sav");
+    }
+
+    public void DeleteSave()
+    {
+        string filePath = Application.persistentDataPath + "/saves/" + save + ".sav";
+
+        // check if file exists
+        if (!File.Exists(filePath))
+        {
+            Debug.Log("File doesnt exists");
+        }
+        else
+        {
+            File.Delete(filePath);
+            Destroy(gameObject);
+        }
     }
 }

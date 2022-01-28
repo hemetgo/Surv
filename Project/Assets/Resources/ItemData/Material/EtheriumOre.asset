@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Etherium Ore
     portugues: "Min\xE9rio de Etherium"
-  icon: {fileID: 21300000, guid: f5802e8ff5992b04092a20047b355faf, type: 3}
+  icon: {fileID: 21300000, guid: da8bbe0fd1de1a44689dcb05fa422a63, type: 3}
   rarity: 3
   itemType: 2
   ability: 0

@@ -9,6 +9,6 @@ public class ToolData : ItemData
     public ToolType toolType;
     public int durability;
 
-    public enum ToolType { Axe, Pickaxe, Shovel, Hoe }
+    public enum ToolType { None, Axe, Pickaxe, Shovel, Hoe }
 
 }

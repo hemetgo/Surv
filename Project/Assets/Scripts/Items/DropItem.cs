@@ -66,4 +66,11 @@ public class DropItem : MonoBehaviour
         }
     }
 
+	private void Reset()
+	{
+        if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
+        item.amount = 1;
+        item.durability = item.itemData.GetDurability();
+	}
+
 }

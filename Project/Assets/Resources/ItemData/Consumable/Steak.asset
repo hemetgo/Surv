@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Steak
     portugues: Carne
-  icon: {fileID: 21300000, guid: 66e90a77732c2d64e830a046a7463f27, type: 3}
+  icon: {fileID: 21300000, guid: 895669ce24b448f4e898c01ddba82b4a, type: 3}
   rarity: 0
   itemType: 3
   ability: 2

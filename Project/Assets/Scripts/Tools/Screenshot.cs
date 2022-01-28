@@ -2,22 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Screenshot : MonoBehaviour
 {
 	public string path;
-	public ItemData.ItemType type;
-	public string fileName;
+	public Image square;
 
 	private Camera camera;
 
 #if UNITY_EDITOR
 	public void TakeScreenshot()
 	{
+		square.gameObject.SetActive(false);
+
 		// Screenshot
 		ItemData itemData = GetComponentInChildren<DropItem>().item.itemData;
-		string fullPath = path + "/" + type.ToString() + "/" + fileName + ".png";
-		fullPath = path + "/" + itemData.itemType + "/" + itemData.itemName.english + ".png";
+		string fullPath = path + "/" + itemData.itemType + "/" + itemData.itemName.english + ".png";
 
 		if (camera == null)
 			camera = GetComponent<Camera>();
@@ -44,7 +45,7 @@ public class Screenshot : MonoBehaviour
 		AssetDatabase.WriteImportSettingsIfDirty(path);
 
 		AssetDatabase.Refresh();
-
+		square.gameObject.SetActive(true);
 	}
 #endif
 }
@@ -60,6 +61,7 @@ public class ScreenshotInspector : Editor
 		Screenshot script = (Screenshot)target;
 		if (GUILayout.Button("Take Screenshot"))
 		{
+			script.TakeScreenshot();
 			script.TakeScreenshot();
 		}
 	}

@@ -19,20 +19,14 @@ public class InteractController : MonoBehaviour
     public float currentRange;
     public Material redMaterial;
 
-    [Header("GUI")]
-    public Image crosshairObject;
-    public Sprite defaultCrosshair;
-
 	#region Privates
 	//Aux
 	private Animator handAnimator;
     private float actionTimer;
-    private SmartObject smart;
 	public List<SmartObject> smartBehaviours;
-    private bool canInteract;
     private RaycastHit hit;
     private Vector3 hitPoint;
-    private GameObject placingObject;
+    public GameObject placingObject;
     private HandManager handManager;
     //private Material objectMaterial;
     private float turnObjectTimer;
@@ -43,7 +37,6 @@ public class InteractController : MonoBehaviour
 
 	void Start()
     {
-        crosshairObject.sprite = defaultCrosshair;
         handAnimator = hand.GetComponent<Animator>();
         handManager = hand.GetComponent<HandManager>();
     }
@@ -169,7 +162,7 @@ public class InteractController : MonoBehaviour
         {
             switch (handManager.handItem.itemData.ability)
             {
-				#region Furniture
+				#region Placeable
 				case ItemData.Ability.Placeable:
                     turnObjectTimer -= Time.deltaTime;
                     // If exists a placing object, destroy it
@@ -181,11 +174,12 @@ public class InteractController : MonoBehaviour
 
                     // Load the furniture prefab
                     GameObject prefab = Resources.Load<GameObject>("Objects/Furnitures/" + handManager.handItem.itemData.itemName.english);
-
+                    
                     // Instantiate the furniture, if it isn't instantiated yet
                     if (!placingObject)
                     {
                         placingObject = Instantiate(prefab, GameObject.Find("Furnitures").transform);
+                        Debug.Log(placingObject);
                         placingObject.layer = 2;
                         placingObject.name = placingObject.name.Replace("(Clone)", "");
                         placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);

@@ -45,7 +45,11 @@ public class Item
             {
                 hand.RemoveItem(this);
             }
-			UpdatedInventory();
-        }
+            //GameObject.FindObjectOfType<InventoryManager>().RefreshInventory();
+            if (UpdatedInventory != null)
+            {
+                UpdatedInventory();
+            }
+		}
     }
 }

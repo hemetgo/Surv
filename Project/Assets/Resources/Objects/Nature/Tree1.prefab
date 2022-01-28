@@ -50,7 +50,7 @@ MonoBehaviour:
   particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
   chopType: 1
   disableCollisionAfter: 1
-  requiredTool: 0
+  requiredTool: 1
   health: 10
   damageRecovery: 0
   destroyAfter: 5
@@ -140,6 +140,7 @@ MonoBehaviour:
   id: Tree1
   saveObject:
     id: 
+    useSceneObject: 0
     saveTransform:
       px: 0
       py: 0

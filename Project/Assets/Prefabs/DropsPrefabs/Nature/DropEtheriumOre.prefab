@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 1323337857404410089}
   - component: {fileID: 1323337857403640009}
   - component: {fileID: 1323337857402640905}
-  - component: {fileID: 1323337857404568780}
   - component: {fileID: 1323337857404568779}
   - component: {fileID: 1323337857404568778}
+  - component: {fileID: 2537416892608945176}
   m_Layer: 0
   m_Name: DropEtheriumOre
   m_TagString: Untagged
@@ -42,7 +42,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1323337857404568777}
-  m_Mesh: {fileID: 4300000, guid: 706549b0f4b6edd4c9720c349de82e12, type: 3}
+  m_Mesh: {fileID: 4300000, guid: 9eac3caddcfbbd544a60ce3a6da0862e, type: 3}
 --- !u!23 &1323337857402640905
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -84,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1323337857404568780
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1323337857404568777}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.63094765, y: 0.33277082, z: 0.6309476}
-  m_Center: {x: 0.000011473894, y: 0.078883715, z: -0.0000038146973}
 --- !u!54 &1323337857404568779
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -131,3 +118,16 @@ MonoBehaviour:
     durability: 0
     inventoryIndex: 0
   dropTimer: 0
+--- !u!65 &2537416892608945176
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1323337857404568777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.40027252, y: 0.8661595, z: 0.3829104}
+  m_Center: {x: 0.0045983265, y: 0.39805046, z: -0.023815414}

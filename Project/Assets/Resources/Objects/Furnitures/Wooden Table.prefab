@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8684818570062591842}
   - component: {fileID: 219849051007530308}
   - component: {fileID: 8684818570062621504}
+  - component: {fileID: 1768347987}
   - component: {fileID: 8684818570065983298}
   - component: {fileID: 8684818570064885122}
   - component: {fileID: 544591208441563754}
@@ -19,7 +20,6 @@ GameObject:
   - component: {fileID: 2500454630026920631}
   - component: {fileID: 7994709870591934356}
   - component: {fileID: 7799049439384136990}
-  - component: {fileID: 1768347987}
   m_Layer: 0
   m_Name: Wooden Table
   m_TagString: Untagged
@@ -57,10 +57,10 @@ MonoBehaviour:
   chopType: 1
   disableCollisionAfter: 0
   requiredTool: 0
-  dropPrefab: {fileID: 4631906520371952654, guid: 9ac0eceae282cc3448b81a3fd111f892, type: 3}
   health: 3
   damageRecovery: 1
   destroyAfter: 0
+  currentDamage: 0
   drops:
   - itemData: {fileID: 11400000, guid: e9ccc6cc8fad1a948a39b2c74859bd25, type: 2}
     amountRange: {x: 1, y: 1}
@@ -82,6 +82,21 @@ MonoBehaviour:
   isOverlapping: 0
   originalMaterial: {fileID: 0}
   redMaterial: {fileID: 0}
+--- !u!114 &1768347987
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8684818570062621506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7ae3f9e6ff1ba9740bc249859c3ebe74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 0}
+  craftTool: 1
+  toolLevel: 0
 --- !u!33 &8684818570065983298
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -212,17 +227,3 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &1768347987
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8684818570062621506}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7ae3f9e6ff1ba9740bc249859c3ebe74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 0}
-  craftTool: 1

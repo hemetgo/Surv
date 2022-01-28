@@ -12,6 +12,11 @@ public class ItemBarManager : MonoBehaviour
 	public List<GameObject> barBackgroundSlot;
 	[HideInInspector] public HandManager handManager;
 
+	private void Awake()
+	{
+		handManager = FindObjectOfType<HandManager>();
+	}
+
 	private void Update()
 	{
 		//if (Cursor.lockState == CursorLockMode.Locked)

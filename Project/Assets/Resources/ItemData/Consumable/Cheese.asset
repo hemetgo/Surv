@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Cheese
     portugues: Queijo
-  icon: {fileID: 21300000, guid: f78d91424df2e6942861440ef66c0928, type: 3}
+  icon: {fileID: 21300000, guid: 4d4572eb4aad8604caa68c529f6998b2, type: 3}
   rarity: 0
   itemType: 3
   ability: 2

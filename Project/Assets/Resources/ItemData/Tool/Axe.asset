@@ -24,15 +24,19 @@ MonoBehaviour:
     portugues: Um belo e eficiente machado
   value: 0
   drop: {fileID: 4251096401772897882, guid: d391d137d7b994749bb1798963fe98cb, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 0
   power: 20
   critRate: 25
   knockbackForce: 10
   recipeTool: 1
+  gasCost: 0
+  toolLevel: 0
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
     amount: 5
   - itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
     amount: 2
-  toolType: 0
+  toolType: 1
   durability: 50

@@ -47,12 +47,12 @@ public class CraftManager : MonoBehaviour
     }
 
     public void RefreshCrafts(bool reselect)
-	{
+    {
         // Limpar slots
         foreach (CraftSlot slot in craftSlots)
-		{
+        {
             Destroy(slot.gameObject);
-		}
+        }
         craftSlots = new List<CraftSlot>();
 
         // Carrega os itens
@@ -62,7 +62,7 @@ public class CraftManager : MonoBehaviour
         {
             int itemTypesCount = Enum.GetNames(typeof(ItemData.ItemType)).Length;
 
-            for (int i = 0; i < itemTypesCount; i++) 
+            for (int i = 0; i < itemTypesCount; i++)
             {
                 List<ItemData> array = Resources.LoadAll<ItemData>("ItemData/" + (ItemData.ItemType)i).ToList();
                 if (array.Count > 0)
@@ -103,8 +103,8 @@ public class CraftManager : MonoBehaviour
             for (int i = 0; i < crafts.Count; i++)
             {
                 ItemData item = crafts[i];
-                int yes = 0; 
-                
+                int yes = 0;
+
                 foreach (IngredientItem ingredient in item.recipe)
                 {
                     if (inventory.GetInventoryAmount(ingredient.itemData) >= ingredient.amount)
@@ -115,20 +115,23 @@ public class CraftManager : MonoBehaviour
 
                 bool canCraft = true;
                 if (currentCraftTool == ItemData.CraftTool.Forge)
-				{
+                {
                     GasToolObject gasTool = craftTool as GasToolObject;
                     if (!gasTool.HaveGas(item.gasCost))
-					{
+                    {
                         canCraft = false;
-                    } 
-				}
+                    }
+                }
 
                 if (yes >= item.recipe.Count && canCraft) craftSlots[i].SetCraftEnabled(true);
                 else craftSlots[i].SetCraftEnabled(false);
             }
         }
-        if (reselect) craftSlots[0]?.SelectCraftSlot();
-        else craftSlots[lastSelectedIndex]?.SelectCraftSlot();
+        if (craftSlots.Count > 0)
+        {
+            if (reselect) craftSlots[0]?.SelectCraftSlot();
+            else craftSlots[lastSelectedIndex]?.SelectCraftSlot();
+        }
     }
 
     public void Craft()

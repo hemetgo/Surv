@@ -4,12 +4,9 @@ using UnityEngine;
 
 public class DecorationObject : MonoBehaviour
 {
-	public GameObject dropPrefab;
 	public bool isPlacing;
 	public bool isOverlapping;
 	
-	private int damage;
-	private float timer;
 	//private Rigidbody rb;
 	private QuickOutline outline;
 

@@ -39,7 +39,7 @@ public class GasToolObject : CraftToolObject
 
     public override void Interact()
     {
-        FindObjectOfType<UIManager>().ResetCrafts(craftTool, toolLevel, this);
+        FindObjectOfType<UIManager>().StartCraft(craftTool, toolLevel, this);
     }
 
     public override bool CanInteract(GameObject obj)
