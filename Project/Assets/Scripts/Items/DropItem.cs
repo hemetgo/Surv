@@ -69,8 +69,19 @@ public class DropItem : MonoBehaviour
 	private void Reset()
 	{
         if (!GetComponent<Rigidbody>()) gameObject.AddComponent<Rigidbody>();
+        item = new Item();
         item.amount = 1;
-        item.durability = item.itemData.GetDurability();
-	}
+
+        ItemData itemData;
+        Resources.Load<ItemData>("ItemData/Decoration/" + gameObject.name);
+        itemData = Resources.Load<ItemData>("ItemData/Battle/" + gameObject.name);
+        itemData = Resources.Load<ItemData>("ItemData/Tool/" + gameObject.name);
+        itemData = Resources.Load<ItemData>("ItemData/Decoration/" + gameObject.name);
+        itemData = Resources.Load<ItemData>("ItemData/Material/" + gameObject.name);
+        itemData = Resources.Load<ItemData>("ItemData/Consumable/" + gameObject.name);
+        itemData = Resources.Load<ItemData>("ItemData/Miscellaneous/" + gameObject.name);
+
+        item.itemData = itemData;
+    }
 
 }

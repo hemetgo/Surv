@@ -54,20 +54,18 @@ public class HandManager : MonoBehaviour
 		{
 			if (!item.itemData.itemName.english.Equals(""))
 			{
-				if (transform.Find(item.itemData.itemName.english))
+				if (transform.Find(item.itemData.itemType.ToString()).Find(item.itemData.itemName.english))
 				{
-					if (transform.Find(item.itemData.itemName.english))
+					if (handItem.itemData.itemType == ItemData.ItemType.Decoration)
 					{
-						if (handItem.itemData.itemType == ItemData.ItemType.Decoration)
-						{
-							handItemObject = transform.Find("Furniture").gameObject;
-						}
-						else
-						{
-							handItemObject = transform.Find(item.itemData.itemName.english).gameObject;
-						}
-						handItemObject.SetActive(true);
+						handItemObject = transform.Find("Furniture").gameObject;
 					}
+					else
+					{
+						handItemObject = transform.Find(item.itemData.itemType.ToString()).Find(item.itemData.itemName.english).gameObject;
+					}
+					handItemObject.SetActive(true);
+					
 				}
 			}
 		}

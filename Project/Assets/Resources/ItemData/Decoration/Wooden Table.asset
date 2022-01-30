@@ -30,7 +30,7 @@ MonoBehaviour:
   power: 5
   critRate: 10
   knockbackForce: 10
-  recipeTool: 0
+  recipeTool: 1
   gasCost: 0
   toolLevel: 0
   recipe:

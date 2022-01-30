@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406c19e64099aba49abf2cc8ab66b784, type: 3}
+  m_Name: Etherium Axe
+  m_EditorClassIdentifier: 
+  itemName:
+    english: Etherium Axe
+    portugues: Machado de Etherium
+  icon: {fileID: 21300000, guid: 284b3cc6a52923c42b7bb1ce4d440949, type: 3}
+  rarity: 0
+  itemType: 1
+  ability: 0
+  description:
+    english: 
+    portugues: 
+  value: 0
+  drop: {fileID: 4753563485616248716, guid: db0e36cf54367da4d967b6fa8b9255f2, type: 3}
+  gasValue: 0
+  gasTypes: 
+  animation: 0
+  power: 5
+  critRate: 25
+  knockbackForce: 10
+  recipeTool: 2
+  gasCost: 0
+  toolLevel: 0
+  recipe:
+  - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
+    amount: 5
+  - itemData: {fileID: 11400000, guid: c66c389132923c84b8a2aa8662028c49, type: 2}
+    amount: 5
+  toolType: 1
+  durability: 200

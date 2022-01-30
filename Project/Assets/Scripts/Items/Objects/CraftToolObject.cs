@@ -29,4 +29,9 @@ public class CraftToolObject : SmartObject
 	{
         return "Interact";
 	}
+
+	private void Reset()
+	{
+		if (!GetComponent<DecorationObject>()) gameObject.AddComponent<DecorationObject>();
+	}
 }

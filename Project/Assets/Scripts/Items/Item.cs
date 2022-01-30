@@ -14,6 +14,10 @@ public class Item
     public delegate void UpdatedInventoryHandler();
     public event UpdatedInventoryHandler UpdatedInventory;
 
+    public Item()
+	{
+	}
+
     public Item(Item item)
 	{
         itemData = item.itemData;

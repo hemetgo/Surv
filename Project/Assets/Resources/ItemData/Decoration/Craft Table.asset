@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
+  m_Name: Craft Table
+  m_EditorClassIdentifier: 
+  itemName:
+    english: Craft Table
+    portugues: "Mesa de Cria\xE7\xF5es"
+  icon: {fileID: 21300000, guid: b9da58de248bd9c4fa5ba54d93a8347f, type: 3}
+  rarity: 0
+  itemType: 4
+  ability: 1
+  description:
+    english: A perfect table for your dining room.
+    portugues: Uma mesa perfeita para sua sala de jantar.
+  value: 0
+  drop: {fileID: 4631906520371952654, guid: 9ac0eceae282cc3448b81a3fd111f892, type: 3}
+  gasValue: 0
+  gasTypes: 
+  animation: 0
+  power: 5
+  critRate: 10
+  knockbackForce: 10
+  recipeTool: 0
+  gasCost: 0
+  toolLevel: 0
+  recipe:
+  - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
+    amount: 10

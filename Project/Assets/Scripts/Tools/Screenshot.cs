@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
@@ -10,6 +11,11 @@ public class Screenshot : MonoBehaviour
 	public Image square;
 
 	private Camera camera;
+
+	private void Start()
+	{
+		Destroy(gameObject);
+	}
 
 #if UNITY_EDITOR
 	public void TakeScreenshot()
@@ -44,8 +50,20 @@ public class Screenshot : MonoBehaviour
 		importer.textureType = TextureImporterType.Sprite;
 		AssetDatabase.WriteImportSettingsIfDirty(path);
 
+		
 		AssetDatabase.Refresh();
+
+		
+		// enable the square pic helper
 		square.gameObject.SetActive(true);
+	}
+
+	public void UpdateItemSprite()
+	{
+		ItemData itemData = GetComponentInChildren<DropItem>().item.itemData;
+
+		// Set the item icon 
+		itemData.icon = Resources.Load<Sprite>("ItemSprites/" + itemData.itemType.ToString() + "/" + itemData.itemName.english);
 	}
 #endif
 }
@@ -63,6 +81,7 @@ public class ScreenshotInspector : Editor
 		{
 			script.TakeScreenshot();
 			script.TakeScreenshot();
+			script.UpdateItemSprite();
 		}
 	}
 }

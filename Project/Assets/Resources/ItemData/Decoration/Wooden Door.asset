@@ -23,12 +23,16 @@ MonoBehaviour:
     english: It's a wooden door, you know?
     portugues: "\xC9 uma porta de madeira, sabia?"
   value: 0
-  drop: {fileID: 4343275805594242591, guid: 130a44048d215814285e6338ae4e4a2e, type: 3}
+  drop: {fileID: 7282841853695593216, guid: 43f00e19323c45041a7e7f441776c103, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10
   recipeTool: 1
+  gasCost: 0
+  toolLevel: 0
   recipe:
   - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
-    amount: 5
+    amount: 25

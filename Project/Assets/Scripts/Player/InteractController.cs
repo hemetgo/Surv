@@ -223,9 +223,23 @@ public class InteractController : MonoBehaviour
                             {
                                 // Overlapping materials
                                 if (!furniture.isOverlapping)
-                                    placingObject.GetComponent<Renderer>().material = furniture.originalMaterial;
+                                    try
+                                    {
+                                        placingObject.GetComponent<DecorationObject>().SetOriginal();
+                                        //placingObject.GetComponent<Renderer>().material = furniture.originalMaterial;
+                                    }
+                                    catch
+                                    {
+                                        Renderer[] rends = placingObject.GetComponentsInChildren<Renderer>();
+                                        foreach (Renderer r in rends)
+                                        {
+                                            placingObject.GetComponent<DecorationObject>().SetOriginal();
+                                            //r.material = furniture.originalMaterial;
+                                        }
+                                    }
                                 else
-                                    placingObject.GetComponent<Renderer>().material = redMaterial;
+                                    placingObject.GetComponent<DecorationObject>().SetRed();
+                                    //placingObject.GetComponent<Renderer>().material = redMaterial;
 
                                 // Place item
                                 if (Input.GetButtonDown("Fire1"))
@@ -249,7 +263,8 @@ public class InteractController : MonoBehaviour
                         else
                         {
                             // If far from player, red material to it
-                            placingObject.GetComponent<Renderer>().material = redMaterial;
+                            //placingObject.GetComponent<Renderer>().material = redMaterial;
+                            placingObject.GetComponent<DecorationObject>().SetRed();
                         }
                     }
 

@@ -39,4 +39,4 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: 66c839612393c8240b39c80c464718c2, type: 2}
     amount: 5
   toolType: 2
-  durability: 100
+  durability: 125

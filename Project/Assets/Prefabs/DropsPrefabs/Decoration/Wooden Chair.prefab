@@ -142,5 +142,6 @@ MonoBehaviour:
   item:
     itemData: {fileID: 11400000, guid: d585676c6b15ffe4e9921afd640112cc, type: 2}
     amount: 1
+    durability: 0
     inventoryIndex: 0
   dropTimer: 0

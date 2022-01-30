@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class ChopObject : SmartObject
@@ -165,4 +166,42 @@ public class ChopObject : SmartObject
     {
         return "Fire1";
     }
+
+	private void Reset()
+	{
+        if (!GetComponent<SavableObject>()) gameObject.AddComponent<SavableObject>();
+	}
+
+    public void SelfDrop()
+	{
+        chopType = ChopType.WhenFinished;
+        damageRecovery = true;
+        health = 3;
+
+        ItemData itemData = Resources.Load<ItemData>("ItemData/Decoration/" + gameObject.name);
+        DropData drop = new DropData();
+        drop.itemData = itemData;
+        drop.amountRange = Vector2Int.one;
+        drop.dropChance = 100;
+
+        drops = new List<DropData>();
+        drops.Add(drop);
+    }
 }
+
+#if UNITY_EDITOR
+[CustomEditor(typeof(ChopObject))]
+public class ChopObjectInspector : Editor
+{
+    public override void OnInspectorGUI()
+    {
+        DrawDefaultInspector();
+
+        ChopObject script = (ChopObject)target;
+        if (GUILayout.Button("Set Self Drop"))
+        {
+            script.SelfDrop();
+        }
+    }
+}
+#endif

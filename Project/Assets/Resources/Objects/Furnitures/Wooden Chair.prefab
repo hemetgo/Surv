@@ -19,7 +19,6 @@ GameObject:
   - component: {fileID: 5737361949861672767}
   - component: {fileID: 373337338264159382}
   - component: {fileID: 4911615107067956312}
-  - component: {fileID: -1189062451709551120}
   m_Layer: 0
   m_Name: Wooden Chair
   m_TagString: Untagged
@@ -56,11 +55,11 @@ MonoBehaviour:
   particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
   chopType: 1
   disableCollisionAfter: 0
-  requiredTool: 0
-  dropPrefab: {fileID: 6278724201056964863, guid: 72a1fcf6acc8b7944956b8003ba944f2, type: 3}
+  requiredTool: 1
   health: 3
   damageRecovery: 1
   destroyAfter: 0
+  currentDamage: 0
   drops:
   - itemData: {fileID: 11400000, guid: d585676c6b15ffe4e9921afd640112cc, type: 2}
     amountRange: {x: 1, y: 1}
@@ -77,7 +76,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dropPrefab: {fileID: 6278724201056964863, guid: 72a1fcf6acc8b7944956b8003ba944f2, type: 3}
   isPlacing: 0
   isOverlapping: 0
   originalMaterial: {fileID: 0}
@@ -209,19 +207,3 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07893216, y: 0.3560973, z: 0.08512154}
   m_Center: {x: -0.23153539, y: 0.17264323, z: -0.19143908}
---- !u!54 &-1189062451709551120
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1335555719641076112}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 126
-  m_CollisionDetection: 0

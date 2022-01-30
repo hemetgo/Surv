@@ -50,6 +50,7 @@ MonoBehaviour:
   item:
     itemData: {fileID: 11400000, guid: a5ee16269cc2e1c42a0c32b9fe63f676, type: 2}
     amount: 1
+    durability: 0
     inventoryIndex: 0
   dropTimer: 0
 --- !u!33 &4251096401772897856

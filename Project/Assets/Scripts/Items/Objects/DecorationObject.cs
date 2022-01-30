@@ -4,49 +4,31 @@ using UnityEngine;
 
 public class DecorationObject : MonoBehaviour
 {
-	public bool isPlacing;
-	public bool isOverlapping;
+	[HideInInspector] public bool isPlacing;
+	[HideInInspector] public bool isOverlapping;
 	
 	//private Rigidbody rb;
 	private QuickOutline outline;
 
-	 public Material originalMaterial;
-	 public Material redMaterial;
+	[HideInInspector] public List<Material[]> originalMaterials = new List<Material[]>();
+	[HideInInspector] public Material redMaterial;
+
+	//List<Material[]> originalMaterials = new List<Material[]>();
 
 	private void Awake()
 	{
-		originalMaterial = GetComponent<Renderer>().material;
+		if (GetComponent<Renderer>())
+		{
+			originalMaterials.Add(GetComponent<Renderer>().materials);
+		}
+		else
+		{
+			foreach(Renderer r in GetComponentsInChildren<Renderer>())
+			{
+				originalMaterials.Add(r.materials);
+			}
+		}
 	}
-
-	//public override void Interact()
-	//{
-	//	damage += 1;
-	//	timer = 0;
-
-	//	if (damage >= 3)
-	//	{
-	//		CatchObject();
-	//	}
-	//}
-
-	//public override bool CanInteract(GameObject obj)
-	//{
-	//	return true;
-	//}
-
-	//public void CatchObject()
-	//{
-	//	GameObject drop =  Instantiate(dropPrefab, transform.position + new Vector3(0, 2, 0), new Quaternion());
-	//	drop.transform.SetParent(GameObject.Find("Drops").transform);
-
-	//	drop.transform.Rotate(UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360), UnityEngine.Random.Range(0, 360));
-	//	drop.GetComponent<Rigidbody>().AddForce(transform.forward * 3, ForceMode.Impulse);
-	//	drop.GetComponent<Rigidbody>().AddForce(Vector3.up * 3 / 1.5f, ForceMode.Impulse);
-	//	drop.GetComponent<DropItem>().dropTimer = 0.5f;
-
-
-	//	Destroy(gameObject);
-	//}
 
     public void RotateLeft()
 	{
@@ -58,10 +40,43 @@ public class DecorationObject : MonoBehaviour
 		transform.Rotate(0, 90, 0);
 	}
 
-	//public override ObjectType GetObjectType()
- //   {
-	//	return ObjectType.Decoration;
- //   }
+	public void SetRed()
+	{
+		if (GetComponent<Renderer>())
+		{
+			GetComponent<Renderer>().materials = new Material[] { redMaterial };
+		}
+		else
+		{
+			Renderer[] rends = GetComponentsInChildren<Renderer>();
+			for (int i = 0; i < rends.Length; i++)
+			{
+				Material[] redList = new Material[rends[i].materials.Length];
+				for(int m = 0; m < rends[i].materials.Length; m++)
+				{
+					redList[m] = redMaterial;
+				}
+
+				rends[i].materials = redList;
+			}
+		}
+	}
+
+	public void SetOriginal()
+	{
+		if (GetComponent<Renderer>())
+		{
+			GetComponent<Renderer>().materials = originalMaterials[0];
+		}
+		else
+		{
+			Renderer[] rends = GetComponentsInChildren<Renderer>();
+			for (int i = 0; i < rends.Length; i++)
+			{
+				rends[i].materials = originalMaterials[i];
+			}
+		}
+	}
 
 	private void OnTriggerStay(Collider other)
 	{
@@ -86,15 +101,22 @@ public class DecorationObject : MonoBehaviour
 			other.GetComponent<DropItem>())
 		{
 			if (isPlacing) {
-				GetComponent<Renderer>().material = originalMaterial;
 				isOverlapping = false;
-			} }
+				if (GetComponent<Renderer>())
+				{
+					GetComponent<Renderer>().materials = originalMaterials[0];
+				}
+				else
+				{
+					Renderer[] rends = GetComponentsInChildren<Renderer>();
+					for (int i = 0; i < rends.Length; i++)
+					{
+						rends[i].materials = originalMaterials[i];
+					}
+				}
+			} 
+		}
 	}
-
-	//public override string GetInteractButton()
-	//{
-	//	return "Fire1";
-	//}
 }
 
 

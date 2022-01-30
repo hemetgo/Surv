@@ -15,7 +15,7 @@ MonoBehaviour:
   itemName:
     english: Wooden Wall
     portugues: Parede de Madeira
-  icon: {fileID: 21300000, guid: 23863748eb8a402469169b49be9d37c9, type: 3}
+  icon: {fileID: 21300000, guid: b9073ee9a6b861446b9fb98eb4a21dcd, type: 3}
   rarity: 0
   itemType: 4
   ability: 1
@@ -23,12 +23,16 @@ MonoBehaviour:
     english: Wall to your home.
     portugues: Parede para sua casa.
   value: 0
-  drop: {fileID: 2222881255175178744, guid: 6c09e871205f7354fac14eac665fba96, type: 3}
+  drop: {fileID: 1520202626757254494, guid: 6c09e871205f7354fac14eac665fba96, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10
   recipeTool: 1
+  gasCost: 0
+  toolLevel: 0
   recipe:
   - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
     amount: 20
