@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
@@ -179,7 +180,6 @@ public class InteractController : MonoBehaviour
                     if (!placingObject)
                     {
                         placingObject = Instantiate(prefab, GameObject.Find("Furnitures").transform);
-                        Debug.Log(placingObject);
                         placingObject.layer = 2;
                         placingObject.name = placingObject.name.Replace("(Clone)", "");
                         placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
@@ -210,11 +210,24 @@ public class InteractController : MonoBehaviour
                     // If placement furniture object exists
                     if (placingObject)
                     {
-                        // Snap to grid
-                        if (gridPlacement)
-                            placingObject.transform.position = new Vector3((int)hitPoint.x, hitPoint.y, (int)hitPoint.z);
+                        // Placing object position
+                        if (hit.collider.gameObject.GetComponent<SnapPoint>() && furniture.snap)
+                        {
+                            SnapPoint snapPoint = hit.collider.gameObject.GetComponent<SnapPoint>();
+                            placingObject.transform.position = snapPoint.transform.position;
+                        }
                         else
-                            placingObject.transform.position = hitPoint + (Vector3.up  * 0.015f);
+                        {
+                            if (gridPlacement)
+                                // Snap to grid
+                                placingObject.transform.position = new Vector3(
+                                    (float)(Math.Round(hitPoint.x * 4, MidpointRounding.ToEven) / 4),
+                                    (float)(Math.Round(hitPoint.y * 4, MidpointRounding.ToEven) / 4),
+                                    (float)(Math.Round(hitPoint.z * 4, MidpointRounding.ToEven) / 4));
+                            //placingObject.transform.position = new Vector3((int)hitPoint.x, (int)hitPoint.y, (int)hitPoint.z);
+                            else
+                                placingObject.transform.position = hitPoint + (Vector3.up * 0.015f);
+                        }
 
                         // Placement
                         if (Vector3.Distance(transform.position, placingObject.transform.position) < placingRange)
@@ -242,7 +255,7 @@ public class InteractController : MonoBehaviour
                                     //placingObject.GetComponent<Renderer>().material = redMaterial;
 
                                 // Place item
-                                if (Input.GetButtonDown("Fire1"))
+                                if (Input.GetButtonDown("Fire1") && FindObjectOfType<UIManager>().state == UIManager.MenuState.None)
                                 {
                                     if (!furniture.isOverlapping)
                                     {
@@ -256,6 +269,7 @@ public class InteractController : MonoBehaviour
                                         placingObject.layer = 0;
                                         placingObject = null;
                                         furniture.isOverlapping = false;
+                                        furniture.EnableSnappingPoints(true);
                                     }
                                 }
                             }

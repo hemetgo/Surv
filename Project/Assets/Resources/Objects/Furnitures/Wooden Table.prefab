@@ -79,7 +79,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlacing: 0
   isOverlapping: 0
-  originalMaterial: {fileID: 0}
   redMaterial: {fileID: 0}
 --- !u!114 &1768347987
 MonoBehaviour:

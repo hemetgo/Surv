@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class DecorationObject : MonoBehaviour
 {
+	public bool snap;
+
 	[HideInInspector] public bool isPlacing;
 	[HideInInspector] public bool isOverlapping;
 	
@@ -17,6 +19,8 @@ public class DecorationObject : MonoBehaviour
 
 	private void Awake()
 	{
+		EnableSnappingPoints(false);
+
 		if (GetComponent<Renderer>())
 		{
 			originalMaterials.Add(GetComponent<Renderer>().materials);
@@ -75,6 +79,29 @@ public class DecorationObject : MonoBehaviour
 			{
 				rends[i].materials = originalMaterials[i];
 			}
+		}
+	}
+
+	public void EnableSnappingPoints(bool enable)
+	{
+		foreach (SnapPoint snap in GetComponentsInChildren<SnapPoint>())
+		{
+			if (enable)
+				snap.gameObject.layer = 0;
+			else
+				snap.gameObject.layer = 2;
+
+			snap.enabled = enable;
+		}
+
+		foreach (Collider col in GetComponents<Collider>())
+		{
+			col.enabled = enable;
+		}
+
+		foreach (Collider col in GetComponentsInChildren<Collider>())
+		{
+			col.enabled = enable;
 		}
 	}
 

@@ -78,7 +78,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   isPlacing: 0
   isOverlapping: 0
-  originalMaterial: {fileID: 0}
   redMaterial: {fileID: 0}
 --- !u!33 &1335555719637847440
 MeshFilter:

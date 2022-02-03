@@ -46,6 +46,11 @@ public class Toolkit
 		return intList;
 	}
 
+	public float QuarterRound(float number)
+	{
+		return (float)(System.Math.Round(number * 4, System.MidpointRounding.ToEven) / 4);
+	}
+
 	//Offset x, y e z
 
 	public IEnumerator Delay(float delay)

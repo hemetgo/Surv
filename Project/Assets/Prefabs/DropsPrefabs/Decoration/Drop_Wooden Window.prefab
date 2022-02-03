@@ -90,9 +90,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7488373691026945923}
-  - component: {fileID: 8000816690945590118}
   - component: {fileID: 4086371336807250441}
   - component: {fileID: 2490864328417705434}
+  - component: {fileID: 1421618771998200482}
   m_Layer: 0
   m_Name: Drop_Wooden Window
   m_TagString: Untagged
@@ -116,19 +116,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!65 &8000816690945590118
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7829469052626726201}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.684674, y: 1.8995403, z: 0.08526739}
-  m_Center: {x: 0.011765799, y: 0.9264495, z: -0.03970337}
 --- !u!54 &4086371336807250441
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -163,6 +150,19 @@ MonoBehaviour:
     durability: 0
     inventoryIndex: 0
   dropTimer: 0
+--- !u!65 &1421618771998200482
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7829469052626726201}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.7147896, y: 1.9031453, z: 1}
+  m_Center: {x: -0.8500211, y: 0.95385903, z: 0}
 --- !u!1 &8607375601938341163
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +222,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 859072431385703698, guid: 325de5beeb5944143aa905e899dc99e3, type: 3}
+  - {fileID: 2100000, guid: 6c6795a7f253eb14186d2aecfc43d1bb, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
