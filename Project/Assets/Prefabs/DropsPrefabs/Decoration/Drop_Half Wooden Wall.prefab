@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 6017460415428789105}
   - component: {fileID: 7218579472773319892}
   - component: {fileID: 4884572164411652126}
-  - component: {fileID: 6227686153547625516}
   - component: {fileID: 8997736563097762598}
   - component: {fileID: 2432819567790437764}
+  - component: {fileID: 3103180547726601999}
   m_Layer: 0
   m_Name: Drop_Half Wooden Wall
   m_TagString: Untagged
@@ -84,19 +84,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6227686153547625516
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6397786519124040139}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.017115531, y: 0.009512057, z: 0.0006201782}
-  m_Center: {x: -0.008470026, y: 0.0047560283, z: -0.00010852041}
 --- !u!54 &8997736563097762598
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -112,7 +99,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!114 &2432819567790437764
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -131,3 +118,16 @@ MonoBehaviour:
     durability: 0
     inventoryIndex: 0
   dropTimer: 0
+--- !u!65 &3103180547726601999
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6397786519124040139}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.01701183, y: 0.009512058, z: 0.0006201782}
+  m_Center: {x: 0.0000000032596295, y: 0.0047557666, z: 0.0000014382385}

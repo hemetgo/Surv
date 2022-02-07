@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
+  m_Name: Triangular Wooden Wall
+  m_EditorClassIdentifier: 
+  itemName:
+    english: Triangular Wooden Wall
+    portugues: Parede de Madeira Triangular
+  icon: {fileID: 21300000, guid: b7c8ee72559c0994eba72642bf4dbf94, type: 3}
+  rarity: 0
+  itemType: 4
+  ability: 1
+  description:
+    english: Wall to your home.
+    portugues: Parede para sua casa.
+  value: 0
+  drop: {fileID: 5728759247860806908, guid: d1429c127e2b3e1418cf675c4d7b8ac7, type: 3}
+  gasValue: 0
+  gasTypes: 
+  animation: 0
+  power: 5
+  critRate: 10
+  knockbackForce: 10
+  recipeTool: 1
+  gasCost: 0
+  toolLevel: 0
+  recipe:
+  - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
+    amount: 10

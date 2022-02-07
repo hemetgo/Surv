@@ -23,7 +23,7 @@ MonoBehaviour:
     english: A perfect table for your dining room.
     portugues: Uma mesa perfeita para sua sala de jantar.
   value: 0
-  drop: {fileID: 4631906520371952654, guid: 9ac0eceae282cc3448b81a3fd111f892, type: 3}
+  drop: {fileID: 5310973360562398199, guid: 875c4cdfa7ab70b469671b857818dd87, type: 3}
   gasValue: 0
   gasTypes: 
   animation: 0

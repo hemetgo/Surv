@@ -23,7 +23,7 @@ MonoBehaviour:
     english: 
     portugues: 
   value: 0
-  drop: {fileID: 1526151768309145158, guid: 16980565c6ebc66469b9a72b04e78231, type: 3}
+  drop: {fileID: 8758090545487712620, guid: a3af2ddbaf13ad04f87abc4f0ba6c50f, type: 3}
   gasValue: 0
   gasTypes: 
   animation: 0

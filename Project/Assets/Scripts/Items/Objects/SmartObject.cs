@@ -6,7 +6,7 @@ public class SmartObject : MonoBehaviour
 {
     public GameObject particle;
     
-    public enum ObjectType { None, Chop, Decoration, Chest, CraftTool }
+    public enum ObjectType { None, Chop, Decoration, Chest, CraftTool, Door }
 
     public virtual void Interact()
     {

@@ -4,10 +4,15 @@ using UnityEngine;
 
 public class DecorationObject : MonoBehaviour
 {
-	public bool snap;
+	public BoxCollider placingCollider;
+	public Collider triggerCollider;
+	public Renderer rend;
+	[HideInInspector] public bool isHorizontal;
+	public SnapType snap;
+	public enum SnapType { None, Wall, Ground }
 
 	[HideInInspector] public bool isPlacing;
-	[HideInInspector] public bool isOverlapping;
+	public bool isOverlapping;
 	
 	//private Rigidbody rb;
 	private QuickOutline outline;
@@ -19,7 +24,8 @@ public class DecorationObject : MonoBehaviour
 
 	private void Awake()
 	{
-		EnableSnappingPoints(false);
+		EnableRigidbody(true);
+		EnableSnappingPoints(false);		
 
 		if (GetComponent<Renderer>())
 		{
@@ -32,9 +38,11 @@ public class DecorationObject : MonoBehaviour
 				originalMaterials.Add(r.materials);
 			}
 		}
+
+		placingCollider.enabled = true;
 	}
 
-    public void RotateLeft()
+	public void RotateLeft()
 	{
 		transform.Rotate(0, -90, 0);
 	}
@@ -42,6 +50,27 @@ public class DecorationObject : MonoBehaviour
 	public void RotateRight()
 	{
 		transform.Rotate(0, 90, 0);
+	}
+	public void SetMaterial(Material mat)
+	{
+		if (GetComponent<Renderer>())
+		{
+			GetComponent<Renderer>().materials = new Material[] { mat };
+		}
+		else
+		{
+			Renderer[] rends = GetComponentsInChildren<Renderer>();
+			for (int i = 0; i < rends.Length; i++)
+			{
+				Material[] matList = new Material[rends[i].materials.Length];
+				for (int m = 0; m < rends[i].materials.Length; m++)
+				{
+					matList[m] = mat;
+				}
+
+				rends[i].materials = matList;
+			}
+		}
 	}
 
 	public void SetRed()
@@ -66,7 +95,7 @@ public class DecorationObject : MonoBehaviour
 		}
 	}
 
-	public void SetOriginal()
+	public void SetOriginalMaterials()
 	{
 		if (GetComponent<Renderer>())
 		{
@@ -80,6 +109,19 @@ public class DecorationObject : MonoBehaviour
 				rends[i].materials = originalMaterials[i];
 			}
 		}
+	}
+
+	public void PlaceObject()
+	{
+		isPlacing = false;
+		isOverlapping = false;
+		gameObject.layer = 0;
+		foreach (Transform go in GetComponentsInChildren<Transform>()) go.gameObject.layer = 0;
+		SetOriginalMaterials();
+		EnableSnappingPoints(true);
+		EnableTrigger(false);
+		EnableRigidbody(false);
+		Destroy(placingCollider);
 	}
 
 	public void EnableSnappingPoints(bool enable)
@@ -104,8 +146,33 @@ public class DecorationObject : MonoBehaviour
 			col.enabled = enable;
 		}
 	}
+	public void EnableTrigger(bool enable)
+	{
+		foreach (BoxCollider box in GetComponents<BoxCollider>())
+		{
+			if (box != triggerCollider)
+				box.isTrigger = enable;
+		}
+	}
+	public void EnableRigidbody(bool enable)
+	{
+		if (enable)
+		{
+			Rigidbody rig = gameObject.AddComponent<Rigidbody>();
+			if (rig)
+			{
+				rig.useGravity = false;
+				rig.isKinematic = true;
+			}
+		}
+		else
+		{
+			Destroy(GetComponent<Rigidbody>());
+		}
+	}
+	
 
-	private void OnTriggerStay(Collider other)
+	private void OnTriggerEnter(Collider other)
 	{
 		if (other.GetComponent<DecorationObject>() ||
 			other.GetComponent<AiAgent>() ||
@@ -114,8 +181,8 @@ public class DecorationObject : MonoBehaviour
 		{
 			if (isPlacing) 
 			{
-				GetComponent<Renderer>().material = redMaterial;
 				isOverlapping = true;
+				//GetComponent<Renderer>().material = redMaterial;
 			}
 		}
 	}
@@ -127,7 +194,9 @@ public class DecorationObject : MonoBehaviour
 			other.GetComponent<SmartObject>() ||
 			other.GetComponent<DropItem>())
 		{
-			if (isPlacing) {
+			if (isPlacing) 
+			{
+				
 				isOverlapping = false;
 				if (GetComponent<Renderer>())
 				{
@@ -144,6 +213,7 @@ public class DecorationObject : MonoBehaviour
 			} 
 		}
 	}
+
 }
 
 

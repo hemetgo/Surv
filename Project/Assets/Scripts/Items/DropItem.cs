@@ -53,7 +53,8 @@ public class DropItem : MonoBehaviour
 
             if (followPlayer)
             {
-                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 25 * Time.deltaTime);
+                Vector3 movePos = player.transform.position + (Vector3.up * player.GetComponent<Collider>().bounds.size.y / 2);
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 15 * Time.deltaTime);
                 //transform.position = Vector3.Lerp(transform.position, player.transform.position, 10 * Time.deltaTime);
                 if (distance < 0.5f)
                 {
@@ -73,7 +74,7 @@ public class DropItem : MonoBehaviour
         item.amount = 1;
 
         ItemData itemData;
-        Resources.Load<ItemData>("ItemData/Decoration/" + gameObject.name);
+        itemData = Resources.Load<ItemData>("ItemData/Decoration/" + gameObject.name);
         itemData = Resources.Load<ItemData>("ItemData/Battle/" + gameObject.name);
         itemData = Resources.Load<ItemData>("ItemData/Tool/" + gameObject.name);
         itemData = Resources.Load<ItemData>("ItemData/Decoration/" + gameObject.name);
@@ -83,5 +84,4 @@ public class DropItem : MonoBehaviour
 
         item.itemData = itemData;
     }
-
 }

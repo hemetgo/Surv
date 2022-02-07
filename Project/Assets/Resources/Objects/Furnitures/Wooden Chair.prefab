@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 5737361949861672767}
   - component: {fileID: 373337338264159382}
   - component: {fileID: 4911615107067956312}
+  - component: {fileID: -6793708437577359896}
   m_Layer: 0
   m_Name: Wooden Chair
   m_TagString: Untagged
@@ -35,7 +36,7 @@ Transform:
   m_GameObject: {fileID: 1335555719641076112}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4999998, y: 2.5, z: 2.4999998}
+  m_LocalScale: {x: 1.7567825, y: 1.7567828, z: 1.7567825}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -76,6 +77,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placingCollider: {fileID: 0}
+  rend: {fileID: 0}
+  isHorizontal: 0
+  snap: 0
   isPlacing: 0
   isOverlapping: 0
   redMaterial: {fileID: 0}
@@ -206,3 +211,28 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07893216, y: 0.3560973, z: 0.08512154}
   m_Center: {x: -0.23153539, y: 0.17264323, z: -0.19143908}
+--- !u!114 &-6793708437577359896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1335555719641076112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  id: Wooden Chair
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []

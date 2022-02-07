@@ -65,7 +65,6 @@ public class HandManager : MonoBehaviour
 						handItemObject = transform.Find(item.itemData.itemType.ToString()).Find(item.itemData.itemName.english).gameObject;
 					}
 					handItemObject.SetActive(true);
-					
 				}
 			}
 		}

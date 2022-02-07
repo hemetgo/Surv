@@ -25,13 +25,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 87413508808722869}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7070602, w: 0.7071534}
-  m_LocalPosition: {x: -0.017013997, y: 0.018997999, z: -0.000035999998}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0000021029264, y: 0.018996878, z: 0}
   m_LocalScale: {x: 0.0025703837, y: 0.01535295, z: 0.0014978333}
   m_Children: []
   m_Father: {fileID: 5759729507602069559}
   m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.992}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &3717722114571610039
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.8216304, y: 1.1037414, z: 2.214407}
-  m_Center: {x: -0.16669449, y: -0.5546244, z: 0.035380166}
+  m_Size: {x: 6.553616, y: 0.21701828, z: 2.02}
+  m_Center: {x: 0, y: -0.010522533, z: 0.035380103}
 --- !u!114 &1373278653453677933
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ GameObject:
   - component: {fileID: 1141536018348178817}
   - component: {fileID: 5804705354336052681}
   m_Layer: 0
-  m_Name: SideA
+  m_Name: Right
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,7 +83,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4791003885761336117}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.00043994648, y: -0.000049999995, z: -0.000035999998}
+  m_LocalPosition: {x: 0.00848, y: 0, z: 0}
   m_LocalScale: {x: 0.0025703837, y: 0.018312339, z: 0.0014978333}
   m_Children: []
   m_Father: {fileID: 5759729507602069559}
@@ -100,8 +100,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.1542542, y: 1.0442593, z: 1.9587821}
-  m_Center: {x: -0.12439565, y: 0.52304125, z: 0.046998993}
+  m_Size: {x: 1.352132, y: 0.9348052, z: 2.02}
+  m_Center: {x: -0.025455121, y: 0.46831396, z: 0.046998993}
 --- !u!114 &5804705354336052681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -128,9 +128,10 @@ GameObject:
   - component: {fileID: 4946495916673901207}
   - component: {fileID: 4946495916673901192}
   - component: {fileID: 4946495916673901193}
-  - component: {fileID: 4946495916673901194}
-  - component: {fileID: 4946495916673901195}
-  - component: {fileID: 4946495916673901196}
+  - component: {fileID: 1618195834381204766}
+  - component: {fileID: 7636540933197032605}
+  - component: {fileID: 8320454077397365680}
+  - component: {fileID: 1731432723027944784}
   m_Layer: 2
   m_Name: Wooden Arc
   m_TagString: Untagged
@@ -222,6 +223,7 @@ MonoBehaviour:
   requiredTool: 1
   health: 3
   damageRecovery: 0
+  destroyParent: 0
   destroyAfter: 0
   currentDamage: 0
   drops:
@@ -265,11 +267,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  placingCollider: {fileID: 1731432723027944784}
+  rend: {fileID: 0}
+  isHorizontal: 0
   snap: 1
   isPlacing: 0
   isOverlapping: 0
   redMaterial: {fileID: 0}
---- !u!65 &4946495916673901194
+--- !u!65 &1618195834381204766
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -280,9 +285,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.003069242, y: 0.01896737, z: 0.0023760463}
-  m_Center: {x: -0.0014433863, y: 0.009483688, z: -9.934108e-11}
---- !u!65 &4946495916673901195
+  m_Size: {x: 0.002968132, y: 0.01896737, z: 0.0023760463}
+  m_Center: {x: -0.006939658, y: 0.009483688, z: -9.934108e-11}
+--- !u!65 &7636540933197032605
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,9 +298,9 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.003069247, y: 0.01896737, z: 0.0023760463}
-  m_Center: {x: -0.0154371215, y: 0.009483688, z: -9.934108e-11}
---- !u!65 &4946495916673901196
+  m_Size: {x: 0.0030393174, y: 0.01896737, z: 0.0023760463}
+  m_Center: {x: 0.006904074, y: 0.009483688, z: -9.934108e-11}
+--- !u!65 &8320454077397365680
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -306,8 +311,21 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.016991124, y: 0.002074871, z: 0.0023760463}
-  m_Center: {x: -0.008476166, y: 0.017929953, z: -9.934108e-11}
+  m_Size: {x: 0.016847435, y: 0.0019563425, z: 0.0023760463}
+  m_Center: {x: 0, y: 0.017989222, z: -9.934108e-11}
+--- !u!65 &1731432723027944784
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4946495916673901197}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.011806162, y: 0.014837162, z: 0.0023760463}
+  m_Center: {x: 0.0004555307, y: 0.009483693, z: -9.934108e-11}
 --- !u!1 &7782689613945588236
 GameObject:
   m_ObjectHideFlags: 0
@@ -320,7 +338,7 @@ GameObject:
   - component: {fileID: 2307936216402118884}
   - component: {fileID: 6448187483150912488}
   m_Layer: 0
-  m_Name: SideB
+  m_Name: Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,7 +352,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7782689613945588236}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.016745947, y: 0.000019999998, z: -0.000035999998}
+  m_LocalPosition: {x: -0.00847, y: 0, z: 0}
   m_LocalScale: {x: 0.0025703837, y: 0.018312339, z: 0.0014978333}
   m_Children: []
   m_Father: {fileID: 5759729507602069559}
@@ -351,8 +369,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.0123929, y: 1.0417238, z: 1.9963814}
-  m_Center: {x: 0.17982574, y: 0.5186668, z: 0.028199423}
+  m_Size: {x: 1.4560944, y: 0.93890285, z: 2.02}
+  m_Center: {x: -0.042027503, y: 0.46725652, z: 0.028199423}
 --- !u!114 &6448187483150912488
 MonoBehaviour:
   m_ObjectHideFlags: 0

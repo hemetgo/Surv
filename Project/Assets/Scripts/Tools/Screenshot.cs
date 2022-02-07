@@ -60,7 +60,8 @@ public class Screenshot : MonoBehaviour
 
 	public void UpdateItemSprite()
 	{
-		ItemData itemData = GetComponentInChildren<DropItem>().item.itemData;
+		DropItem drop = GetComponentInChildren<DropItem>();
+		ItemData itemData = drop.item.itemData;
 
 		// Set the item icon 
 		itemData.icon = Resources.Load<Sprite>("ItemSprites/" + itemData.itemType.ToString() + "/" + itemData.itemName.english);

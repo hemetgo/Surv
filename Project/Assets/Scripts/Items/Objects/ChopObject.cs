@@ -11,6 +11,7 @@ public class ChopObject : SmartObject
     public ToolData.ToolType requiredTool;
     public int health;
     public bool damageRecovery;
+    public bool destroyParent;
     public float destroyAfter;
     public int currentDamage;
 
@@ -46,7 +47,14 @@ public class ChopObject : SmartObject
                         {
                             Down();
                         }
-                        Destroy(gameObject, destroyAfter);
+                        if (destroyParent)
+						{
+                            Destroy(transform.parent.gameObject);
+						}
+						else
+						{
+                            Destroy(gameObject, destroyAfter);
+                        }
                     }
                 }
                 break;
@@ -177,13 +185,14 @@ public class ChopObject : SmartObject
         chopType = ChopType.WhenFinished;
         damageRecovery = true;
         health = 3;
+        requiredTool = ToolData.ToolType.Axe;
 
         ItemData itemData = Resources.Load<ItemData>("ItemData/Decoration/" + gameObject.name);
         DropData drop = new DropData();
         drop.itemData = itemData;
         drop.amountRange = Vector2Int.one;
         drop.dropChance = 100;
-
+        
         drops = new List<DropData>();
         drops.Add(drop);
     }
