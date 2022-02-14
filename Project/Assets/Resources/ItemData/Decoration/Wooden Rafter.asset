@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
   m_Name: Wooden Rafter
   m_EditorClassIdentifier: 
+  enable: 0
   itemName:
     english: Wooden Rafter
     portugues: Caibro de Madeira

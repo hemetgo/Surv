@@ -68,7 +68,7 @@ public class SaveManager : MonoBehaviour
 					foreach(SavableObject sav in savableObjects)
 					{
 						
-						if (sav.id == saveObject.id)
+						if (sav.gameObject.name == saveObject.id)
 						{
 							sav.LoadData(saveObject);
 						}
@@ -77,8 +77,9 @@ public class SaveManager : MonoBehaviour
 				else
 				{
 					GameObject prefab = saveObject.GetPrefab();
-					SavableObject gameObject = Instantiate(prefab).GetComponent<SavableObject>();
-					gameObject.LoadData(saveObject);
+					SavableObject loadObject = Instantiate(prefab).GetComponent<SavableObject>();
+					loadObject.name = prefab.name;
+					loadObject.LoadData(saveObject);
 				}
 			}
 		}

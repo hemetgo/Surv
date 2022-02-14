@@ -8,10 +8,17 @@ public class DoorObject : SmartObject
 	public float[] openAngles;
 	public bool isOpen;
 	private bool canInteract;
+	private List<Vector3> startRots = new List<Vector3>();
+	private List<Vector3> openRots = new List<Vector3>();
 
 	private void Start()
 	{
 		canInteract = true;
+		for (int i = 0; i < doors.Length; i++)
+		{
+			startRots.Add(doors[i].transform.localEulerAngles);
+			openRots.Add(doors[i].transform.localEulerAngles + new Vector3(0, openAngles[i], 0));
+		}
 	}
 
 	public override void Interact()
@@ -23,14 +30,14 @@ public class DoorObject : SmartObject
 		{
 			for (int i = 0; i < doors.Length; i++)
 			{
-				doors[i].transform.Rotate(0, openAngles[i], 0);
+				doors[i].transform.localEulerAngles = openRots[i];
 			}
 		}
 		else
 		{
 			for (int i = 0; i < doors.Length; i++)
 			{
-				doors[i].transform.eulerAngles = new Vector3(0, 0, 0);
+				doors[i].transform.localEulerAngles = startRots[i];
 			}
 		}
 

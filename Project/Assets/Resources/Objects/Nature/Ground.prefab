@@ -124,7 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Ground
+  saveData: {fileID: 0}
+  type: 2
   saveObject:
     id: 
     useSceneObject: 0

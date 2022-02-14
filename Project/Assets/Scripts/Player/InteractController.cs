@@ -194,7 +194,7 @@ public class InteractController : MonoBehaviour
                     }
 
                     // Load the furniture prefab
-                    GameObject prefab = Resources.Load<GameObject>("Objects/Furnitures/" + handManager.handItem.itemData.itemName.english);
+                    GameObject prefab = Resources.Load<GameObject>("Objects/Decoration/" + handManager.handItem.itemData.itemName.english);
                     
                     // Instantiate the furniture, if it isn't instantiated yet
                     if (!placingObject)
@@ -205,8 +205,11 @@ public class InteractController : MonoBehaviour
                         placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
                         decorationObject = placingObject.GetComponent<DecorationObject>();
                         decorationObject.EnableTrigger(true);
+                        decorationObject.EnableRigidbody(true);
+                        decorationObject.EnableSnappingPoints(false);
                         decorationObject.redMaterial = redMaterial;
                         decorationObject.isPlacing = true;
+                        decorationObject.placingCollider.enabled = true;
                     }
 
                     // Controls
@@ -372,23 +375,9 @@ public class InteractController : MonoBehaviour
                             {
                                 // Overlapping materials
                                 if (!decorationObject.isOverlapping)
-                                    try
-                                    {
                                         decorationObject.SetMaterial(placingMaterial);
-                                        //placingObject.GetComponent<Renderer>().material = furniture.originalMaterial;
-                                    }
-                                    catch
-                                    {
-                                        Renderer[] rends = placingObject.GetComponentsInChildren<Renderer>();
-                                        foreach (Renderer r in rends)
-                                        {
-                                            decorationObject.SetMaterial(placingMaterial);
-                                            //r.material = furniture.originalMaterial;
-                                        }
-                                    }
                                 else
                                     decorationObject.SetRed();
-                                    //placingObject.GetComponent<Renderer>().material = redMaterial;
 
                                 // Place item
                                 if (Input.GetButtonDown("Fire1") && FindObjectOfType<UIManager>().state == UIManager.MenuState.None)

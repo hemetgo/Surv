@@ -17,7 +17,28 @@ public class SnapPoint : MonoBehaviour
 	{
 		if (decorParent.snap == DecorationObject.SnapType.Wall)
 		{
+			if (transform.position.y > transform.parent.position.y)
+				return Position.Top;
+			else if (transform.position.y < transform.parent.position.y)
+				return Position.Bottom;
 
+			if (decorParent.isHorizontal)
+			{
+				if (transform.position.z < transform.parent.position.x)
+					return Position.Left;
+				else if (transform.position.x > transform.parent.position.x)
+					return Position.Right;
+			}
+			else
+			{
+				if (transform.position.z > transform.parent.position.z)
+					return Position.Left;
+				else if (transform.position.z < transform.parent.position.z)
+					return Position.Right;
+			}
+		}
+		else if (decorParent.snap == DecorationObject.SnapType.WallZ)
+		{
 			if (transform.position.y > transform.parent.position.y)
 				return Position.Top;
 			else if (transform.position.y < transform.parent.position.y)

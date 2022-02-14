@@ -49,10 +49,12 @@ MonoBehaviour:
   particle: {fileID: 5100472910814271774, guid: f584cc588f9778949b3f28d6c13279a1, type: 3}
   chopType: 0
   disableCollisionAfter: 1
-  requiredTool: 1
+  requiredTool: 2
   health: 10
   damageRecovery: 0
+  destroyParent: 0
   destroyAfter: 1
+  currentDamage: 0
   drops:
   - itemData: {fileID: 11400000, guid: 5f12f1521e14fb0459482a394da110fe, type: 2}
     amountRange: {x: 1, y: 2}

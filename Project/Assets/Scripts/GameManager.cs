@@ -10,6 +10,9 @@ public class GameManager : MonoBehaviour
     public InventoryManager inventoryManager;
     public GameObject terrainPrefab;
     public GameObject gui;
+    public FirstPersonController player;
+
+    public bool dungeon;
 
     public List<Item> startItems = new List<Item>();
 
@@ -25,17 +28,19 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            NewGame();
+            if (!dungeon) NewGame();
         }
     }
 
     public void NewGame()
 	{
         RandomTerrain terrain = Instantiate(terrainPrefab).GetComponent<RandomTerrain>();
+        player = FindObjectOfType<FirstPersonController>();
         terrain.StarTerrain();
         gui.SetActive(true);
 
         saveManager.SaveGame();
+        player.transform.Find("StartItems").gameObject.SetActive(true);
     }
 }
 

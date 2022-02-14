@@ -80,7 +80,17 @@ public class ChopObject : SmartObject
     private void Down()
 	{
         Transform player = FindObjectOfType<FirstPersonController>().transform;
-        if (disableCollisionAfter) Physics.IgnoreCollision(GetComponent<Collider>(), player.GetComponent<Collider>());
+        if (disableCollisionAfter)
+        {
+            foreach(Collider col in GetComponents<Collider>())
+			{
+                Physics.IgnoreCollision(col, player.GetComponent<Collider>());
+            }
+            foreach (Collider col in GetComponentsInChildren<Collider>())
+            {
+                Physics.IgnoreCollision(col, player.GetComponent<Collider>());
+            }
+        }
         Rigidbody rb = gameObject.AddComponent<Rigidbody>();
         rb.constraints = RigidbodyConstraints.FreezeRotationY;
         rb.AddForceAtPosition(
@@ -177,7 +187,7 @@ public class ChopObject : SmartObject
 
 	private void Reset()
 	{
-        if (!GetComponent<SavableObject>()) gameObject.AddComponent<SavableObject>();
+        //if (!GetComponent<SavableObject>()) gameObject.AddComponent<SavableObject>();
 	}
 
     public void SelfDrop()

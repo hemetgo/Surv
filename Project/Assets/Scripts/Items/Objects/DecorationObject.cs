@@ -9,7 +9,7 @@ public class DecorationObject : MonoBehaviour
 	public Renderer rend;
 	[HideInInspector] public bool isHorizontal;
 	public SnapType snap;
-	public enum SnapType { None, Wall, Ground }
+	public enum SnapType { None, Wall, Ground, WallZ }
 
 	[HideInInspector] public bool isPlacing;
 	public bool isOverlapping;
@@ -24,12 +24,13 @@ public class DecorationObject : MonoBehaviour
 
 	private void Awake()
 	{
-		EnableRigidbody(true);
-		EnableSnappingPoints(false);		
-
 		if (GetComponent<Renderer>())
 		{
 			originalMaterials.Add(GetComponent<Renderer>().materials);
+			foreach (Renderer r in GetComponentsInChildren<Renderer>())
+			{
+				originalMaterials.Add(r.materials);
+			}
 		}
 		else
 		{
@@ -39,7 +40,11 @@ public class DecorationObject : MonoBehaviour
 			}
 		}
 
-		placingCollider.enabled = true;
+		if (rend == null) rend = GetComponent<Renderer>();
+		//if (placingCollider == null) placingCollider = GetComponent<BoxCollider>();
+		//placingCollider.enabled = true;
+
+		PlaceObject();
 	}
 
 	public void RotateLeft()
@@ -56,6 +61,17 @@ public class DecorationObject : MonoBehaviour
 		if (GetComponent<Renderer>())
 		{
 			GetComponent<Renderer>().materials = new Material[] { mat };
+			Renderer[] rends = GetComponentsInChildren<Renderer>();
+			for (int i = 0; i < rends.Length; i++)
+			{
+				Material[] matList = new Material[rends[i].materials.Length];
+				for (int m = 0; m < rends[i].materials.Length; m++)
+				{
+					matList[m] = mat;
+				}
+
+				rends[i].materials = matList;
+			}
 		}
 		else
 		{
@@ -78,6 +94,17 @@ public class DecorationObject : MonoBehaviour
 		if (GetComponent<Renderer>())
 		{
 			GetComponent<Renderer>().materials = new Material[] { redMaterial };
+			Renderer[] rends = GetComponentsInChildren<Renderer>();
+			for (int i = 0; i < rends.Length; i++)
+			{
+				Material[] redList = new Material[rends[i].materials.Length];
+				for (int m = 0; m < rends[i].materials.Length; m++)
+				{
+					redList[m] = redMaterial;
+				}
+
+				rends[i].materials = redList;
+			}
 		}
 		else
 		{
@@ -100,6 +127,11 @@ public class DecorationObject : MonoBehaviour
 		if (GetComponent<Renderer>())
 		{
 			GetComponent<Renderer>().materials = originalMaterials[0];
+			Renderer[] rends = GetComponentsInChildren<Renderer>();
+			for (int i = 1; i < rends.Length; i++)
+			{
+				rends[i].materials = originalMaterials[i];
+			}
 		}
 		else
 		{

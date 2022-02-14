@@ -66,7 +66,9 @@ public class CraftManager : MonoBehaviour
             {
                 List<ItemData> array = Resources.LoadAll<ItemData>("ItemData/" + (ItemData.ItemType)i).ToList();
                 if (array.Count > 0)
-                    foreach (ItemData item in array) itemDatas.Add(item);
+                    foreach (ItemData item in array) 
+                        if (item.enable) 
+                            itemDatas.Add(item);
             }
         }
         else

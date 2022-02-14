@@ -110,7 +110,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item:
-    itemData: {fileID: 11400000, guid: 5f5c8b33230064746954b4e0397a54bc, type: 2}
+    itemData: {fileID: 0}
     amount: 1
     durability: 0
     inventoryIndex: 0

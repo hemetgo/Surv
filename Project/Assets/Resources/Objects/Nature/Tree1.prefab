@@ -53,6 +53,7 @@ MonoBehaviour:
   requiredTool: 1
   health: 10
   damageRecovery: 0
+  destroyParent: 0
   destroyAfter: 5
   currentDamage: 0
   drops:
@@ -60,7 +61,7 @@ MonoBehaviour:
     amountRange: {x: 5, y: 10}
     dropChance: 100
   - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
-    amountRange: {x: 3, y: 8}
+    amountRange: {x: 20, y: 50}
     dropChance: 100
 --- !u!33 &402445815920527631
 MeshFilter:
@@ -137,7 +138,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Tree1
   saveObject:
     id: 
     useSceneObject: 0

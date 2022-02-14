@@ -126,7 +126,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  id: Tree1_Sapling
+  saveData: {fileID: 0}
+  type: 2
   saveObject:
     id: 
     useSceneObject: 0
@@ -157,6 +158,7 @@ MonoBehaviour:
   requiredTool: 1
   health: 1
   damageRecovery: 0
+  destroyParent: 0
   destroyAfter: 0
   currentDamage: 0
   drops: []

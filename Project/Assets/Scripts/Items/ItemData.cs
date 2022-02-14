@@ -4,6 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Items/Item", fileName = "New Item")]
 public class ItemData : ScriptableObject
 {
+    public bool enable;
     public LangString itemName;
     public Sprite icon;
     public Rarity rarity;

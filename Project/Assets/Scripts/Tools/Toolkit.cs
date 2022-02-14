@@ -57,5 +57,4 @@ public class Toolkit
 	{
 		yield return new WaitForSeconds(delay);
 	}
-
 }

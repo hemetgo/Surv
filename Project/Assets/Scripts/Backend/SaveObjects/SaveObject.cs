@@ -12,7 +12,8 @@ public class SaveObject
 
 	public void Save(GameObject gameObject)
 	{
-		id = gameObject.GetComponent<SavableObject>().id;
+		//id = gameObject.GetComponent<SavableObject>().id;
+		id = gameObject.name;
 		saveComponents.Clear();
 		saveTransform = new SaveTransform(gameObject.transform);
 		foreach (Component component in gameObject.GetComponents<Component>())
@@ -57,20 +58,33 @@ public class SaveObject
 
 	public GameObject GetPrefab()
 	{
-		// Search in furnitures
-		foreach(SavableObject prefab in Resources.LoadAll<SavableObject>("Objects/Furnitures/"))
+		//// Search in furnitures
+		//foreach(SavableObject prefab in Resources.LoadAll<SavableObject>("Objects/Decoration/"))
+		//{
+		//	if (prefab.saveData.id == id) return prefab.gameObject;
+		//}
+		//// Search in nature
+		//foreach (SavableObject prefab in Resources.LoadAll<SavableObject>("Objects/Nature/"))
+		//{
+		//	if (prefab.saveData.id == id) return prefab.gameObject;
+		//}
+		//// Search in mobs
+		//foreach (SavableObject prefab in Resources.LoadAll<SavableObject>("Objects/Mob/"))
+		//{
+		//	if (prefab.saveData.id == id) return prefab.gameObject;
+		//}
+		Debug.Log(id);
+		foreach(SavableObject sav in Resources.LoadAll<SavableObject>("Objects/Decoration"))
 		{
-			if (prefab.id == id) return prefab.gameObject;
+			if (sav.gameObject.name== id) return sav.gameObject;
 		}
-		// Search in nature
-		foreach (SavableObject prefab in Resources.LoadAll<SavableObject>("Objects/Nature/"))
+		foreach (SavableObject sav in Resources.LoadAll<SavableObject>("Objects/Mob"))
 		{
-			if (prefab.id == id) return prefab.gameObject;
+			if (sav.gameObject.name == id) return sav.gameObject;
 		}
-		// Search in mobs
-		foreach (SavableObject prefab in Resources.LoadAll<SavableObject>("Objects/Mobs/"))
+		foreach (SavableObject sav in Resources.LoadAll<SavableObject>("Objects/Nature"))
 		{
-			if (prefab.id == id) return prefab.gameObject;
+			if (sav.gameObject.name == id) return sav.gameObject;
 		}
 
 		return null;
