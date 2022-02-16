@@ -8,7 +8,9 @@ public class CaveBuilder : MonoBehaviour
 {
 	public float tileSize;
 	public GameObject groundTilePrefab;
+	public GameObject[] caveRoofTile;
     public GameObject wallTilePrefab;
+    public GameObject doorTilePrefab;
 	public GameObject[] mobsPrefabs;
 	public GameObject[] lootsPrefabs;
 	public Vector2Int roomCountRange;
@@ -194,11 +196,10 @@ public class CaveBuilder : MonoBehaviour
 				ground.AddComponent<CellGround>().SetCell(cell);
 				ground.transform.parent = groundParent;
 
-				GameObject roof = Instantiate(groundTilePrefab, spawnPos, new Quaternion());
+				GameObject roof = Instantiate(caveRoofTile[Random.Range(0, caveRoofTile.Length)], spawnPos, new Quaternion());
 				roof.transform.parent = transform;
 				float height = wallTilePrefab.GetComponent<Renderer>().bounds.size.y;
 				roof.transform.Translate(0, height, 0);
-				roof.transform.Rotate(180, 0, 0);
 				roof.transform.parent = rooftParent;
 			}
 		}
@@ -238,6 +239,17 @@ public class CaveBuilder : MonoBehaviour
 								GameObject wall = Instantiate(wallTilePrefab, spawnPos, new Quaternion());
 								wall.transform.parent = wallParent;
 							}
+
+							if ((topCell.doors.Contains(Cell.Direction.Bottom)
+								&& cell.doors.Contains(Cell.Direction.Top)))
+							{
+								Vector3 spawnPos = new Vector3(
+									transform.position.x + cell.position.x * tileSize,
+									transform.position.y,
+									transform.position.z + cell.position.y * tileSize + tileSize / 2);
+								GameObject wall = Instantiate(doorTilePrefab, spawnPos, new Quaternion());
+								wall.transform.parent = wallParent;
+							}
 						}
 					}
 				}
@@ -260,6 +272,18 @@ public class CaveBuilder : MonoBehaviour
 									transform.position.y,
 									transform.position.z + cell.position.y * tileSize);
 								GameObject wall = Instantiate(wallTilePrefab, spawnPos, new Quaternion());
+								wall.transform.Rotate(0, 90, 0);
+								wall.transform.parent = wallParent;
+							}
+
+							if (rightCell.doors.Contains(Cell.Direction.Left)
+								&& cell.doors.Contains(Cell.Direction.Right))
+							{
+								Vector3 spawnPos = new Vector3(
+									transform.position.x + cell.position.x * tileSize + tileSize / 2,
+									transform.position.y,
+									transform.position.z + cell.position.y * tileSize);
+								GameObject wall = Instantiate(doorTilePrefab, spawnPos, new Quaternion());
 								wall.transform.Rotate(0, 90, 0);
 								wall.transform.parent = wallParent;
 							}
@@ -287,6 +311,17 @@ public class CaveBuilder : MonoBehaviour
 								GameObject wall = Instantiate(wallTilePrefab, spawnPos, new Quaternion());
 								wall.transform.parent = wallParent;
 							}
+
+							if ((bottomCell.doors.Contains(Cell.Direction.Top)
+								&& cell.doors.Contains(Cell.Direction.Bottom)))
+							{
+								Vector3 spawnPos = new Vector3(
+									transform.position.x + cell.position.x * tileSize,
+									transform.position.y,
+									transform.position.z + cell.position.y * tileSize - tileSize / 2);
+								GameObject wall = Instantiate(doorTilePrefab, spawnPos, new Quaternion());
+								wall.transform.parent = wallParent;
+							}
 						}
 					}
 				}
@@ -309,6 +344,18 @@ public class CaveBuilder : MonoBehaviour
 									transform.position.y,
 									transform.position.z + cell.position.y * tileSize);
 								GameObject wall = Instantiate(wallTilePrefab, spawnPos, new Quaternion());
+								wall.transform.Rotate(0, 90, 0);
+								wall.transform.parent = wallParent;
+							}
+
+							if ((!leftCell.doors.Contains(Cell.Direction.Right)
+								&& !cell.doors.Contains(Cell.Direction.Left)))
+							{
+								Vector3 spawnPos = new Vector3(
+									transform.position.x + cell.position.x * tileSize - tileSize / 2,
+									transform.position.y,
+									transform.position.z + cell.position.y * tileSize);
+								GameObject wall = Instantiate(doorTilePrefab, spawnPos, new Quaternion());
 								wall.transform.Rotate(0, 90, 0);
 								wall.transform.parent = wallParent;
 							}

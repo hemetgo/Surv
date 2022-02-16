@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5192065269413570272}
   - component: {fileID: 5192065269416737505}
   - component: {fileID: 5192065269415770145}
-  - component: {fileID: 5192065269413570275}
+  - component: {fileID: 2656066008627494321}
   m_Layer: 0
   m_Name: Rock
   m_TagString: Untagged
@@ -28,8 +28,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5192065269413570273}
   m_LocalRotation: {x: -0, y: -0.36917716, z: -0, w: 0.929359}
-  m_LocalPosition: {x: 5.71, y: -2, z: 11.05}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 5.15, y: -2, z: 11.2}
+  m_LocalScale: {x: 1.6075, y: 1.6075, z: 1.6075}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -66,7 +66,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5192065269413570273}
-  m_Mesh: {fileID: 4300000, guid: 8c7cba8977a23754a8797b74e5bfabf6, type: 3}
+  m_Mesh: {fileID: 4300000, guid: d6d0879ec231c444bb742781abfc533d, type: 3}
 --- !u!23 &5192065269415770145
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -86,7 +86,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 595e799fef5428048a130a5fd5ea0d8e, type: 2}
+  - {fileID: 2100000, guid: a0291ae842096544cacdd7b48211ed80, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,17 +108,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!136 &5192065269413570275
-CapsuleCollider:
+--- !u!64 &2656066008627494321
+MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5192065269413570273}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 93019a9584c054b4bba0fbc2bc179160, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
-  m_Radius: 0.7763848
-  m_Height: 2.9393616
-  m_Direction: 2
-  m_Center: {x: 0.08956289, y: 0.8016034, z: -0.10138512}
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 4300000, guid: d6d0879ec231c444bb742781abfc533d, type: 3}

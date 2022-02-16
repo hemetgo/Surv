@@ -18,8 +18,8 @@ RenderSettings:
   m_FogColor: {r: 0.16037738, g: 0.16037738, b: 0.16037738, a: 1}
   m_FogMode: 1
   m_FogDensity: 0.05
-  m_LinearFogStart: -5.7
-  m_LinearFogEnd: 12.21
+  m_LinearFogStart: 5
+  m_LinearFogEnd: 20
   m_AmbientSkyColor: {r: 1, g: 0.9962222, b: 0.9537121, a: 1}
   m_AmbientEquatorColor: {r: 0.1792453, g: 0.089198425, b: 0.08032218, a: 1}
   m_AmbientGroundColor: {r: 0.2924528, g: 0.12866342, b: 0.10898005, a: 1}
@@ -6868,9 +6868,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cde0c17fd1fb51e40a8c4d4aa405a94a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tileSize: 3
+  tileSize: 4.5
   groundTilePrefab: {fileID: 4090942781695648569, guid: 66c097ec5846b4344b05f46836ad3bf0, type: 3}
-  wallTilePrefab: {fileID: 2820301391347670056, guid: 3e434594d90a35b4bb7c1ea3c8006ad0, type: 3}
+  caveRoofTile:
+  - {fileID: 4090942781695648569, guid: e76594b2fa8d6b249a89ccf9dc543449, type: 3}
+  - {fileID: 4552825250586186666, guid: daefc7ba5bb7cc342ae69459c59a8328, type: 3}
+  wallTilePrefab: {fileID: 3408128527036657153, guid: fa280a412e1745a47af2bfbb61c03a03, type: 3}
+  doorTilePrefab: {fileID: 3855067240930845876, guid: c2f4be06cfa814840a2724e916194eaf, type: 3}
   mobsPrefabs:
   - {fileID: 6949730540182540407, guid: 2bb68c9fa7bb53c49ba29d8db3bd94bf, type: 3}
   lootsPrefabs:
