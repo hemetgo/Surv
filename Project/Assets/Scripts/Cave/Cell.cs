@@ -7,7 +7,9 @@ public class Cell
 	public Room room;
 	public Vector2Int position;
 	public GameObject groundTile;
+	public GameObject roofTile;
 	public bool isFree;
+	public bool objectFree;
 	public List<Direction> walls = new List<Direction>();
 	public List<Direction> doors = new List<Direction>();
 
@@ -16,6 +18,7 @@ public class Cell
 	public Cell(int x, int y)
 	{
 		isFree = true;
+		objectFree = true;
 		position = new Vector2Int(x, y);
 	}
 

@@ -6,18 +6,28 @@ using UnityEngine.SceneManagement;
 
 public class CaveBuilder : MonoBehaviour
 {
+	[Header("Settings")]
 	public float tileSize;
+	public Vector2Int roomCountRange;
+	public Vector2Int roomSizeRange;
+	public int gridSize;
+
+	[Header("Prefabs")]
 	public GameObject groundTilePrefab;
+	public GameObject groundStairPrefab;
+	public GameObject stairPrefab;
+	public GameObject stairRoofPrefab;
 	public GameObject[] caveRoofTile;
     public GameObject wallTilePrefab;
     public GameObject doorTilePrefab;
 	public GameObject[] mobsPrefabs;
-	public GameObject[] lootsPrefabs;
-	public Vector2Int roomCountRange;
-    public Vector2Int roomSizeRange;
-    public int gridSize;
-    private Cell[,] grid;
+	public CaveLoot[] lootsPrefabs;
+	
+	[Header("Rooms")]
 	public List<Room> rooms = new List<Room>();
+
+	// Privates
+	private Cell[,] grid;
 
 	private void Start()
 	{
@@ -26,6 +36,7 @@ public class CaveBuilder : MonoBehaviour
 		AlocateDoors();
 		BuildGrounds();
 		BuildWalls();
+		PlaceStairs();
 		PlaceLoots();
 		PlaceMobs();
 
@@ -58,27 +69,31 @@ public class CaveBuilder : MonoBehaviour
 		{
 			// Create room data
 			Room room = new Room();
-			room.roomSize = new Vector2Int(2, 2);
-			//room.roomSize = new Vector2Int(
-			//	Random.Range(roomSizeRange.x, roomSizeRange.y + 1),
-			//	Random.Range(roomSizeRange.x, roomSizeRange.y + 1));
+			room.roomSize = new Vector2Int(
+				Random.Range(roomSizeRange.x, roomSizeRange.y + 1),
+				Random.Range(roomSizeRange.x, roomSizeRange.y + 1));
+
 
 			// Alocate the first room
 			if (rooms.Count == 0)
 			{
+				room.roomSize = new Vector2Int(4, 4);
 				Vector2Int startFirst = new Vector2Int(
 					gridSize / 2 - room.roomSize.x,
 					gridSize / 2 - room.roomSize.y);
 				Vector2Int endFirst = new Vector2Int(
-					gridSize / 2 + room.roomSize.x,
-					gridSize / 2 + room.roomSize.y);
+					gridSize / 2,
+					gridSize / 2);
+
+				room.startPosition = startFirst;
+				room.endPosition = endFirst;
 
 				room.startCell = grid[startFirst.x, startFirst.y];
 				room.endCell = grid[endFirst.x, endFirst.y];
 
-				for (int x = startFirst.x; x <= endFirst.x; x++)
+				for (int x = startFirst.x; x < endFirst.x; x++)
 				{
-					for (int y = startFirst.y; y <= endFirst.y; y++)
+					for (int y = startFirst.y; y < endFirst.y; y++)
 					{
 						grid[x, y].isFree = false;
 						grid[x, y].room = room;
@@ -108,12 +123,16 @@ public class CaveBuilder : MonoBehaviour
 
 			Vector2Int start = startCell.position;
 			Vector2Int end = new Vector2Int(startCell.position.x + room.roomSize.x, startCell.position.y + room.roomSize.y);
+
+			room.startPosition = start;
+			room.endPosition = end;
+			
 			room.startCell = startCell;
 			room.endCell = grid[end.x, end.y];
 
-			for (int x = start.x; x <= end.x; x++)
+			for (int x = start.x; x < end.x; x++)
 			{
-				for (int y = start.y; y <= end.y; y++)
+				for (int y = start.y; y < end.y; y++)
 				{
 					grid[x, y].isFree = false;
 					grid[x, y].room = room;
@@ -195,12 +214,14 @@ public class CaveBuilder : MonoBehaviour
 				cell.groundTile = ground;
 				ground.AddComponent<CellGround>().SetCell(cell);
 				ground.transform.parent = groundParent;
+				cell.room.grounds.Add(ground);
 
 				GameObject roof = Instantiate(caveRoofTile[Random.Range(0, caveRoofTile.Length)], spawnPos, new Quaternion());
 				roof.transform.parent = transform;
 				float height = wallTilePrefab.GetComponent<Renderer>().bounds.size.y;
 				roof.transform.Translate(0, height, 0);
 				roof.transform.parent = rooftParent;
+				cell.roofTile = roof;
 			}
 		}
 	}
@@ -239,8 +260,7 @@ public class CaveBuilder : MonoBehaviour
 								GameObject wall = Instantiate(wallTilePrefab, spawnPos, new Quaternion());
 								wall.transform.parent = wallParent;
 							}
-
-							if ((topCell.doors.Contains(Cell.Direction.Bottom)
+							else if ((topCell.doors.Contains(Cell.Direction.Bottom)
 								&& cell.doors.Contains(Cell.Direction.Top)))
 							{
 								Vector3 spawnPos = new Vector3(
@@ -275,8 +295,7 @@ public class CaveBuilder : MonoBehaviour
 								wall.transform.Rotate(0, 90, 0);
 								wall.transform.parent = wallParent;
 							}
-
-							if (rightCell.doors.Contains(Cell.Direction.Left)
+							else if (rightCell.doors.Contains(Cell.Direction.Left)
 								&& cell.doors.Contains(Cell.Direction.Right))
 							{
 								Vector3 spawnPos = new Vector3(
@@ -311,8 +330,7 @@ public class CaveBuilder : MonoBehaviour
 								GameObject wall = Instantiate(wallTilePrefab, spawnPos, new Quaternion());
 								wall.transform.parent = wallParent;
 							}
-
-							if ((bottomCell.doors.Contains(Cell.Direction.Top)
+							else if ((bottomCell.doors.Contains(Cell.Direction.Top)
 								&& cell.doors.Contains(Cell.Direction.Bottom)))
 							{
 								Vector3 spawnPos = new Vector3(
@@ -347,8 +365,7 @@ public class CaveBuilder : MonoBehaviour
 								wall.transform.Rotate(0, 90, 0);
 								wall.transform.parent = wallParent;
 							}
-
-							if ((!leftCell.doors.Contains(Cell.Direction.Right)
+							else if ((!leftCell.doors.Contains(Cell.Direction.Right)
 								&& !cell.doors.Contains(Cell.Direction.Left)))
 							{
 								Vector3 spawnPos = new Vector3(
@@ -366,45 +383,139 @@ public class CaveBuilder : MonoBehaviour
 		}
 	}
 
-	private void PlaceLoots()
-	{
-		for (int i = 1; i < rooms.Count; i++)
-		{
-			Room room = rooms[i];
-			var shuffledCells = room.cells.OrderBy(x => System.Guid.NewGuid()).ToList();
-			Queue cellQueue = new Queue();
-			foreach (Cell cell in shuffledCells) cellQueue.Enqueue(cell);
-
-			for (int mobs = 0; mobs < 2; mobs++)
-			{
-				Cell spawnCell = cellQueue.Dequeue() as Cell;
-				GameObject loot = Instantiate(lootsPrefabs[Random.Range(0, mobsPrefabs.Length)],
-					spawnCell.groundTile.transform.position, new Quaternion());
-				loot.transform.Translate(0, -.5f, 0);
-				loot.transform.Rotate(0, Random.Range(0, 360), 0);
-				loot.transform.parent = transform;
-			}
-		}
-	}
-
 	private void PlaceMobs()
 	{
+		Transform enemyParent = GameObject.Find("Enemy").transform;
+
 		for (int i = 1; i < rooms.Count; i++)
 		{
 			Room room = rooms[i];
 			var shuffledCells = room.cells.OrderBy(x => System.Guid.NewGuid()).ToList();
 			Queue cellQueue = new Queue();
-			foreach (Cell cell in shuffledCells) cellQueue.Enqueue(cell);
-
+			foreach (Cell cell in shuffledCells) 
+			{ 
+				if (cell.objectFree)
+				{
+					cellQueue.Enqueue(cell);
+				} 
+			}
 			for (int mobs = 0; mobs < 1; mobs++)
 			{
 				Cell spawnCell = cellQueue.Dequeue() as Cell;
 				GameObject mob = Instantiate(mobsPrefabs[Random.Range(0, mobsPrefabs.Length)], 
 					spawnCell.groundTile.transform.position, new Quaternion());
 				mob.transform.Translate(0, 1, 0);
-				mob.transform.parent = transform;
+				mob.transform.parent = enemyParent;
+				spawnCell.objectFree = false;
 			}
 		}
+	}
+
+	private void PlaceLoots()
+	{
+		Transform lootParent = GameObject.Find("Loot").transform;
+		for (int i = 0; i < rooms.Count; i++)
+		{
+			Room room = rooms[i];
+			var shuffledCells = room.cells.OrderBy(x => System.Guid.NewGuid()).ToList();
+			Queue cellQueue = new Queue();
+			foreach (Cell cell in shuffledCells)
+			{
+				if (cell.objectFree)
+				{
+					cellQueue.Enqueue(cell);
+				}
+			}
+			for (int loots = 0; loots < 2; loots++)
+			{
+				Cell spawnCell = cellQueue.Dequeue() as Cell;
+				GameObject loot = Instantiate(lootsPrefabs[Random.Range(0, lootsPrefabs.Length)].prefab,
+					spawnCell.groundTile.transform.position, new Quaternion());
+				loot.transform.Translate(0, -.5f, 0);
+				loot.transform.Rotate(0, Random.Range(0, 360), 0);
+				loot.transform.parent = lootParent;
+				spawnCell.objectFree = false;
+			}
+		}
+	}
+
+	private void PlaceStairs()
+	{
+		// Spawn Top Stair
+		Room room = rooms[0];
+		var shuffledCells = room.cells.OrderBy(x => System.Guid.NewGuid()).ToList();
+		Queue cellQueue = new Queue();
+		foreach (Cell cell in shuffledCells)
+		{
+			if (cell.objectFree && cell.doors.Count == 0 &&
+				cell.position.x > cell.room.startPosition.x &&
+				cell.position.x < cell.room.endPosition.x &&
+				cell.position.y > cell.room.startPosition.y &&
+				cell.position.y < cell.room.endPosition.y)
+			{
+				if (cell.position.x > room.startCell.position.x &&
+					cell.position.x < room.endCell.position.x &&
+					cell.position.y > room.startCell.position.y &&
+					cell.position.y < room.endCell.position.y)
+				{
+					cellQueue.Enqueue(cell);
+				}
+			}
+		}
+
+		Cell spawnCell = cellQueue.Dequeue() as Cell;
+		GameObject stair = Instantiate(stairPrefab,
+					spawnCell.groundTile.transform.position, new Quaternion());
+		float yRot = 0;
+		switch (Random.Range(0, 4))
+		{
+			case 0: yRot = 0; break;
+			case 1: yRot = 90; break;
+			case 2: yRot = 180; break;
+			case 3: yRot = 270; break;
+		}
+		stair.transform.Rotate(0, yRot, 0);
+		stair.transform.parent = transform;
+		spawnCell.objectFree = false;
+		spawnCell.groundTile = stair;
+
+		GameObject roof = Instantiate(stairRoofPrefab, spawnCell.roofTile.transform);
+		roof.transform.parent = transform;
+		float height = wallTilePrefab.GetComponent<Renderer>().bounds.size.y;
+		roof.transform.parent = spawnCell.roofTile.transform.parent;
+		Destroy(spawnCell.roofTile);
+
+
+
+		// Spawn Down Stair
+		room = rooms[rooms.Count - 1];
+		shuffledCells = room.cells.OrderBy(x => System.Guid.NewGuid()).ToList();
+		cellQueue = new Queue();
+		foreach (Cell cell in shuffledCells)
+		{
+			if (cell.objectFree && cell.doors.Count == 0)
+			{
+				cellQueue.Enqueue(cell);
+			}
+		}
+
+
+		spawnCell = cellQueue.Dequeue() as Cell;
+		GameObject groundStair = Instantiate(groundStairPrefab,
+					spawnCell.groundTile.transform.position, new Quaternion());
+		yRot = 0;
+		switch (Random.Range(0, 4))
+		{
+			case 0: yRot = 0; break;
+			case 1: yRot = 90; break;
+			case 2: yRot = 180; break;
+			case 3: yRot = 270; break;
+		}
+		groundStair.transform.Rotate(0, yRot, 0);
+		groundStair.transform.parent = transform;
+		spawnCell.objectFree = false;
+		Destroy(spawnCell.groundTile);
+		spawnCell.groundTile = groundStair;
 	}
 
 	#region Tools
@@ -431,9 +542,9 @@ public class CaveBuilder : MonoBehaviour
 
 	private bool IsSideOfRoom(Vector2Int start, Vector2Int end)
 	{
-		for (int x = start.x; x <= end.x; x++)
+		for (int x = start.x; x < end.x; x++)
 		{
-			for (int y = start.y; y <= end.y; y++)
+			for (int y = start.y; y < end.y; y++)
 			{
 				if (x >= 0 && x < gridSize && y >= 0 && y < gridSize)
 				{

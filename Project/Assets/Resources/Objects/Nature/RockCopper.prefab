@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 3338750652005476107}
   - component: {fileID: 3291716199201683126}
   - component: {fileID: 7027435605177704439}
-  - component: {fileID: 7586325226947503104}
   m_Layer: 0
   m_Name: DropCopperOre (1)
   m_TagString: Untagged
@@ -82,19 +81,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &7586325226947503104
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 692787368202253430}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &1976215225760586857
 GameObject:
   m_ObjectHideFlags: 0
@@ -106,7 +92,6 @@ GameObject:
   - component: {fileID: 5187906128597997310}
   - component: {fileID: 6871649741130436702}
   - component: {fileID: 1014714400857737797}
-  - component: {fileID: 2628796509991589454}
   m_Layer: 0
   m_Name: DropCopperOre (6)
   m_TagString: Untagged
@@ -177,19 +162,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &2628796509991589454
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1976215225760586857}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &2232212546586374211
 GameObject:
   m_ObjectHideFlags: 0
@@ -201,7 +173,6 @@ GameObject:
   - component: {fileID: 405820318355559590}
   - component: {fileID: 2541166720975934696}
   - component: {fileID: 5575893894447644122}
-  - component: {fileID: 6978443460603659901}
   m_Layer: 0
   m_Name: DropCopperOre (8)
   m_TagString: Untagged
@@ -272,19 +243,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &6978443460603659901
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2232212546586374211}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &4382806042804215244
 GameObject:
   m_ObjectHideFlags: 0
@@ -296,7 +254,6 @@ GameObject:
   - component: {fileID: 7352183273424859407}
   - component: {fileID: 8836218546674669270}
   - component: {fileID: 1689270486582834086}
-  - component: {fileID: 5540552386700817894}
   m_Layer: 0
   m_Name: DropCopperOre (3)
   m_TagString: Untagged
@@ -367,19 +324,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5540552386700817894
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4382806042804215244}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &4570549902799251850
 GameObject:
   m_ObjectHideFlags: 0
@@ -391,7 +335,6 @@ GameObject:
   - component: {fileID: 1549705998953148778}
   - component: {fileID: 7246238744736296285}
   - component: {fileID: 1837370293400791912}
-  - component: {fileID: 1255008414757781493}
   m_Layer: 0
   m_Name: DropCopperOre (5)
   m_TagString: Untagged
@@ -462,19 +405,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &1255008414757781493
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4570549902799251850}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &5192065269413570273
 GameObject:
   m_ObjectHideFlags: 0
@@ -488,8 +418,9 @@ GameObject:
   - component: {fileID: 5192065269416737505}
   - component: {fileID: 5192065269415770145}
   - component: {fileID: 6365120779962926384}
+  - component: {fileID: -6962084761411865474}
   m_Layer: 0
-  m_Name: CopperRock
+  m_Name: RockCopper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -606,6 +537,20 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d6d0879ec231c444bb742781abfc533d, type: 3}
+--- !u!114 &-6962084761411865474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5192065269413570273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 190d30ea48f4f724bbcc76040414aa49, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  randomYRot: 1
+  maxScaleVariation: 0.5
 --- !u!1 &6675925939731490817
 GameObject:
   m_ObjectHideFlags: 0
@@ -617,7 +562,6 @@ GameObject:
   - component: {fileID: 2429453724859546904}
   - component: {fileID: 1003918171615498526}
   - component: {fileID: 731387942659390804}
-  - component: {fileID: 807056661755098843}
   m_Layer: 0
   m_Name: DropCopperOre (2)
   m_TagString: Untagged
@@ -688,19 +632,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &807056661755098843
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6675925939731490817}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &6737987085368594713
 GameObject:
   m_ObjectHideFlags: 0
@@ -712,7 +643,6 @@ GameObject:
   - component: {fileID: 8824431081685738486}
   - component: {fileID: 7825490555403630305}
   - component: {fileID: 2581365353871169859}
-  - component: {fileID: 8724774594629724025}
   m_Layer: 0
   m_Name: DropCopperOre (7)
   m_TagString: Untagged
@@ -783,19 +713,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8724774594629724025
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6737987085368594713}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &8693973620009722176
 GameObject:
   m_ObjectHideFlags: 0
@@ -807,7 +724,6 @@ GameObject:
   - component: {fileID: 613420340022074367}
   - component: {fileID: 6409258426818881835}
   - component: {fileID: 5679649424725888265}
-  - component: {fileID: 262827598281187232}
   m_Layer: 0
   m_Name: DropCopperOre (4)
   m_TagString: Untagged
@@ -878,19 +794,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &262827598281187232
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8693973620009722176}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}
 --- !u!1 &9176895845135054477
 GameObject:
   m_ObjectHideFlags: 0
@@ -902,7 +805,6 @@ GameObject:
   - component: {fileID: 4293548098580313812}
   - component: {fileID: 8146277380670675119}
   - component: {fileID: 8815495289271021450}
-  - component: {fileID: 5663070507280667714}
   m_Layer: 0
   m_Name: DropCopperOre
   m_TagString: Untagged
@@ -973,16 +875,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &5663070507280667714
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9176895845135054477}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.176782, y: 0.52726525, z: 0.9757936}
-  m_Center: {x: 0.038029313, y: 0.15977518, z: -0.06355928}

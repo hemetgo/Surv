@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2596266335542801595}
   - component: {fileID: 1416401802183211806}
   - component: {fileID: 3768640591731789780}
-  - component: {fileID: 4276889917098890576}
+  - component: {fileID: 7606393638571183790}
   m_Layer: 0
   m_Name: CaveWall
   m_TagString: Untagged
@@ -27,8 +27,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3408128527036657153}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.74919975, y: 0, z: -3.73}
-  m_LocalScale: {x: 0.98068714, y: 1.9029031, z: 1.5403022}
+  m_LocalPosition: {x: 0.7576, y: -0, z: 0}
+  m_LocalScale: {x: 0.834691, y: 1.9029031, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4b3a2712de2074148904b37db49bb020, type: 2}
+  - {fileID: 2100000, guid: 10d0e237f94edc14b840576a60bd4f8a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -82,16 +82,16 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4276889917098890576
+--- !u!65 &7606393638571183790
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3408128527036657153}
-  m_Material: {fileID: 13400000, guid: 93019a9584c054b4bba0fbc2bc179160, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 4.5956373, y: 3.9979286, z: 1.3283656}
-  m_Center: {x: 0.0000009536744, y: 1.9989643, z: 0.00000500679}
+  m_Size: {x: 5.3940268, y: 3.9507267, z: 1.2040043}
+  m_Center: {x: -0.0068684816, y: 1.9753634, z: 0.0027753115}
