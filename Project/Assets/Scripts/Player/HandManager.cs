@@ -14,10 +14,14 @@ public class HandManager : MonoBehaviour
 	public event PlacedItemHandler ItemPlaced;
 
 	public GameObject handItemObject = null;
+	public GameObject secondHandItemObject = null;
 	public Item handItem;
+	public Item secondHandItem;
 	[Range(0.01f, 10)] public float dropForce;
 	[Range(0.01f, 10)] public float dropCooldown;
 	public Transform dropParent;
+
+	public Transform secondHand;
 
 	private float dropTimer;
 	[HideInInspector] public Animator animator;
@@ -65,6 +69,36 @@ public class HandManager : MonoBehaviour
 						handItemObject = transform.Find(item.itemData.itemType.ToString()).Find(item.itemData.itemName.english).gameObject;
 					}
 					handItemObject.SetActive(true);
+				}
+			}
+		}
+	}
+
+	public void HoldItemSecondHand(Item item)
+	{
+		if (secondHandItem == null)
+		{
+			secondHandItem = new Item(Resources.Load<ItemData>("ItemData/_Empty"));
+		}
+
+		if (secondHandItemObject) secondHandItemObject.SetActive(false);
+
+		secondHandItem = item;
+		if (item.amount > 0)
+		{
+			if (!item.itemData.itemName.english.Equals(""))
+			{
+				if (secondHand.Find(item.itemData.itemType.ToString()).Find(item.itemData.itemName.english))
+				{
+					if (secondHandItem.itemData.itemType == ItemData.ItemType.Decoration)
+					{
+						secondHandItemObject = secondHand.transform.Find("Furniture").gameObject;
+					}
+					else
+					{
+						secondHandItemObject = secondHand.transform.Find(item.itemData.itemType.ToString()).Find(item.itemData.itemName.english).gameObject;
+					}
+					secondHandItemObject.SetActive(true);
 				}
 			}
 		}

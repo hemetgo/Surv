@@ -25,7 +25,7 @@ public class ItemBarManager : MonoBehaviour
 		{
 			if (invertScroll)
 			{
-				if (selectedSlot >= 9)
+				if (selectedSlot >= 8)
 				{
 					SetCurrentSlot(0);
 				}
@@ -38,7 +38,7 @@ public class ItemBarManager : MonoBehaviour
 			{
 				if (selectedSlot <= 0)
 				{
-					SetCurrentSlot(9);
+					SetCurrentSlot(8);
 				}
 				else
 				{
@@ -52,7 +52,7 @@ public class ItemBarManager : MonoBehaviour
 			{
 				if (selectedSlot <= 0)
 				{
-					SetCurrentSlot(9);
+					SetCurrentSlot(8);
 				}
 				else
 				{
@@ -61,7 +61,7 @@ public class ItemBarManager : MonoBehaviour
 			} 
 			else
 			{
-				if (selectedSlot >= 9)
+				if (selectedSlot >= 8)
 				{
 					SetCurrentSlot(0);
 				}
@@ -77,7 +77,7 @@ public class ItemBarManager : MonoBehaviour
 		{
 			if (Input.GetKeyDown("" + i))
 			{
-				if (i == 0) SetCurrentSlot(9);
+				if (i == 0) SetCurrentSlot(8);
 				else SetCurrentSlot(i - 1);
 			}
 		}
@@ -92,6 +92,7 @@ public class ItemBarManager : MonoBehaviour
 	public void SetCurrentSlot(int selectedSlot)
 	{
         this.selectedSlot = selectedSlot;
+		// Reset slot visual item bar feedack
         for (int i = 0; i < 10; i++)
 		{
 			barBackgroundSlot[i].transform.localScale = new Vector3(1, 1, 1);
@@ -99,5 +100,7 @@ public class ItemBarManager : MonoBehaviour
 		barBackgroundSlot[selectedSlot].GetComponent<RectTransform>().localScale = new Vector3(1.3f, 1.3f, 1);
 
 		handManager.HoldItem(itemBarSlots[selectedSlot].item);
+
+		handManager.HoldItemSecondHand(itemBarSlots[9].item);
     }
 }

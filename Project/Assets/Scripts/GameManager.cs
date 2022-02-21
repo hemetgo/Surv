@@ -21,19 +21,19 @@ public class GameManager : MonoBehaviour
     {
         // it starts here to prevent eventually bugs
         inventoryManager.StartInventory();
-        
-        if (PlayerPrefs.GetInt("LoadGame") == 1)
+
+        if (!dungeon)
         {
-            saveManager.LoadGame();
-        }
-        else
-        {
-            if (!dungeon) NewGame();
+            if (PlayerPrefs.GetInt("LoadGame") == 1)
+                saveManager.LoadGame();
+            else
+                NewGame();
         }
     }
 
     public void NewGame()
 	{
+        Debug.Log("NEW GAME");
         RandomTerrain terrain = Instantiate(terrainPrefab).GetComponent<RandomTerrain>();
         player = FindObjectOfType<FirstPersonController>();
         terrain.StarTerrain();

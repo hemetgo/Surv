@@ -1027,7 +1027,7 @@ MonoBehaviour:
   healthBar: {fileID: 6592764320098824063}
   healthBarBackground: {fileID: 7558460708464691864}
   dropsData:
-  - itemData: {fileID: 11400000, guid: 3f3edb8ba733f5f43885a287ff66c4a2, type: 2}
+  - itemData: {fileID: 11400000, guid: 5f12f1521e14fb0459482a394da110fe, type: 2}
     amountRange: {x: 1, y: 3}
     dropChance: 80
   - itemData: {fileID: 11400000, guid: 1d15c121d50c7e644aec49680442d860, type: 2}
