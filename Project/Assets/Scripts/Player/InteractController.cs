@@ -23,7 +23,7 @@ public class InteractController : MonoBehaviour
 
 	#region Privates
 	//Aux
-	private Animator handAnimator;
+	private Animator rightHandAnimator;
     private float actionTimer;
 	public List<SmartObject> smartBehaviours;
     private RaycastHit hit;
@@ -39,7 +39,7 @@ public class InteractController : MonoBehaviour
 
 	void Start()
     {
-        handAnimator = hand.GetComponent<Animator>();
+        rightHandAnimator = hand.GetComponent<Animator>();
         handManager = hand.GetComponent<HandManager>();
     }
 
@@ -62,18 +62,27 @@ public class InteractController : MonoBehaviour
         }
 
         // Animation
-        if (actionTimer <= 0
-            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
-        {
-            if (hit.collider?.GetComponent<AiAgent>())
+        if (Cursor.lockState == CursorLockMode.Locked) {
+            if (actionTimer <= 0
+                && !rightHandAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
             {
-                if (Input.GetButtonDown("Fire1") && handManager.handItem.itemData != null)
-                    handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
-            }
-            else
-            {
-                if (Input.GetButton("Fire1") && handManager.handItem.itemData != null)
-                    handAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
+                if (handManager.handItem.itemData != null)
+                {
+                    if (hit.collider?.GetComponent<AiAgent>())
+                    {
+                        if (Input.GetButtonDown("Fire1"))
+                        {
+                            rightHandAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
+                        }
+                    }
+                    else
+                    {
+                        if (Input.GetButton("Fire1"))
+                        {
+                            rightHandAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
+                        }
+                    }
+                }
             }
         }
 	}
@@ -84,7 +93,6 @@ public class InteractController : MonoBehaviour
         if (Cursor.lockState == CursorLockMode.Locked)
         {
             actionTimer -= Time.deltaTime;
-
             bool ray;
             LayerMask mask = LayerMask.GetMask("Ignore Raycast", "SnapPoint"); 
             if (placingObject != null)
@@ -110,17 +118,18 @@ public class InteractController : MonoBehaviour
                 // If colliding with a smart object
                 smartBehaviours = new List<SmartObject>(hit.collider?.GetComponents<SmartObject>());
 
-                // Interacting with each smart property
+                // Interacting with each smart object behaviour
                 foreach (SmartObject smart in smartBehaviours)
                 {
                     if (smart.GetObjectType() == SmartObject.ObjectType.CraftTool)
                     {
                         // Check button
                         if (Input.GetButton(smart.GetInteractButton())
-                            && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
+                            && !rightHandAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                         {
                             // Interaction functions
                             smart.Interact();
+
                             //StartCoroutine(InteractFeedback(smart.gameObject));
 
                             if (smart.particle)
@@ -150,12 +159,25 @@ public class InteractController : MonoBehaviour
                         {
                             // Check button
                             if (Input.GetButton(smart.GetInteractButton())
-                                && !handAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
+                                && !rightHandAnimator.GetCurrentAnimatorStateInfo(0).IsName("HandAction"))
                             {
                                 actionTimer = actionDelay;
 
                                 // Interaction functions
-                                smart.Interact();
+
+                                if (smart.GetObjectType() == SmartObject.ObjectType.Chop)
+                                {
+                                    ChopObject chop = smart as ChopObject;
+                                    ToolData tool = hand.GetComponent<HandManager>().handItem.itemData as ToolData;
+                                    chop.Interact(tool.toolEfficiency);
+                                }
+                                else
+                                {
+                                    smart.Interact();
+                                }
+
+                                rightHandAnimator.SetTrigger(handManager.handItem.itemData.animation.ToString());
+
                                 StartCoroutine(InteractFeedback(smart.gameObject, 0.99f, 0.05f));
 
                                 if (smart.particle)
@@ -167,6 +189,15 @@ public class InteractController : MonoBehaviour
                                 }
                             }
                         }
+                    }
+                }
+
+                if (hit.collider?.GetComponent<CaveEntrance>())
+                {
+                    CaveEntrance entrance = hit.collider.GetComponent<CaveEntrance>();
+                    if (Input.GetButtonDown("Action"))
+                    {
+                        entrance.EnterTheCave();
                     }
                 }
             }
@@ -412,13 +443,13 @@ public class InteractController : MonoBehaviour
                     if (Input.GetButton("Fire2") && handManager.handItem.amount > 0 && GetComponent<HealthController>().currentHp < GetComponent<HealthController>().maxHp)
                     {
                         foodTimer += Time.deltaTime;
-                        handAnimator.SetBool("IsEating", true);
+                        rightHandAnimator.SetBool("IsEating", true);
                         GetComponent<FirstPersonController>().isEating = true;
 
                         if (foodTimer > 1.5f)
                         {
                             foodTimer = 0;
-                            handAnimator.SetBool("IsEating", false);
+                            rightHandAnimator.SetBool("IsEating", false);
                             GetComponent<FirstPersonController>().isEating = true; 
                             FoodData food = handManager.handItem.itemData as FoodData;
                             food.UseItem(gameObject);
@@ -428,11 +459,11 @@ public class InteractController : MonoBehaviour
                     else
                     {
                         foodTimer = 0;
-                        handAnimator.SetBool("IsEating", false);
+                        rightHandAnimator.SetBool("IsEating", false);
                         GetComponent<FirstPersonController>().isEating = false;
                     }
 
-                    if (handAnimator.GetBool("IsEating"))
+                    if (rightHandAnimator.GetBool("IsEating"))
                         handManager.gameObject.transform.localScale -= new Vector3(1, 1, 1) * Time.deltaTime / 2;
                     else
                         handManager.transform.localScale = new Vector3(1, 1, 1);

@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2443009595526142372}
   - component: {fileID: 2443009595525143396}
   - component: {fileID: 6786832169535881368}
+  - component: {fileID: -6310991651537911903}
   m_Layer: 6
   m_Name: Tree3
   m_TagString: Untagged
@@ -50,17 +51,22 @@ MonoBehaviour:
   chopType: 1
   disableCollisionAfter: 1
   requiredTool: 1
-  health: 10
+  health: 30
   damageRecovery: 0
+  destroyParent: 0
   destroyAfter: 5
   currentDamage: 0
   drops:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
     amountRange: {x: 5, y: 10}
+    amount: 0
     dropChance: 100
   - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
-    amountRange: {x: 3, y: 8}
+    amountRange: {x: 5, y: 10}
+    amount: 0
     dropChance: 100
+  randomYRot: 0
+  maxScaleVariation: 0
 --- !u!33 &2443009595526142372
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -124,3 +130,27 @@ CapsuleCollider:
   m_Height: 9.368139
   m_Direction: 1
   m_Center: {x: -0.11648207, y: 4.617525, z: -0.112778656}
+--- !u!114 &-6310991651537911903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2443009595523138980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []

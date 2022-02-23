@@ -7,6 +7,7 @@ public class ToolData : ItemData
 {
     [Header("Tool")]
     public ToolType toolType;
+    public int toolEfficiency;
     public int durability;
 
     public enum ToolType { None, Axe, Pickaxe, Shovel, Hoe }

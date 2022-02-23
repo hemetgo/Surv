@@ -418,7 +418,6 @@ GameObject:
   - component: {fileID: 5192065269416737505}
   - component: {fileID: 5192065269415770145}
   - component: {fileID: 6365120779962926384}
-  - component: {fileID: -6962084761411865474}
   m_Layer: 0
   m_Name: RockCopper
   m_TagString: Untagged
@@ -462,18 +461,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   particle: {fileID: 5100472910814271774, guid: f584cc588f9778949b3f28d6c13279a1, type: 3}
-  chopType: 0
+  chopType: 1
   disableCollisionAfter: 1
   requiredTool: 2
-  health: 10
+  health: 40
   damageRecovery: 0
   destroyParent: 0
-  destroyAfter: 1
+  destroyAfter: 0
   currentDamage: 0
   drops:
   - itemData: {fileID: 11400000, guid: 188231e1a8643b74e91a7409aeeed46f, type: 2}
-    amountRange: {x: 1, y: 2}
+    amountRange: {x: 6, y: 10}
+    amount: 0
     dropChance: 100
+  randomYRot: 1
+  maxScaleVariation: 0.5
 --- !u!33 &5192065269416737505
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -534,23 +536,9 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 0
+  m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 4300000, guid: d6d0879ec231c444bb742781abfc533d, type: 3}
---- !u!114 &-6962084761411865474
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5192065269413570273}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 190d30ea48f4f724bbcc76040414aa49, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  randomYRot: 1
-  maxScaleVariation: 0.5
 --- !u!1 &6675925939731490817
 GameObject:
   m_ObjectHideFlags: 0

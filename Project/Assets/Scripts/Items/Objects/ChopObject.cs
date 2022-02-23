@@ -20,7 +20,16 @@ public class ChopObject : SmartObject
     [Header("Drop")]
     public List<DropData> drops;
 
+    [Header("Randomize")]
+    public bool randomYRot;
+    public float maxScaleVariation;
+
     public enum ChopType { EachInteract, WhenFinished }
+
+	private void Start()
+	{
+        Randomize();
+	}
 
 	private void Update()
 	{
@@ -31,7 +40,7 @@ public class ChopObject : SmartObject
 		}
 	}
 
-	public override void Interact()
+	public void Interact(int toolPower)
     {
         damageTimer = 0;
         switch (chopType)
@@ -39,7 +48,7 @@ public class ChopObject : SmartObject
             case ChopType.EachInteract:
                 if (health > 0)
                 {
-                    currentDamage += 1;
+                    currentDamage += toolPower;
                     Drop();
                     if (currentDamage >= health)
                     {
@@ -61,7 +70,7 @@ public class ChopObject : SmartObject
             case ChopType.WhenFinished:
                 if (currentDamage < health)
                 {
-                    currentDamage += 1;
+                    currentDamage += toolPower;
                     if (currentDamage >= health)
                     {
                         Drop();
@@ -105,14 +114,13 @@ public class ChopObject : SmartObject
 		{
             if (Toolkit.RandomBool(drop.dropChance/100))
 			{
-                drop.SetAmount();
                 dropps.Add(drop);
 			}
 		}
 
         foreach (DropData drop in dropps)
         {
-            for (int i = 0; i < drop.GetAmount(); i++)
+            for (int i = 0; i < drop.amount; i++)
             {
                 SingleDrop(drop.itemData.drop);
             }
@@ -122,7 +130,8 @@ public class ChopObject : SmartObject
     private void SingleDrop(GameObject dropPrefab)
     {
         float height = GetComponent<Renderer>().bounds.size.y;
-        GameObject drop = Instantiate(dropPrefab, transform.position + new Vector3(0, height, 0), new Quaternion());
+        GameObject drop = Instantiate(dropPrefab, transform.position + new Vector3(0, 
+            Random.Range(0, height), 0), new Quaternion());
         Physics.IgnoreCollision(GetComponent<Collider>(), drop.GetComponent<Collider>());
         drop.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-2, 2), 2, Random.Range(-2, 2)), ForceMode.Impulse);
         drop.transform.Rotate(new Vector3(0, Random.Range(0, 360), 0));
@@ -206,6 +215,29 @@ public class ChopObject : SmartObject
         
         drops = new List<DropData>();
         drops.Add(drop);
+    }
+
+    public void Randomize()
+	{
+        float variation = Random.Range(-maxScaleVariation, maxScaleVariation);
+        transform.Rotate(0, Random.Range(0, 360), 0);
+        transform.localScale = transform.localScale * (1 + variation);
+  //      health = health * (1 + (int)variation);
+
+  //      if (chopType == ChopType.WhenFinished)
+		//{
+  //          foreach (DropData drop in drops)
+  //          {
+		//        drop.amount = Random.Range(drop.amountRange.x, drop.amountRange.y);
+  //              drop.amount = drop.amount * (int)(1 + variation);
+  //          }
+  //      }
+
+        foreach(DropData drop in drops)
+		{
+            drop.amount = Random.Range(drop.amountRange.x, drop.amountRange.y);
+        }
+        
     }
 }
 

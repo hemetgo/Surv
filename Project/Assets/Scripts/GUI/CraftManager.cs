@@ -67,13 +67,27 @@ public class CraftManager : MonoBehaviour
                 List<ItemData> array = Resources.LoadAll<ItemData>("ItemData/" + (ItemData.ItemType)i).ToList();
                 if (array.Count > 0)
                     foreach (ItemData item in array) 
-                        if (item.enable) 
-                            itemDatas.Add(item);
+                        if (item.enable)
+                            if (item.recipeTool == currentCraftTool
+                                || (currentCraftTool == ItemData.CraftTool.Table 
+                                        && item.recipeTool == ItemData.CraftTool.None))
+                                itemDatas.Add(item);
             }
         }
         else
         {
-            itemDatas = Resources.LoadAll<ItemData>("ItemData/" + currentType.ToString()).ToList();
+            ItemData[] items = Resources.LoadAll<ItemData>("ItemData/" + currentType.ToString());
+            foreach(ItemData item in items)
+			{
+                if (item.enable)
+                {
+                    if (item.recipeTool == currentCraftTool
+                        || (currentCraftTool == ItemData.CraftTool.Table && item.recipeTool == ItemData.CraftTool.None))
+                    {
+                        itemDatas.Add(item);
+                    }
+                }
+			}
         }
 
         List<ItemData> crafts = new List<ItemData>();
@@ -84,7 +98,7 @@ public class CraftManager : MonoBehaviour
             ItemData item = itemDatas[i];
             if (item.recipe.Count > 0 && toolLevel >= item.toolLevel)
             {
-                if (item.recipeTool == currentCraftTool)
+                if (item.recipeTool <= currentCraftTool)
                 {
                     crafts.Add(item);
                     CraftSlot slot = Instantiate(craftSlotPrefab, craftSlotsContainer).GetComponent<CraftSlot>();

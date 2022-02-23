@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c19e64099aba49abf2cc8ab66b784, type: 3}
   m_Name: Etherium Axe
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Etherium Axe
     portugues: Machado de Etherium
@@ -39,4 +40,5 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: c66c389132923c84b8a2aa8662028c49, type: 2}
     amount: 5
   toolType: 1
+  toolEfficiency: 5
   durability: 200

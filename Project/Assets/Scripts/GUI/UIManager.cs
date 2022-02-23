@@ -89,9 +89,8 @@ public class UIManager : MonoBehaviour
 		craft.toolLevel = toolLevel;
 		craft.craftTool = craftTool;
 		//state = MenuState.Craft;
-		
-		craft.currentType = "All";
-		craft.RefreshCrafts(true);
+
+		craft.SelectCraftType("All");
 	}
 
 	public void StartCraft(ItemData.CraftTool tool, int toolLevel, CraftToolObject craftTool)

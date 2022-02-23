@@ -73,7 +73,6 @@ public class SaveObject
 		//{
 		//	if (prefab.saveData.id == id) return prefab.gameObject;
 		//}
-		Debug.Log(id);
 		foreach(SavableObject sav in Resources.LoadAll<SavableObject>("Objects/Decoration"))
 		{
 			if (sav.gameObject.name== id) return sav.gameObject;

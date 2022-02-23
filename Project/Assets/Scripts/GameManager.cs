@@ -21,27 +21,50 @@ public class GameManager : MonoBehaviour
     {
         // it starts here to prevent eventually bugs
         inventoryManager.StartInventory();
+        player = FindObjectOfType<FirstPersonController>();
 
         if (!dungeon)
         {
             if (PlayerPrefs.GetInt("LoadGame") == 1)
+            {
+                Destroy(player.transform.Find("StartItems").gameObject);
                 saveManager.LoadGame();
+            }
             else
+            {
                 NewGame();
+            }
         }
+
+
+        StartCaveHelper();
     }
 
     public void NewGame()
 	{
-        Debug.Log("NEW GAME");
         RandomTerrain terrain = Instantiate(terrainPrefab).GetComponent<RandomTerrain>();
-        player = FindObjectOfType<FirstPersonController>();
+        
         terrain.StarTerrain();
         gui.SetActive(true);
 
         saveManager.SaveGame();
         player.transform.Find("StartItems").gameObject.SetActive(true);
+
+        PlayerPrefs.SetInt("LoadGame", 1);
     }
+
+    private void StartCaveHelper()
+	{
+        if (CaveHelper.instance.loadInventory)
+        {
+            InventoryManager inv = FindObjectOfType<InventoryManager>();
+            inv.inventory.itemList = CaveHelper.instance.inventory.itemList;
+            inv.RefreshInventory();
+            FindObjectOfType<HealthController>().currentHp = CaveHelper.instance.currentHP;
+            FindObjectOfType<ItemBarManager>().SetCurrentSlot(CaveHelper.instance.currentItem);
+        }
+    }
+
 }
 
 

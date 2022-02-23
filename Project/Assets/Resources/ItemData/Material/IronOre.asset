@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
   m_Name: IronOre
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Iron Ore
     portugues: "Min\xE9rio de Ferro"
@@ -24,9 +25,13 @@ MonoBehaviour:
     portugues: "Voc\xEA pode us\xE1-la para criar muitas coisas."
   value: 10
   drop: {fileID: 886116969099337660, guid: 397e45ca0ffbeb74ebb8f0f72a55dfde, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10
   recipeTool: 0
+  gasCost: 0
+  toolLevel: 0
   recipe: []

@@ -84,4 +84,36 @@ public class SaveManager : MonoBehaviour
 			}
 		}
 	}
+
+	public void LoadInventory()
+	{
+		savableObjects = FindObjectsOfType<SavableObject>();
+
+		string path = Application.persistentDataPath + PlayerPrefs.GetString("CurrentSave");
+		if (File.Exists(path))
+		{
+			BinaryFormatter formatter = new BinaryFormatter();
+			FileStream stream = new FileStream(path, FileMode.Open);
+
+			List<SaveObject> saveObjects = formatter.Deserialize(stream) as List<SaveObject>;
+			stream.Close();
+
+			foreach (SaveObject saveObject in saveObjects)
+			{
+				if (saveObject.useSceneObject)
+				{
+					foreach (SavableObject sav in savableObjects)
+					{
+						if (sav.gameObject.name == "UIManager")
+						{
+							if (sav.gameObject.name == saveObject.id)
+							{
+								sav.LoadData(saveObject);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
 }

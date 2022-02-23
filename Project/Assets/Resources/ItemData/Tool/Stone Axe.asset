@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c19e64099aba49abf2cc8ab66b784, type: 3}
   m_Name: Stone Axe
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Stone Axe
     portugues: Machado de Pedra
@@ -39,4 +40,5 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: 5f12f1521e14fb0459482a394da110fe, type: 2}
     amount: 5
   toolType: 1
+  toolEfficiency: 1
   durability: 50

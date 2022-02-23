@@ -5,8 +5,7 @@ using UnityEngine.UI;
 
 public class ItemBarManager : MonoBehaviour
 {
-    [SerializeField]
-    private int selectedSlot = 0;
+    public int selectedSlot = 0;
 	public bool invertScroll;
     public List<InventorySlot> itemBarSlots;
 	public List<GameObject> barBackgroundSlot;
@@ -19,69 +18,69 @@ public class ItemBarManager : MonoBehaviour
 
 	private void Update()
 	{
-		//if (Cursor.lockState == CursorLockMode.Locked)
-		//{
-		if (Input.mouseScrollDelta.y < 0)
+		if (Cursor.lockState == CursorLockMode.Locked)
 		{
-			if (invertScroll)
+			if (Input.mouseScrollDelta.y < 0)
 			{
-				if (selectedSlot >= 8)
+				if (invertScroll)
 				{
-					SetCurrentSlot(0);
+					if (selectedSlot >= 8)
+					{
+						SetCurrentSlot(0);
+					}
+					else
+					{
+						SetCurrentSlot(selectedSlot + 1);
+					}
 				}
 				else
 				{
-					SetCurrentSlot(selectedSlot + 1);
+					if (selectedSlot <= 0)
+					{
+						SetCurrentSlot(8);
+					}
+					else
+					{
+						SetCurrentSlot(selectedSlot - 1);
+					}
 				}
 			}
-			else
+			else if (Input.mouseScrollDelta.y > 0)
 			{
-				if (selectedSlot <= 0)
+				if (invertScroll)
 				{
-					SetCurrentSlot(8);
-				}
+					if (selectedSlot <= 0)
+					{
+						SetCurrentSlot(8);
+					}
+					else
+					{
+						SetCurrentSlot(selectedSlot - 1);
+					}
+				} 
 				else
 				{
-					SetCurrentSlot(selectedSlot - 1);
+					if (selectedSlot >= 8)
+					{
+						SetCurrentSlot(0);
+					}
+					else
+					{
+						SetCurrentSlot(selectedSlot + 1);
+					}
 				}
 			}
-		}
-		else if (Input.mouseScrollDelta.y > 0)
-		{
-			if (invertScroll)
-			{
-				if (selectedSlot <= 0)
-				{
-					SetCurrentSlot(8);
-				}
-				else
-				{
-					SetCurrentSlot(selectedSlot - 1);
-				}
-			} 
-			else
-			{
-				if (selectedSlot >= 8)
-				{
-					SetCurrentSlot(0);
-				}
-				else
-				{
-					SetCurrentSlot(selectedSlot + 1);
-				}
-			}
-		}
 
 
-		for (int i = 0; i < 10; i++)
-		{
-			if (Input.GetKeyDown("" + i))
+			for (int i = 0; i < 10; i++)
 			{
-				if (i == 0) SetCurrentSlot(8);
-				else SetCurrentSlot(i - 1);
+				if (Input.GetKeyDown("" + i))
+				{
+					if (i == 0) SetCurrentSlot(8);
+					else SetCurrentSlot(i - 1);
+				}
 			}
 		}
-		//}
 	}
 
 	public void RefreshItemBar()

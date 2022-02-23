@@ -736,12 +736,9 @@ MonoBehaviour:
   itemImage: {fileID: 6719044365578569000}
   txtAmount: {fileID: 6719044364869949589}
   emptyImage: {fileID: 21300000, guid: 731708668477bd048a3571c7c902f39d, type: 3}
-  infos: {fileID: 6662991325936822266}
-  nameText: {fileID: 3519117011575443435}
-  typeText: {fileID: 7158203825153405398}
-  descriptionText: {fileID: 2965853590590757414}
   durabilityData: {fileID: 8520693072866770492}
   durabilityBar: {fileID: 1824877038390104636}
+  txtName: {fileID: 0}
 --- !u!114 &3579073455752510890
 MonoBehaviour:
   m_ObjectHideFlags: 0

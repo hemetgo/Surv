@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c19e64099aba49abf2cc8ab66b784, type: 3}
   m_Name: Iron Pickaxe
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Iron Pickaxe
     portugues: Picareta de Ferro
@@ -39,4 +40,5 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: 66c839612393c8240b39c80c464718c2, type: 2}
     amount: 5
   toolType: 2
+  toolEfficiency: 3
   durability: 125

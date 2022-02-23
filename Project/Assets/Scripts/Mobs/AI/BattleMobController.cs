@@ -81,14 +81,13 @@ public class BattleMobController : MonoBehaviour
 		{
             if (Toolkit.RandomBool(drop.dropChance/100))
 			{
-                drop.SetAmount();
                 drops.Add(drop);
 			}
 		}
 
         foreach(DropData drop in drops)
 		{
-            for (int i = 0; i < drop.GetAmount(); i++)
+            for (int i = 0; i < drop.amount; i++)
 			{
                 Drop(drop.itemData.drop);
             }

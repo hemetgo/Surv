@@ -43,7 +43,7 @@ public class ItemData : ScriptableObject
 		{
             case ItemType.Battle: return 1;
             case ItemType.Tool: return 1;
-            default: return 50;
+            default: return 999;
 		}
 	}
 

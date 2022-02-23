@@ -6,18 +6,8 @@ public class DropData
 {
 	public ItemData itemData;
 	public Vector2Int amountRange;
+	public int amount;
 	[Range(0, 100)] public float dropChance;
 	
-	private int amount;
-
-	public void SetAmount()
-	{
-		amount = Random.Range(amountRange.x, amountRange.y);
-	}
-
-	public int GetAmount()
-	{
-		return amount;
-	}
 }
 

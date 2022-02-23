@@ -204,7 +204,7 @@ public class InventorySlot : MonoBehaviour
 			else
 			{
 				durabilityData.SetActive(false);
-				txtAmount.text = "x" + item.amount;
+				txtAmount.text = "" + item.amount;
 			}
 		}
 		else

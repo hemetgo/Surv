@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 83c40eafd1a17c442892e95d3a9c7246, type: 3}
   m_Name: Steak
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Steak
     portugues: Carne

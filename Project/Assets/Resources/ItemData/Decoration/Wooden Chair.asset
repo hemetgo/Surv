@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
   m_Name: Wooden Chair
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Wooden Chair
     portugues: Cadeira de Madeira
@@ -24,11 +25,15 @@ MonoBehaviour:
     portugues: "Uma cadeira melhor do que a que voc\xEA est\xE1 sentado."
   value: 0
   drop: {fileID: 6278724201056964863, guid: 72a1fcf6acc8b7944956b8003ba944f2, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10
   recipeTool: 1
+  gasCost: 0
+  toolLevel: 0
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
     amount: 4

@@ -7,7 +7,7 @@ public class FeedbackManager : MonoBehaviour
     [Header("Feedbacks")]
     public Transform feedbackContainer;
     public GameObject feedbackItem;
-    public RectTransform inventoryBackground;
+    //public RectTransform inventoryBackground;
 
 
 	public void ShowFeedback(string msg)

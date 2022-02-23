@@ -6,31 +6,33 @@ using UnityEngine.SceneManagement;
 
 public class CaveBuilder : MonoBehaviour
 {
-	[Header("Settings")]
-	public float tileSize;
-	public Vector2Int roomCountRange;
-	public Vector2Int roomSizeRange;
-	public int gridSize;
+	public CaveSettings settings;
 
-	[Header("Prefabs")]
-	public GameObject groundTilePrefab;
-	public GameObject groundStairPrefab;
-	public GameObject stairPrefab;
-	public GameObject stairRoofPrefab;
-	public GameObject[] caveRoofTile;
-    public GameObject wallTilePrefab;
-    public GameObject doorTilePrefab;
-	public GameObject[] mobsPrefabs;
-	public CaveLoot[] lootsPrefabs;
-	
 	[Header("Rooms")]
 	public List<Room> rooms = new List<Room>();
 
+
 	// Privates
+	private float tileSize;
+	private Vector2Int roomCountRange;
+	private Vector2Int roomSizeRange;
+	private int gridSize;
+
+	private GameObject groundTilePrefab;
+	private GameObject groundStairPrefab;
+	private GameObject stairPrefab;
+	private GameObject stairRoofPrefab;
+	private GameObject[] caveRoofTile;
+	private GameObject wallTilePrefab;
+	private GameObject doorTilePrefab;
+	private GameObject[] mobsPrefabs;
+	
+
 	private Cell[,] grid;
 
 	private void Start()
 	{
+		GetSettings();
 		GenerateGrid();
 		AlocateRooms();
 		AlocateDoors();
@@ -39,15 +41,27 @@ public class CaveBuilder : MonoBehaviour
 		PlaceStairs();
 		PlaceLoots();
 		PlaceMobs();
-
-		FindObjectOfType<FirstPersonController>().transform.position =
-			rooms[0].cells[Random.Range(0, rooms[0].cells.Count)].groundTile.transform.position;
 	}
 
-	private void Update()
+	private void GetSettings()
 	{
-		if (Input.GetKeyDown(KeyCode.R)) SceneManager.LoadScene(SceneManager.GetActiveScene().name);
-	}
+		// Cave Settings
+		tileSize = settings.tileSize;
+		roomCountRange = settings.roomCountRange;
+		roomSizeRange = settings.roomSizeRange;
+		gridSize = settings.gridSize;
+
+		// Prefabs
+		groundTilePrefab = settings.groundTilePrefab[Random.Range(0, settings.groundTilePrefab.Length)];
+		groundStairPrefab = settings.groundStairPrefab[Random.Range(0, settings.groundStairPrefab.Length)];
+		stairPrefab = settings.stairPrefab[Random.Range(0, settings.stairPrefab.Length)];
+		stairRoofPrefab = settings.stairRoofPrefab[Random.Range(0, settings.stairRoofPrefab.Length)];
+		caveRoofTile = settings.caveRoofTile;
+		wallTilePrefab = settings.wallTilePrefab[Random.Range(0, settings.wallTilePrefab.Length)];
+		doorTilePrefab = settings.doorTilePrefab[Random.Range(0, settings.doorTilePrefab.Length)];
+		wallTilePrefab = settings.wallTilePrefab[Random.Range(0, settings.wallTilePrefab.Length)];
+		mobsPrefabs = settings.mobsPrefabs;
+}
 
 	private void GenerateGrid()
 	{
@@ -429,7 +443,7 @@ public class CaveBuilder : MonoBehaviour
 			for (int loots = 0; loots < 2; loots++)
 			{
 				Cell spawnCell = cellQueue.Dequeue() as Cell;
-				GameObject loot = Instantiate(lootsPrefabs[Random.Range(0, lootsPrefabs.Length)].prefab,
+				GameObject loot = Instantiate(settings.GetRandomLoot(), 
 					spawnCell.groundTile.transform.position, new Quaternion());
 				loot.transform.Translate(0, -.5f, 0);
 				loot.transform.Rotate(0, Random.Range(0, 360), 0);
@@ -484,6 +498,8 @@ public class CaveBuilder : MonoBehaviour
 		float height = wallTilePrefab.GetComponent<Renderer>().bounds.size.y;
 		roof.transform.parent = spawnCell.roofTile.transform.parent;
 		Destroy(spawnCell.roofTile);
+
+		FindObjectOfType<FirstPersonController>().transform.position = spawnCell.groundTile.transform.position;
 
 
 

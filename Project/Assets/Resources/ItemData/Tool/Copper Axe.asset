@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c19e64099aba49abf2cc8ab66b784, type: 3}
   m_Name: Copper Axe
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Copper Axe
     portugues: Machado de Cobre
@@ -39,4 +40,5 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: af44b8a64912de249b0a299548e7a445, type: 2}
     amount: 5
   toolType: 1
+  toolEfficiency: 2
   durability: 75

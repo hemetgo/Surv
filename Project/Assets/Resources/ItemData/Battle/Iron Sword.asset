@@ -12,21 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 98e9c0a0ae39b2940b3672c7684dfc0d, type: 3}
   m_Name: Iron Sword
   m_EditorClassIdentifier: 
+  enable: 1
   itemName:
     english: Iron Sword
     portugues: Espada de Ferro
   icon: {fileID: 21300000, guid: b62fb426220df204caa4db922611bee3, type: 3}
   rarity: 1
   itemType: 0
+  ability: 0
   description:
     english: The better sword you ever saw... or the almost better.
     portugues: "A melhor espada que voc\xEA j\xE1 viu... ou quase melhor."
   value: 10
   drop: {fileID: 3901290829084400903, guid: b205d14c00ebae34f92a13a064f635d3, type: 3}
+  gasValue: 0
+  gasTypes: 
   animation: 1
   power: 35
   critRate: 25
   knockbackForce: 10
+  recipeTool: 0
+  gasCost: 0
+  toolLevel: 0
   recipe:
   - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
     amount: 5

@@ -111,7 +111,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTrees: {x: 200, y: 500}
-  treePrefab: {fileID: 402445815923791119, guid: 8ff78200668798d4591e4b61c0c109c9, type: 3}
+  treePrefabs:
+  - {fileID: 402445815923791119, guid: 8ff78200668798d4591e4b61c0c109c9, type: 3}
+  - {fileID: 2309671870450585028, guid: f8d9037d2fe475f4d97bbaa3f9a930b7, type: 3}
+  - {fileID: 7620620705687644563, guid: b3dbf51efb03bc1458695496061f04c8, type: 3}
+  - {fileID: 2443009595523138980, guid: 1c545296f8c10f54c9c4ae15cc41e4c2, type: 3}
+  - {fileID: 1879126459034389131, guid: 2e8039f82a7592e499e728586171e128, type: 3}
+  - {fileID: 2998223627276027209, guid: 7daf573755203f84e8618eb736ab9361, type: 3}
+  cavePrefabs:
+  - {fileID: 7387605042457331896, guid: ccdc861b5e1664d469ed96e465408016, type: 3}
 --- !u!114 &-7702441515982284169
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -124,8 +132,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData: {fileID: 0}
-  type: 2
   saveObject:
     id: 
     useSceneObject: 0

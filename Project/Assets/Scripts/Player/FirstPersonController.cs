@@ -19,7 +19,8 @@ public class FirstPersonController : MonoBehaviour
     public bool isEating;
 
     [Header("Camera Settings")]
-    public Animator handAnimator;
+    public Animator rightHandAnimator;
+    public Animator leftHandAnimator;
     [SerializeField]
     private Transform camPosition;
     [SerializeField]
@@ -95,7 +96,8 @@ public class FirstPersonController : MonoBehaviour
 
             float horizontal = Input.GetAxisRaw("Horizontal");
             float vertical = Input.GetAxisRaw("Vertical");
-            handAnimator.SetFloat("Bobbing", new Vector2(horizontal, vertical).magnitude);
+            //rightHandAnimator.SetFloat("Bobbing", new Vector2(horizontal, vertical).magnitude);
+            //leftHandAnimator.SetFloat("Bobbing", new Vector2(horizontal, vertical).magnitude);
 
             float realSpeed;
 
@@ -105,7 +107,7 @@ public class FirstPersonController : MonoBehaviour
             {
                 realSpeed = moveSpeed * runSpeedModifier;
                 isRunning = true;
-                handAnimator.SetFloat("Bobbing", new Vector2(horizontal * runSpeedModifier, vertical * runSpeedModifier).magnitude);
+                //rightHandAnimator.SetFloat("Bobbing", new Vector2(horizontal * runSpeedModifier, vertical * runSpeedModifier).magnitude);
                 //if (Mathf.Abs(horizontal) > moveSpeed / 8 || Mathf.Abs(vertical) > moveSpeed / 8) isRunning = true;
                 //else isRunning = false;
             }
@@ -115,12 +117,20 @@ public class FirstPersonController : MonoBehaviour
                 isRunning = false;
             }
 
+
+
             if (isCrouching || isEating) realSpeed = realSpeed / crouchSpeedModifier;
             if (vertical < 0) realSpeed = realSpeed / 2;
 
             Vector3 moveInput = new Vector3(horizontal, 0, vertical);
             Vector3 moveVector = transform.TransformDirection(moveInput) * realSpeed;
             rb.velocity = new Vector3(moveVector.x, rb.velocity.y, moveVector.z);
+
+            bool isWalking = moveInput.magnitude != 0;
+            rightHandAnimator.SetBool("Walking", isWalking);
+            rightHandAnimator.SetBool("Running", isRunning);
+            leftHandAnimator.SetBool("Walking", isWalking);
+            leftHandAnimator.SetBool("Running", isRunning);
         }
     }
 

@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fcc79b878c8095b489cb2bb8bdfb2287, type: 3}
+  m_Name: DefaultCave
+  m_EditorClassIdentifier: 
+  tileSize: 4.5
+  roomCountRange: {x: 10, y: 20}
+  roomSizeRange: {x: 3, y: 5}
+  gridSize: 100
+  groundTilePrefab:
+  - {fileID: 4090942781695648569, guid: 66c097ec5846b4344b05f46836ad3bf0, type: 3}
+  groundStairPrefab:
+  - {fileID: 4090942781695648569, guid: 9991f2468a62f9149beb9895f5810917, type: 3}
+  stairRoofPrefab:
+  - {fileID: 4090942781695648569, guid: 04aac38e4b8b7f14e898a334fa5d5dcb, type: 3}
+  caveRoofTile:
+  - {fileID: 4552825250586186666, guid: daefc7ba5bb7cc342ae69459c59a8328, type: 3}
+  - {fileID: 4090942781695648569, guid: e76594b2fa8d6b249a89ccf9dc543449, type: 3}
+  - {fileID: 4090942781695648569, guid: ef25cdcda55e6a0499222a2a176e3a9e, type: 3}
+  wallTilePrefab:
+  - {fileID: 3408128527036657153, guid: fa280a412e1745a47af2bfbb61c03a03, type: 3}
+  doorTilePrefab:
+  - {fileID: 4174673701074273897, guid: c2f4be06cfa814840a2724e916194eaf, type: 3}
+  stairPrefab:
+  - {fileID: 369147891615864010, guid: 972f3ab13df8d6c46b0d9937d0b1628e, type: 3}
+  mobsPrefabs:
+  - {fileID: 6949730540182540407, guid: 2bb68c9fa7bb53c49ba29d8db3bd94bf, type: 3}
+  lootsPrefabs:
+  - firstLevel: 30
+    rarity: 3
+    prefab: {fileID: 5192065269413570273, guid: 12406f80d0b076f4a945caf15e8be134, type: 3}
+  - firstLevel: 15
+    rarity: 10
+    prefab: {fileID: 5192065269413570273, guid: 25ffd1b50f8f3e74096e5f389310b8b9, type: 3}
+  - firstLevel: 5
+    rarity: 20
+    prefab: {fileID: 5192065269413570273, guid: 500747397473fda46b100d22a348ece4, type: 3}
+  - firstLevel: 0
+    rarity: 100
+    prefab: {fileID: 5192065269413570273, guid: 345981d3c483dc547bf2a63b7211facc, type: 3}
