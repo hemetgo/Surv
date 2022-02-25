@@ -284,7 +284,10 @@ MonoBehaviour:
   drops:
   - itemData: {fileID: 11400000, guid: 860e2089b8df6b241ae78c3a7faa71f5, type: 2}
     amountRange: {x: 1, y: 1}
+    amount: 0
     dropChance: 100
+  randomYRot: 0
+  maxScaleVariation: 0
 --- !u!114 &1881279194223938356
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -343,8 +346,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData: {fileID: 11400000, guid: 409becd382cb6e941895ef6a2a62517b, type: 2}
-  type: 0
   saveObject:
     id: 
     useSceneObject: 0

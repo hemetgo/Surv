@@ -26,7 +26,7 @@ public class AiAgent : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        player = FindObjectOfType<FirstPersonController>().transform;
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
 
@@ -59,7 +59,15 @@ public class AiAgent : MonoBehaviour
     public bool PlayerOnView(float viewModifier)
 	{
         if (Vector3.Distance(transform.position, player.position) <= viewRange * viewModifier)
-            return true;
+		{
+            Vector3 castPos = player.GetComponent<CapsuleCollider>().bounds.center;
+            Physics.Linecast(transform.position, castPos, out RaycastHit hit);
+            Debug.Log(hit.collider);
+            if (!hit.collider)
+                return true;
+            else
+                return false;
+        }
         else
             return false;    
 	}

@@ -53,9 +53,7 @@ public class DropItem : MonoBehaviour
 
             if (followPlayer)
             {
-                Vector3 movePos = player.transform.position + (Vector3.up * player.GetComponent<Collider>().bounds.size.y / 2);
                 transform.position = Vector3.MoveTowards(transform.position, player.transform.position, 15 * Time.deltaTime);
-                //transform.position = Vector3.Lerp(transform.position, player.transform.position, 10 * Time.deltaTime);
                 if (distance < 0.5f)
                 {
                     InventoryManager inv = FindObjectOfType<InventoryManager>();

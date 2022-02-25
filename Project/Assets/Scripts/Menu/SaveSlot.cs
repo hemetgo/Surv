@@ -11,8 +11,14 @@ public class SaveSlot : MonoBehaviour
     public Text dateText;
     public Color selectedColor;
     public Color unselectedColor;
+    private DeletePopup deletePopup;
 
-    public void SetSave(FileInfo sav)
+	private void Start()
+	{
+        deletePopup = FindObjectOfType<MenuManager>().deletePopup;
+	}
+
+	public void SetSave(FileInfo sav)
     {
         save = sav.Name.Replace(".sav", "");
         saveNameText.text = save;
@@ -46,6 +52,15 @@ public class SaveSlot : MonoBehaviour
         PlayerPrefs.SetString("CurrentSave", "/saves/" + sav + ".sav");
     }
 
+    public void DeletePopup()
+	{
+        deletePopup.gameObject.SetActive(true);
+
+        deletePopup.btnYes.onClick.RemoveAllListeners();
+        deletePopup.btnYes.onClick.AddListener(() => DeleteSave()); 
+        deletePopup.btnNo.onClick.AddListener(() => deletePopup.gameObject.SetActive(false)); 
+	}
+
     public void DeleteSave()
     {
         string filePath = Application.persistentDataPath + "/saves/" + save + ".sav";
@@ -60,5 +75,7 @@ public class SaveSlot : MonoBehaviour
             File.Delete(filePath);
             Destroy(gameObject);
         }
+
+        deletePopup.gameObject.SetActive(false);
     }
 }

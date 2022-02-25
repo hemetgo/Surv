@@ -28,7 +28,7 @@ public class RandomTerrain : MonoBehaviour
                 Random.Range(startTerrain.z, endTerrain.z));
             GameObject tree = Instantiate(treePrefabs[Random.Range(0, treePrefabs.Length)], spawnPos, new Quaternion());
             tree.transform.Rotate(0, Random.Range(0, 360), 0);
-            tree.transform.SetParent(transform);
+            tree.transform.SetParent(transform.parent);
 		}
 	}
 
@@ -44,7 +44,7 @@ public class RandomTerrain : MonoBehaviour
                 Random.Range(startTerrain.z, endTerrain.z));
             GameObject tree = Instantiate(cavePrefabs[Random.Range(0, cavePrefabs.Length)], spawnPos, new Quaternion());
             tree.transform.Rotate(0, Random.Range(0, 360), 0);
-            tree.transform.SetParent(transform);
+            tree.transform.SetParent(transform.parent);
         }
     }
 }

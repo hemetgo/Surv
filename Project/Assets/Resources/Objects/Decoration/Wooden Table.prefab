@@ -66,7 +66,10 @@ MonoBehaviour:
   drops:
   - itemData: {fileID: 11400000, guid: e9ccc6cc8fad1a948a39b2c74859bd25, type: 2}
     amountRange: {x: 1, y: 1}
+    amount: 0
     dropChance: 100
+  randomYRot: 0
+  maxScaleVariation: 0
 --- !u!114 &8684818570062621504
 MonoBehaviour:
   m_ObjectHideFlags: 0

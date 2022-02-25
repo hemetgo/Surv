@@ -164,7 +164,6 @@ public class InteractController : MonoBehaviour
                                 actionTimer = actionDelay;
 
                                 // Interaction functions
-
                                 if (smart.GetObjectType() == SmartObject.ObjectType.Chop)
                                 {
                                     ChopObject chop = smart as ChopObject;
@@ -183,10 +182,10 @@ public class InteractController : MonoBehaviour
                                 if (smart.particle)
                                     Instantiate(smart.particle, hit.point, new Quaternion()).transform.LookAt(transform.position);
 
-                                if (smart.GetObjectType() == SmartObject.ObjectType.Chop)
-                                {
-                                    handManager.handItem.RemoveDurability(handManager);
-                                }
+                                //if (smart.GetObjectType() == SmartObject.ObjectType.Chop)
+                                //{
+                                //    handManager.handItem.RemoveDurability(handManager);
+                                //}
                             }
                         }
                     }

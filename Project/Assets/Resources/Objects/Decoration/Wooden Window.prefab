@@ -43,7 +43,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 6.6, y: 0.14, z: 0.9999999}
+  m_Size: {x: 6.6, y: 0.23, z: 0.9999999}
   m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &1840971326469422966
 MonoBehaviour:
@@ -181,8 +181,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.9214535, y: 0.9701231, z: 0.99999994}
-  m_Center: {x: -0.039273016, y: 0.48597315, z: 0}
+  m_Size: {x: 1.43, y: 0.9701231, z: 0.99999994}
+  m_Center: {x: 0, y: 0.48597315, z: 0}
 --- !u!114 &8596428202081309546
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -308,7 +308,10 @@ MonoBehaviour:
   drops:
   - itemData: {fileID: 11400000, guid: d205ee21e9895664db9b417fe5835486, type: 2}
     amountRange: {x: 1, y: 1}
+    amount: 0
     dropChance: 100
+  randomize: 0
+  maxScaleVariation: 0
 --- !u!65 &2981615197199185104
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -443,8 +446,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.89628035, y: 0.9776972, z: 0.99999994}
-  m_Center: {x: 0.051859908, y: 0.4866536, z: 0}
+  m_Size: {x: 1.89, y: 0.9776972, z: 0.99999994}
+  m_Center: {x: 0, y: 0.4866536, z: 0}
 --- !u!114 &4587900710474957510
 MonoBehaviour:
   m_ObjectHideFlags: 0

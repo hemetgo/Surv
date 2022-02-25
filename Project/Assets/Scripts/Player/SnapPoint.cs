@@ -24,7 +24,7 @@ public class SnapPoint : MonoBehaviour
 
 			if (decorParent.isHorizontal)
 			{
-				if (transform.position.z < transform.parent.position.x)
+				if (transform.position.x < transform.parent.position.x)
 					return Position.Left;
 				else if (transform.position.x > transform.parent.position.x)
 					return Position.Right;

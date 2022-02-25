@@ -30,7 +30,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7612341892204132633}
-  m_LocalRotation: {x: 0.000000081460335, y: 0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 206.52155, y: 206.52155, z: 206.52155}
   m_Children: []
@@ -158,7 +158,10 @@ MonoBehaviour:
   drops:
   - itemData: {fileID: 11400000, guid: 6aec34724aa52f747acfa957571d003f, type: 2}
     amountRange: {x: 1, y: 1}
+    amount: 0
     dropChance: 100
+  randomYRot: 0
+  maxScaleVariation: 0
 --- !u!114 &626855796946950892
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -171,8 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  saveData: {fileID: 11400000, guid: b5889a2a8c9c0c645a646a57213e53a3, type: 2}
-  type: 0
   saveObject:
     id: 
     useSceneObject: 0

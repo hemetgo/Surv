@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 406c19e64099aba49abf2cc8ab66b784, type: 3}
   m_Name: Wooden Pickaxe
   m_EditorClassIdentifier: 
-  enable: 1
+  enable: 0
   itemName:
     english: Wooden Pickaxe
     portugues: Picareta de Madeira
@@ -40,4 +40,5 @@ MonoBehaviour:
   - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
     amount: 5
   toolType: 2
+  toolEfficiency: 0
   durability: 25

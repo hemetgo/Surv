@@ -30,7 +30,9 @@ public class SaveObject
 		}
 		else if (component.GetType() == typeof(ChopObject))
 		{
-			saveComponents.Add(new SaveChopObject(component as ChopObject));
+			ChopObject chop = component as ChopObject;
+			if (chop.currentDamage < chop.health) // Save if the object isnt destroyed 
+				saveComponents.Add(new SaveChopObject(component as ChopObject));
 		}
 		else if (component.GetType() == typeof(GasToolObject))
 		{

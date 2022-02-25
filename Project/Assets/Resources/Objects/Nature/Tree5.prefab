@@ -65,7 +65,7 @@ MonoBehaviour:
     amountRange: {x: 5, y: 10}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 1
   maxScaleVariation: 0
 --- !u!33 &2998223627273066825
 MeshFilter:

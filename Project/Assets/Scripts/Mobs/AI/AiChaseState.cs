@@ -27,8 +27,8 @@ public class AiChaseState : AiState
 		}
 		
 		// Change to Idle
-		if (!agent.PlayerOnView(agent.chaseRangeModifier))
-			agent.stateMachine.ChangeState(AiStateId.Idle);
+		//if (!agent.PlayerOnView(agent.chaseRangeModifier))
+		//	agent.stateMachine.ChangeState(AiStateId.Idle);
 	}
 
 	public void Exit(AiAgent agent)

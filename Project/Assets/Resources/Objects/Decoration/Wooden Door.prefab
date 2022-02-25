@@ -43,8 +43,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.9286797, y: 1.7245096, z: 6.637421}
-  m_Center: {x: -0.2609053, y: 0.8600598, z: 0.080685526}
+  m_Size: {x: 2.85, y: 1.7245096, z: 6.637421}
+  m_Center: {x: 0, y: 0.8600598, z: 0.080685526}
 --- !u!114 &3107123140531329924
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -275,7 +275,10 @@ MonoBehaviour:
   drops:
   - itemData: {fileID: 11400000, guid: ae1156bef05386a4ba0e505cfc963710, type: 2}
     amountRange: {x: 1, y: 1}
+    amount: 0
     dropChance: 100
+  randomize: 0
+  maxScaleVariation: 0
 --- !u!114 &7408032203438427533
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -443,7 +446,10 @@ MonoBehaviour:
   drops:
   - itemData: {fileID: 11400000, guid: ae1156bef05386a4ba0e505cfc963710, type: 2}
     amountRange: {x: 1, y: 1}
+    amount: 0
     dropChance: 100
+  randomize: 0
+  maxScaleVariation: 0
 --- !u!114 &812597388412176349
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -511,8 +517,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.7872838, y: 1.7209611, z: 6.3850064}
-  m_Center: {x: 0.28409988, y: 0.8613918, z: 0.015787834}
+  m_Size: {x: 2.75, y: 1.7209611, z: 6.3850064}
+  m_Center: {x: 0, y: 0.8613918, z: 0.015787834}
 --- !u!114 &745932847204300334
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -550,13 +556,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9206121756909302159}
-  m_LocalRotation: {x: -0, y: -0, z: 0.7070602, w: 0.7071534}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 3.349, z: -0.0036000002}
   m_LocalScale: {x: 0.25703838, y: 1.5352951, z: 0.14978334}
   m_Children: []
   m_Father: {fileID: 488200955086128665}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 89.992}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!65 &1985404442374248101
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -568,7 +574,7 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.4350498, y: 1.9273775, z: 5.7684407}
+  m_Size: {x: 11.57, y: 0.36, z: 5.7684407}
   m_Center: {x: 0, y: 0, z: 0.04682529}
 --- !u!114 &4923057779878279954
 MonoBehaviour:

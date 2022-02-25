@@ -11,6 +11,7 @@ public class MenuManager : MonoBehaviour
 	public SaveSlot saveSlotPrefab;
 	public Transform saveSlotParent;
 	public InputField newGameField;
+	public DeletePopup deletePopup;
 
 	private void Start()
 	{

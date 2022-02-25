@@ -21,14 +21,14 @@ public class ChopObject : SmartObject
     public List<DropData> drops;
 
     [Header("Randomize")]
-    public bool randomYRot;
+    public bool randomize;
     public float maxScaleVariation;
 
     public enum ChopType { EachInteract, WhenFinished }
 
 	private void Start()
 	{
-        Randomize();
+        if (randomize) Randomize();
 	}
 
 	private void Update()
