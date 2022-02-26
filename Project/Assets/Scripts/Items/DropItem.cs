@@ -19,6 +19,7 @@ public class DropItem : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        gameObject.layer = 6;
         inventoryManager = FindObjectOfType<InventoryManager>();
         player = GameObject.FindGameObjectWithTag("Player").transform;
         foreach(Collider col in GetComponents<Collider>())

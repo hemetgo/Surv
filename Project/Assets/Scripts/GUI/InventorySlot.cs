@@ -14,6 +14,7 @@ public class InventorySlot : MonoBehaviour
 	public Image itemImage;
     public TextMeshProUGUI txtAmount;
 	public Sprite emptyImage;
+	public Vector2 itemBarImageSize;
 
 	[Header("Infos")]
 	public GameObject durabilityData;
@@ -220,5 +221,13 @@ public class InventorySlot : MonoBehaviour
 	public void SetManager(InventoryManager manager)
 	{
 		inventoryManager = manager;
+	}
+
+	public void SetAsItemBarSlot()
+	{
+		RectTransform rect = itemImage.GetComponent<RectTransform>();
+		GetComponent<RectTransform>().sizeDelta = new Vector2(40, 40);
+		rect.sizeDelta = new Vector2(35, 35);
+		txtName.fontSize = 15;
 	}
 }

@@ -57,7 +57,7 @@ public class InteractController : MonoBehaviour
         // Range
         if (handManager.handItem.itemData)
         {
-            if (handManager.handItem.itemData.itemType == ItemData.ItemType.Decoration) currentRange = 9999;
+            if (handManager.handItem.itemData.ability == ItemData.Ability.Placeable) currentRange = 9999;
             else currentRange = interactRange;
         }
 
@@ -239,7 +239,8 @@ public class InteractController : MonoBehaviour
                         decorationObject.EnableSnappingPoints(false);
                         decorationObject.redMaterial = redMaterial;
                         decorationObject.isPlacing = true;
-                        decorationObject.placingCollider.enabled = true;
+                        if (decorationObject.snap != DecorationObject.SnapType.None)
+                            decorationObject.placingCollider.enabled = true;
                     }
 
                     // Controls
@@ -286,7 +287,7 @@ public class InteractController : MonoBehaviour
                                             decorationObject.transform.position = snapPoint.transform.position;
                                         }
                                         else if (pos == SnapPoint.Position.Bottom)
-										{
+                                        {
                                             decorationObject.transform.position = snapPoint.transform.position
                                                 - new Vector3(0, placingRenderer.bounds.size.y / moveMod, 0); ;
                                         }
@@ -388,14 +389,18 @@ public class InteractController : MonoBehaviour
                         else
                         {
                             if (gridPlacement)
+                            {
                                 // Snap to grid
                                 placingObject.transform.position = new Vector3(
                                     (float)(Math.Round(hitPoint.x * 4, MidpointRounding.ToEven) / 4),
                                     (float)(Math.Round(hitPoint.y * 4, MidpointRounding.ToEven) / 4),
                                     (float)(Math.Round(hitPoint.z * 4, MidpointRounding.ToEven) / 4));
-                            //placingObject.transform.position = new Vector3((int)hitPoint.x, (int)hitPoint.y, (int)hitPoint.z);
+                                //placingObject.transform.position = new Vector3((int)hitPoint.x, (int)hitPoint.y, (int)hitPoint.z);
+                            }
                             else
+                            {
                                 placingObject.transform.position = hitPoint + (Vector3.up * 0.015f);
+                            }
                         }
 
                         // Placement
@@ -476,7 +481,7 @@ public class InteractController : MonoBehaviour
 
             if (handManager.handItem.itemData)
             {
-                if (handManager.handItem.itemData.itemType != ItemData.ItemType.Decoration)
+                if (handManager.handItem.itemData.ability != ItemData.Ability.Placeable)
                 {
                     if (placingObject)
                     {

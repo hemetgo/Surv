@@ -10,28 +10,30 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f66e0407ff448046a3f6349078a046d, type: 3}
-  m_Name: Sapling
+  m_Name: Wooden Palisade
   m_EditorClassIdentifier: 
-  enable: 0
+  enable: 1
   itemName:
-    english: Sapling
-    portugues: "Muda de \xC1rvore"
-  icon: {fileID: 21300000, guid: b3706dfc7d1edea499501db45b680cdb, type: 3}
+    english: Wooden Palisade
+    portugues: "Pali\xE7ada de Madeira"
+  icon: {fileID: 21300000, guid: 02e21a7595645644e80f34c809e010e9, type: 3}
   rarity: 0
-  itemType: 5
+  itemType: 4
   ability: 1
   description:
-    english: A child tree
-    portugues: "Uma \xE1rvore filhote"
+    english: Wall to your home.
+    portugues: Parede para sua casa.
   value: 0
-  drop: {fileID: 8089566441969194223, guid: 40c603b656ca36e4a874e4b47c3328d5, type: 3}
+  drop: {fileID: 1530831147269855255, guid: 23ae97e42446f9940983e39c5501ff85, type: 3}
   gasValue: 0
   gasTypes: 
   animation: 0
   power: 5
   critRate: 10
   knockbackForce: 10
-  recipeTool: 0
+  recipeTool: 1
   gasCost: 0
   toolLevel: 0
-  recipe: []
+  recipe:
+  - itemData: {fileID: 11400000, guid: 9505b421013d68f4bb519800e7b27a80, type: 2}
+    amount: 20

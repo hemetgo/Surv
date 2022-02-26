@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &1207745208856808398
+--- !u!1 &1530831147269855255
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,46 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8748911064364536576}
-  - component: {fileID: 1394737811170720945}
-  - component: {fileID: 3436038379550263751}
-  - component: {fileID: 2076155986828811092}
+  - component: {fileID: 1530831147269358647}
+  - component: {fileID: 1530831147270685719}
+  - component: {fileID: 1530831147271784151}
+  - component: {fileID: 7059129352247207418}
+  - component: {fileID: 6111332823797689199}
+  - component: {fileID: 17755996620829213}
   m_Layer: 0
-  m_Name: Triangular
+  m_Name: Drop_Wooden Palisade
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8748911064364536576
+--- !u!4 &1530831147269358647
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207745208856808398}
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_GameObject: {fileID: 1530831147269855255}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 0.9125, z: 1}
+  m_LocalScale: {x: 1.1152996, y: 1.1152996, z: 1.1153}
   m_Children: []
-  m_Father: {fileID: 4957183923504967238}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!33 &1394737811170720945
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!33 &1530831147270685719
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207745208856808398}
-  m_Mesh: {fileID: -6760677772828329837, guid: d91ddfb6af2523a46b66eda21df87709, type: 3}
---- !u!23 &3436038379550263751
+  m_GameObject: {fileID: 1530831147269855255}
+  m_Mesh: {fileID: 4300000, guid: 7ca1cb8692ae1344d90298daedeb24a2, type: 3}
+--- !u!23 &1530831147271784151
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207745208856808398}
+  m_GameObject: {fileID: 1530831147269855255}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -60,7 +62,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 4b3a2712de2074148904b37db49bb020, type: 2}
+  - {fileID: 2100000, guid: 595e799fef5428048a130a5fd5ea0d8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -72,7 +74,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
+  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -82,78 +84,44 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &2076155986828811092
-MeshCollider:
+--- !u!65 &7059129352247207418
+BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1207745208856808398}
+  m_GameObject: {fileID: 1530831147269855255}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -6760677772828329837, guid: d91ddfb6af2523a46b66eda21df87709, type: 3}
---- !u!1 &5728759247860806908
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4957183923504967238}
-  - component: {fileID: 4791091464105897487}
-  - component: {fileID: 5972345877447236315}
-  m_Layer: 0
-  m_Name: Drop_Triangular Wooden Wall
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4957183923504967238
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5728759247860806908}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.55393744, y: 0.55393744, z: 1.7310543}
-  m_Children:
-  - {fileID: 8748911064364536576}
-  m_Father: {fileID: 0}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4791091464105897487
+  serializedVersion: 2
+  m_Size: {x: 2.2557585, y: 3.4088125, z: 0.32096937}
+  m_Center: {x: 0.010272444, y: 1.6989214, z: -0.011938095}
+--- !u!114 &6111332823797689199
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5728759247860806908}
+  m_GameObject: {fileID: 1530831147269855255}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c01d984270322bd4ab83a10f19790520, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   item:
-    itemData: {fileID: 11400000, guid: 4918db19771099e4496eb6e4b5e65348, type: 2}
+    itemData: {fileID: 11400000, guid: d985f991a0dc3e449a1bd6ec02ea8e30, type: 2}
     amount: 1
     durability: 0
     inventoryIndex: 0
   dropTimer: 0
---- !u!54 &5972345877447236315
+--- !u!54 &17755996620829213
 Rigidbody:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5728759247860806908}
+  m_GameObject: {fileID: 1530831147269855255}
   serializedVersion: 2
   m_Mass: 1
   m_Drag: 0
@@ -162,4 +130,4 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 2
+  m_CollisionDetection: 0

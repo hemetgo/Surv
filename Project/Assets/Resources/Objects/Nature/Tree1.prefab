@@ -65,6 +65,10 @@ MonoBehaviour:
     amountRange: {x: 5, y: 10}
     amount: 0
     dropChance: 100
+  - itemData: {fileID: 11400000, guid: 73c388990a7fc7847a5ccbd539167925, type: 2}
+    amountRange: {x: 1, y: 1}
+    amount: 0
+    dropChance: 50
   randomize: 1
   maxScaleVariation: 0
 --- !u!33 &402445815920527631

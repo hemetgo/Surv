@@ -62,7 +62,7 @@ public class HandManager : MonoBehaviour
 				{
 					if (handItem.itemData.itemType == ItemData.ItemType.Decoration)
 					{
-						handItemObject = transform.Find("Furniture").gameObject;
+						handItemObject = transform.Find("Decoration").gameObject;
 					}
 					else
 					{

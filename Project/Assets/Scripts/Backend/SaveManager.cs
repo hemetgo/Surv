@@ -9,12 +9,14 @@ public class SaveManager : MonoBehaviour
 {
 	public GameObject savingGUI;
 	public Text saveProgressText;
+	private Transform loadParent;
 	private List<GameObject> prefabs = new List<GameObject>();
 	private List<ItemData> itemDatas = new List<ItemData>();
 	private SavableObject[] savableObjects;
 
 	private void Start()
 	{
+		loadParent = GameObject.Find("LoadParent").transform;
 	}
 
 	private void Update()
@@ -80,40 +82,10 @@ public class SaveManager : MonoBehaviour
 					SavableObject loadObject = Instantiate(prefab).GetComponent<SavableObject>();
 					loadObject.name = prefab.name;
 					loadObject.LoadData(saveObject);
+					loadObject.transform.parent = loadParent;
 				}
 			}
 		}
 	}
 
-	public void LoadInventory()
-	{
-		savableObjects = FindObjectsOfType<SavableObject>();
-
-		string path = Application.persistentDataPath + PlayerPrefs.GetString("CurrentSave");
-		if (File.Exists(path))
-		{
-			BinaryFormatter formatter = new BinaryFormatter();
-			FileStream stream = new FileStream(path, FileMode.Open);
-
-			List<SaveObject> saveObjects = formatter.Deserialize(stream) as List<SaveObject>;
-			stream.Close();
-
-			foreach (SaveObject saveObject in saveObjects)
-			{
-				if (saveObject.useSceneObject)
-				{
-					foreach (SavableObject sav in savableObjects)
-					{
-						if (sav.gameObject.name == "UIManager")
-						{
-							if (sav.gameObject.name == saveObject.id)
-							{
-								sav.LoadData(saveObject);
-							}
-						}
-					}
-				}
-			}
-		}
-	}
 }

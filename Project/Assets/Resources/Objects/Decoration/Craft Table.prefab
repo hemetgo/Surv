@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7127906754518932833}
   - component: {fileID: 7127906754518932846}
   - component: {fileID: 7127906754518932847}
+  - component: {fileID: 1119471349282744344}
   m_Layer: 0
   m_Name: Craft Table
   m_TagString: Untagged
@@ -125,7 +126,7 @@ MonoBehaviour:
     amountRange: {x: 1, y: 1}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
 --- !u!114 &7127906754518932833
 MonoBehaviour:
@@ -154,7 +155,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placingCollider: {fileID: 0}
+  placingCollider: {fileID: 1119471349282744344}
   triggerCollider: {fileID: 0}
   rend: {fileID: 0}
   isHorizontal: 0
@@ -186,3 +187,16 @@ MonoBehaviour:
       rz: 0
       rw: 0
     saveComponents: []
+--- !u!65 &1119471349282744344
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7127906754518932844}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.46, y: 0.52, z: 0.57}
+  m_Center: {x: -0.00042045116, y: 0.4455056, z: 0.014463693}

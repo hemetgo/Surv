@@ -84,6 +84,7 @@ public class InventoryManager : MonoBehaviour
 			if(i < 10)
 			{
 				slot = Instantiate(inventorySlotPrefab.gameObject, itemBarContainer.transform).GetComponentInChildren<InventorySlot>();
+				slot.SetAsItemBarSlot();
 			}
 			else
 			{

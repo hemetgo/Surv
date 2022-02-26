@@ -35,11 +35,13 @@ public class UIManager : MonoBehaviour
 			{
 				CloseMenus();
 				superMenu.SetActive(false);
+				state = MenuState.None;
 			}
 			else
 			{
 				OpenMenus();
 				superMenu.SetActive(true);
+				state = MenuState.Super;
 			}
 		}
 	}

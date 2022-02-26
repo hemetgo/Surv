@@ -131,7 +131,7 @@ public class ChopObject : SmartObject
     {
         float height = GetComponent<Renderer>().bounds.size.y;
         GameObject drop = Instantiate(dropPrefab, transform.position + new Vector3(0, 
-            Random.Range(0, height), 0), new Quaternion());
+            Random.Range(0, height/2), 0), new Quaternion());
         Physics.IgnoreCollision(GetComponent<Collider>(), drop.GetComponent<Collider>());
         drop.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(-2, 2), 2, Random.Range(-2, 2)), ForceMode.Impulse);
         drop.transform.Rotate(new Vector3(0, Random.Range(0, 360), 0));

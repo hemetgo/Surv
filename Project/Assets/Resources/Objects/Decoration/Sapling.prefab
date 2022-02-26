@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4662405485199443449
+--- !u!1 &1592248213921773881
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,66 +8,50 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 4662405485199284697}
-  - component: {fileID: 4662405485199443207}
-  - component: {fileID: 4662405485198481913}
-  - component: {fileID: 4662405485197515577}
-  - component: {fileID: 4662405485199443448}
-  - component: {fileID: 6287927820612301661}
-  - component: {fileID: 7253922659867017948}
-  - component: {fileID: -4800269654039459794}
-  - component: {fileID: 3701444345863421245}
-  m_Layer: 2
-  m_Name: Wooden Chest
+  - component: {fileID: 2113065618801353603}
+  - component: {fileID: 3097568799569865766}
+  - component: {fileID: 943558138523621612}
+  - component: {fileID: 4285075512072806792}
+  - component: {fileID: -1788360789629516635}
+  - component: {fileID: 1062415559991449204}
+  - component: {fileID: -7722942686060491489}
+  - component: {fileID: 6871904887405129164}
+  m_Layer: 0
+  m_Name: Sapling
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &4662405485199284697
+--- !u!4 &2113065618801353603
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
+  m_GameObject: {fileID: 1592248213921773881}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.3976905, y: 1.3976905, z: 1.3976905}
+  m_LocalScale: {x: 0.47335598, y: 0.47335598, z: 0.47335598}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &4662405485199443207
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47c03ceaf9cc33f489566960ac4fdcb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 0}
-  itemSlots: 20
-  itemList: []
---- !u!33 &4662405485198481913
+--- !u!33 &3097568799569865766
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
-  m_Mesh: {fileID: 4300000, guid: 28cace394cef3d446898bcaf6bcc4e36, type: 3}
---- !u!23 &4662405485197515577
+  m_GameObject: {fileID: 1592248213921773881}
+  m_Mesh: {fileID: -1579241630799410176, guid: 9841e418dfc2faa4e9d3929b15bd37fe, type: 3}
+--- !u!23 &943558138523621612
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
+  m_GameObject: {fileID: 1592248213921773881}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -80,7 +64,8 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 595e799fef5428048a130a5fd5ea0d8e, type: 2}
+  - {fileID: 2100000, guid: bc2f71a0df6ddba4098aa61c8b6778ed, type: 2}
+  - {fileID: 2100000, guid: 4b3a2712de2074148904b37db49bb020, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -92,7 +77,7 @@ MeshRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
+  m_StitchLightmapSeams: 1
   m_SelectedEditorRenderState: 3
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
@@ -102,26 +87,56 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &4662405485199443448
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.90357924, y: 0.74477327, z: 0.5713215}
-  m_Center: {x: -0.00000023841858, y: 0.3700329, z: 0.012973785}
---- !u!114 &6287927820612301661
+--- !u!114 &4285075512072806792
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
+  m_GameObject: {fileID: 1592248213921773881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d23581704be7efd4595289fec380a0ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  growTimer: 100
+  saplingPrefab: {fileID: 1592248213921773881}
+  grewPrefab: {fileID: 402445815923791119, guid: 8ff78200668798d4591e4b61c0c109c9, type: 3}
+--- !u!114 &-1788360789629516635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592248213921773881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
+  chopType: 1
+  disableCollisionAfter: 0
+  requiredTool: 1
+  health: 1
+  damageRecovery: 0
+  destroyParent: 0
+  destroyAfter: 0
+  currentDamage: 0
+  drops:
+  - itemData: {fileID: 11400000, guid: d45facc5f68a6e84f85d8802e17db7b7, type: 2}
+    amountRange: {x: 1, y: 1}
+    amount: 0
+    dropChance: 100
+  randomize: 0
+  maxScaleVariation: 0
+--- !u!114 &1062415559991449204
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592248213921773881}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
@@ -139,64 +154,36 @@ MonoBehaviour:
       rz: 0
       rw: 0
     saveComponents: []
---- !u!114 &7253922659867017948
+--- !u!114 &-7722942686060491489
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
+  m_GameObject: {fileID: 1592248213921773881}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  placingCollider: {fileID: 3701444345863421245}
+  placingCollider: {fileID: 0}
   triggerCollider: {fileID: 0}
-  rend: {fileID: 0}
+  rend: {fileID: 943558138523621612}
   isHorizontal: 0
   snap: 0
   isPlacing: 0
   isOverlapping: 0
   redMaterial: {fileID: 0}
---- !u!114 &-4800269654039459794
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 373558ca22c87004c8fe6543683fc94b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  particle: {fileID: 5100472910814271774, guid: ba7c693b967c47440a9fd58860a60f6a, type: 3}
-  chopType: 1
-  disableCollisionAfter: 0
-  requiredTool: 1
-  health: 10
-  damageRecovery: 0
-  destroyParent: 0
-  destroyAfter: 0
-  currentDamage: 0
-  drops:
-  - itemData: {fileID: 11400000, guid: 982a8c3065404fc45bd01e680c28e087, type: 2}
-    amountRange: {x: 1, y: 1}
-    amount: 0
-    dropChance: 100
-  randomize: 0
-  maxScaleVariation: 0
---- !u!65 &3701444345863421245
+--- !u!65 &6871904887405129164
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4662405485199443449}
+  m_GameObject: {fileID: 1592248213921773881}
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.49, y: 0.36, z: 0.31}
-  m_Center: {x: -0.0000002682209, y: 0.3793192, z: 0.010651976}
+  m_Size: {x: 0.2228387, y: 1.6568292, z: 0.1563015}
+  m_Center: {x: 0.06515547, y: 0.71516836, z: 0.009234275}
