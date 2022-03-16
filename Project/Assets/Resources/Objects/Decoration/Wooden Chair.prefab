@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 5737361949861672767}
   - component: {fileID: 373337338264159382}
   - component: {fileID: 4911615107067956312}
-  - component: {fileID: -6793708437577359896}
+  - component: {fileID: -2428253038069638130}
   m_Layer: 0
   m_Name: Wooden Chair
   m_TagString: Untagged
@@ -67,7 +67,7 @@ MonoBehaviour:
     amountRange: {x: 1, y: 1}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
 --- !u!114 &1335555719641076113
 MonoBehaviour:
@@ -216,7 +216,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.07893216, y: 0.3560973, z: 0.08512154}
   m_Center: {x: -0.23153539, y: 0.17264323, z: -0.19143908}
---- !u!114 &-6793708437577359896
+--- !u!114 &-2428253038069638130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

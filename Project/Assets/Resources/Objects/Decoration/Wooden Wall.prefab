@@ -230,7 +230,7 @@ GameObject:
   - component: {fileID: 8422470905104618672}
   - component: {fileID: 1702015050402342636}
   - component: {fileID: 3696408322143373046}
-  - component: {fileID: -5366172613514633789}
+  - component: {fileID: 1330115980288368750}
   m_Layer: 2
   m_Name: Wooden Wall
   m_TagString: Untagged
@@ -379,7 +379,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.012272053, y: 0.015479685, z: 0.00062017766}
   m_Center: {x: -0.000000001351984, y: 0.009298064, z: 0.0000014372766}
---- !u!114 &-5366172613514633789
+--- !u!114 &1330115980288368750
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -16,7 +16,7 @@ MonoBehaviour:
   itemName:
     english: Sapling
     portugues: "Muda de \xC1rvore"
-  icon: {fileID: 21300000, guid: b3706dfc7d1edea499501db45b680cdb, type: 3}
+  icon: {fileID: 21300000, guid: 14f3482340198754e93fac269286fe93, type: 3}
   rarity: 0
   itemType: 5
   ability: 1

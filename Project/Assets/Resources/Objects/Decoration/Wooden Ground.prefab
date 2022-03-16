@@ -126,10 +126,10 @@ GameObject:
   - component: {fileID: 2071964819809929484}
   - component: {fileID: 4262074647424564678}
   - component: {fileID: 6593666548414283441}
-  - component: {fileID: 4417160904668549097}
   - component: {fileID: 6815320398123823838}
   - component: {fileID: 7273746591983663246}
   - component: {fileID: 645959322165511287}
+  - component: {fileID: -4675347229332320588}
   m_Layer: 0
   m_Name: Wooden Ground
   m_TagString: Untagged
@@ -230,32 +230,8 @@ MonoBehaviour:
     amountRange: {x: 1, y: 1}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
---- !u!114 &4417160904668549097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2316277646274583571}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveObject:
-    id: 
-    useSceneObject: 0
-    saveTransform:
-      px: 0
-      py: 0
-      pz: 0
-      rx: 0
-      ry: 0
-      rz: 0
-      rw: 0
-    saveComponents: []
 --- !u!114 &6815320398123823838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -302,6 +278,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1446702, y: 0.062017757, z: 1.2035933}
   m_Center: {x: 0.012104478, y: 0.027807435, z: -0.008093795}
+--- !u!114 &-4675347229332320588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2316277646274583571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []
 --- !u!1 &4254194857467427665
 GameObject:
   m_ObjectHideFlags: 0

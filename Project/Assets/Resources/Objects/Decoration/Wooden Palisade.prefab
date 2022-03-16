@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8393899478735715817}
   - component: {fileID: 2896953701588661726}
   - component: {fileID: 8847276630287162622}
-  - component: {fileID: -1756755996622800888}
+  - component: {fileID: 5928784809189869830}
   m_Layer: 0
   m_Name: Wooden Palisade
   m_TagString: Untagged
@@ -148,7 +148,7 @@ MonoBehaviour:
     dropChance: 100
   randomize: 0
   maxScaleVariation: 0
---- !u!114 &-1756755996622800888
+--- !u!114 &5928784809189869830
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

@@ -66,9 +66,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 488200955086128665}
-  - component: {fileID: 6623226909327608941}
   - component: {fileID: 7254878792322568353}
   - component: {fileID: 1649558108778796444}
+  - component: {fileID: 6064329325274053990}
   m_Layer: 2
   m_Name: Wooden Door
   m_TagString: Untagged
@@ -95,30 +95,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6623226909327608941
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 976613174421363875}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveObject:
-    id: 
-    useSceneObject: 0
-    saveTransform:
-      px: 0
-      py: 0
-      pz: 0
-      rx: 0
-      ry: 0
-      rz: 0
-      rw: 0
-    saveComponents: []
 --- !u!114 &7254878792322568353
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,6 +128,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.2850466, y: 2.6431742, z: 1}
   m_Center: {x: -0.021066189, y: 1.6747737, z: 0}
+--- !u!114 &6064329325274053990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 976613174421363875}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []
 --- !u!1 &6183994180306575762
 GameObject:
   m_ObjectHideFlags: 0

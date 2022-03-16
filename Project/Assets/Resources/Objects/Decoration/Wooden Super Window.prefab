@@ -67,7 +67,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1545769120406261162}
   - component: {fileID: 2177627307490219804}
-  - component: {fileID: 2177627307490219805}
   - component: {fileID: 2177627307490219806}
   - component: {fileID: 2177627307490219807}
   - component: {fileID: 1484014322379816184}
@@ -78,6 +77,7 @@ GameObject:
   - component: {fileID: 8944314764676663708}
   - component: {fileID: 8224621645098199908}
   - component: {fileID: 2762953498151276233}
+  - component: {fileID: -2729589723235073081}
   m_Layer: 0
   m_Name: Wooden Super Window
   m_TagString: Untagged
@@ -130,30 +130,6 @@ MonoBehaviour:
   drops: []
   randomize: 0
   maxScaleVariation: 0
---- !u!114 &2177627307490219805
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2177627307490219792}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveObject:
-    id: 
-    useSceneObject: 0
-    saveTransform:
-      px: 0
-      py: 0
-      pz: 0
-      rx: 0
-      ry: 0
-      rz: 0
-      rw: 0
-    saveComponents: []
 --- !u!114 &2177627307490219806
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -298,6 +274,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 2.3265474, y: 2.7529378, z: 0.14}
   m_Center: {x: 0.06632745, y: 1.5871196, z: -0.004373774}
+--- !u!114 &-2729589723235073081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2177627307490219792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []
 --- !u!1 &3051812285740601949
 GameObject:
   m_ObjectHideFlags: 0
@@ -325,7 +325,7 @@ Transform:
   m_GameObject: {fileID: 3051812285740601949}
   m_LocalRotation: {x: -0, y: 0.70710677, z: -0, w: 0.7071069}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 3.3052943, y: 1.6430353, z: 1.6430357}
+  m_LocalScale: {x: 3.3052943, y: 1.5769852, z: 1.6430357}
   m_Children: []
   m_Father: {fileID: 3054301238182932044}
   m_RootOrder: 0
@@ -506,7 +506,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4821180459603005653}
-  m_Mesh: {fileID: 1049928748687988745, guid: 91116582763e8304493dcad4bf66f7b4, type: 3}
+  m_Mesh: {fileID: -1045111890271186868, guid: 91116582763e8304493dcad4bf66f7b4, type: 3}
 --- !u!23 &661207136406639235
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -575,7 +575,7 @@ Transform:
   m_GameObject: {fileID: 5244819318982691516}
   m_LocalRotation: {x: -0, y: -0.70710576, z: -0, w: 0.70710784}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.0117, y: 1, z: 1}
+  m_LocalScale: {x: 2.0117, y: 0.9598, z: 1}
   m_Children: []
   m_Father: {fileID: 2259556378923364635}
   m_RootOrder: 0
@@ -668,7 +668,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6409405343325679010}
-  m_Mesh: {fileID: 6206450301262281439, guid: 91116582763e8304493dcad4bf66f7b4, type: 3}
+  m_Mesh: {fileID: -2427450495734281886, guid: 91116582763e8304493dcad4bf66f7b4, type: 3}
 --- !u!23 &811141638039632468
 MeshRenderer:
   m_ObjectHideFlags: 0

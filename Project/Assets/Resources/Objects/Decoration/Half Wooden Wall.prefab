@@ -186,7 +186,7 @@ GameObject:
   - component: {fileID: 1881279194223938356}
   - component: {fileID: 6460409195214722840}
   - component: {fileID: 8553684151908912029}
-  - component: {fileID: 7802550415854168159}
+  - component: {fileID: 4458987161768667633}
   m_Layer: 2
   m_Name: Half Wooden Wall
   m_TagString: Untagged
@@ -286,7 +286,7 @@ MonoBehaviour:
     amountRange: {x: 1, y: 1}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
 --- !u!114 &1881279194223938356
 MonoBehaviour:
@@ -334,7 +334,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.012763578, y: 0.005468522, z: 0.0006201782}
   m_Center: {x: 0, y: 0.0043718894, z: 0.0000014382304}
---- !u!114 &7802550415854168159
+--- !u!114 &4458987161768667633
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

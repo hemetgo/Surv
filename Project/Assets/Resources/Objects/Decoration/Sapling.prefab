@@ -13,9 +13,8 @@ GameObject:
   - component: {fileID: 943558138523621612}
   - component: {fileID: 4285075512072806792}
   - component: {fileID: -1788360789629516635}
-  - component: {fileID: 1062415559991449204}
   - component: {fileID: -7722942686060491489}
-  - component: {fileID: 6871904887405129164}
+  - component: {fileID: 7027167773176466515}
   m_Layer: 0
   m_Name: Sapling
   m_TagString: Untagged
@@ -130,7 +129,27 @@ MonoBehaviour:
     dropChance: 100
   randomize: 0
   maxScaleVariation: 0
---- !u!114 &1062415559991449204
+--- !u!114 &-7722942686060491489
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1592248213921773881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  placingCollider: {fileID: 0}
+  triggerCollider: {fileID: 0}
+  rend: {fileID: 943558138523621612}
+  isHorizontal: 0
+  snap: 0
+  isPlacing: 0
+  isOverlapping: 0
+  redMaterial: {fileID: 0}
+--- !u!114 &7027167773176466515
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,36 +173,3 @@ MonoBehaviour:
       rz: 0
       rw: 0
     saveComponents: []
---- !u!114 &-7722942686060491489
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592248213921773881}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 44ce57cc47b284d4183fb07553dcf4a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  placingCollider: {fileID: 0}
-  triggerCollider: {fileID: 0}
-  rend: {fileID: 943558138523621612}
-  isHorizontal: 0
-  snap: 0
-  isPlacing: 0
-  isOverlapping: 0
-  redMaterial: {fileID: 0}
---- !u!65 &6871904887405129164
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1592248213921773881}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.2228387, y: 1.6568292, z: 0.1563015}
-  m_Center: {x: 0.06515547, y: 0.71516836, z: 0.009234275}

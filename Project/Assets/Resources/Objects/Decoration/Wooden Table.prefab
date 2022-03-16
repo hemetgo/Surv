@@ -20,7 +20,7 @@ GameObject:
   - component: {fileID: 2500454630026920631}
   - component: {fileID: 7994709870591934356}
   - component: {fileID: 7799049439384136990}
-  - component: {fileID: -7666470447236791241}
+  - component: {fileID: -6609640948445954130}
   m_Layer: 0
   m_Name: Wooden Table
   m_TagString: Untagged
@@ -68,7 +68,7 @@ MonoBehaviour:
     amountRange: {x: 1, y: 1}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
 --- !u!114 &8684818570062621504
 MonoBehaviour:
@@ -235,7 +235,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 126
   m_CollisionDetection: 0
---- !u!114 &-7666470447236791241
+--- !u!114 &-6609640948445954130
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

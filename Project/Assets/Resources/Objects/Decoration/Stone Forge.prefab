@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 1649106204145395300}
   - component: {fileID: 1649106204145395298}
   - component: {fileID: 1649106204145395301}
-  - component: {fileID: 5927191647368785342}
+  - component: {fileID: -6657092253614296423}
   m_Layer: 0
   m_Name: Stone Forge
   m_TagString: Untagged
@@ -57,7 +57,7 @@ MonoBehaviour:
   chopType: 1
   disableCollisionAfter: 0
   requiredTool: 2
-  health: 3
+  health: 10
   damageRecovery: 1
   destroyParent: 0
   destroyAfter: 0
@@ -67,7 +67,7 @@ MonoBehaviour:
     amountRange: {x: 1, y: 1}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
 --- !u!114 &4001121707103131385
 MonoBehaviour:
@@ -199,7 +199,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0489159, y: 2.1376479, z: 0.5039365}
   m_Center: {x: -0.009217262, y: 2.9311762, z: -0.06291473}
---- !u!114 &5927191647368785342
+--- !u!114 &-6657092253614296423
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

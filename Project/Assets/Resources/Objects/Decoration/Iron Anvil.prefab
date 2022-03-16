@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 2856191459412997790}
   - component: {fileID: 5551527103675842130}
   - component: {fileID: 8198681756904254782}
-  - component: {fileID: 626855796946950892}
+  - component: {fileID: -3802818993259168684}
   m_Layer: 0
   m_Name: Iron Anvil
   m_TagString: Untagged
@@ -160,9 +160,9 @@ MonoBehaviour:
     amountRange: {x: 1, y: 1}
     amount: 0
     dropChance: 100
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
---- !u!114 &626855796946950892
+--- !u!114 &-3802818993259168684
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

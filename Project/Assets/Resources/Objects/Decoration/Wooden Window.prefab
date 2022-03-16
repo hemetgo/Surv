@@ -205,7 +205,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2199723778726391518}
   - component: {fileID: 5889543596283522731}
-  - component: {fileID: 5764616749541779065}
   - component: {fileID: 196960566202573712}
   - component: {fileID: 2981615197199185104}
   - component: {fileID: 1660978031909015465}
@@ -214,6 +213,7 @@ GameObject:
   - component: {fileID: 6236367039631059342}
   - component: {fileID: 2390196340951253212}
   - component: {fileID: 7579153519302493233}
+  - component: {fileID: -2924107722414571087}
   m_Layer: 0
   m_Name: Wooden Window
   m_TagString: Untagged
@@ -260,30 +260,6 @@ MonoBehaviour:
   isPlacing: 0
   isOverlapping: 0
   redMaterial: {fileID: 0}
---- !u!114 &5764616749541779065
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1570962095473112164}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveObject:
-    id: 
-    useSceneObject: 0
-    saveTransform:
-      px: 0
-      py: 0
-      pz: 0
-      rx: 0
-      ry: 0
-      rz: 0
-      rw: 0
-    saveComponents: []
 --- !u!114 &196960566202573712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -403,6 +379,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.1460041, y: 1.5981771, z: 0.065460615}
   m_Center: {x: 0.01351896, y: 0.91220915, z: 0.0019072414}
+--- !u!114 &-2924107722414571087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1570962095473112164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []
 --- !u!1 &6202791412654741964
 GameObject:
   m_ObjectHideFlags: 0

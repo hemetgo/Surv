@@ -233,6 +233,7 @@ public class InteractController : MonoBehaviour
                         placingObject.layer = 2;
                         placingObject.name = placingObject.name.Replace("(Clone)", "");
                         placingObject.transform.eulerAngles = new Vector3(0, turnObjectAngle, 0);
+                        Destroy(placingObject.GetComponent<SavableObject>());
                         decorationObject = placingObject.GetComponent<DecorationObject>();
                         decorationObject.EnableTrigger(true);
                         decorationObject.EnableRigidbody(true);
@@ -421,6 +422,7 @@ public class InteractController : MonoBehaviour
                                     {
                                         // Enable components
                                         decorationObject.PlaceObject();
+                                        decorationObject.gameObject.AddComponent<SavableObject>();
                                         handManager.PlaceItem();
                                         placingObject = null;
                                         if (turnObjectAngle == 0 || turnObjectAngle == 180)

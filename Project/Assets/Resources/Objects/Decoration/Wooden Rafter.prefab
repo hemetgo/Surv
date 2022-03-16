@@ -56,10 +56,10 @@ GameObject:
   - component: {fileID: 878420169590901948}
   - component: {fileID: 3158203340619380854}
   - component: {fileID: 4544284977519425861}
-  - component: {fileID: 1797729419224405258}
   - component: {fileID: 8129260221025110551}
   - component: {fileID: 5997803058769667670}
   - component: {fileID: 3495577700390695308}
+  - component: {fileID: -6599173654571376818}
   m_Layer: 0
   m_Name: Wooden Rafter
   m_TagString: Untagged
@@ -154,32 +154,8 @@ MonoBehaviour:
   destroyAfter: 0
   currentDamage: 0
   drops: []
-  randomYRot: 0
+  randomize: 0
   maxScaleVariation: 0
---- !u!114 &1797729419224405258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3518662903521499555}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  saveObject:
-    id: 
-    useSceneObject: 0
-    saveTransform:
-      px: 0
-      py: 0
-      pz: 0
-      rx: 0
-      ry: 0
-      rz: 0
-      rw: 0
-    saveComponents: []
 --- !u!114 &8129260221025110551
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +202,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.7007366, y: 0.119937666, z: 0.0688391}
   m_Center: {x: 0.002217564, y: 0.058441002, z: 0.00026615345}
+--- !u!114 &-6599173654571376818
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3518662903521499555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2bb351457c99ab04094716f77d6951fa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  saveObject:
+    id: 
+    useSceneObject: 0
+    saveTransform:
+      px: 0
+      py: 0
+      pz: 0
+      rx: 0
+      ry: 0
+      rz: 0
+      rw: 0
+    saveComponents: []
 --- !u!1 &6536662834464194054
 GameObject:
   m_ObjectHideFlags: 0
